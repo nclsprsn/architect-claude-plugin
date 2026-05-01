@@ -29,6 +29,18 @@ TOGAF signals present → **TOGAF mode**: align to Phase C — Information Syste
 
 No TOGAF signals → **Framework-agnostic mode**: pipeline quality assessment without phase tagging.
 
+## Information to Gather
+
+Ask only for what is not already provided in context. Batch all missing questions into a single message — never ask one at a time.
+
+| Field | Infer from context if possible | Question if missing |
+|-------|-------------------------------|---------------------|
+| **Pipeline pattern** | Infer from tooling mentions (Spark → batch, Kafka → streaming, Airflow → orchestrated) | *"What is the pipeline pattern? (A) Batch ETL/ELT (B) Micro-batch (C) Streaming (D) Lambda — batch + streaming (E) Kappa — streaming-only (F) Unclear"* |
+| **Freshness SLA** | Look for explicit latency or freshness requirements | *"What is the freshness SLA for the primary data consumer? E.g. 'dashboard must reflect data within 1 hour', 'ML model retrained daily', 'real-time < 5 seconds'."* |
+| **Primary data consumer** | Infer from downstream system mentions | *"Who or what consumes this pipeline's output? (A) Analytics / BI dashboard (B) ML model training or inference (C) Operational API (D) Downstream data product (E) Multiple — describe)"* |
+| **Current tooling** | Look for technology stack mentions | *"What tooling is in use or being evaluated? E.g. Airflow, dbt, Spark, Flink, Kafka, Fivetran, dlt, Great Expectations — or is the stack undefined?"* |
+| **Known reliability issues** | Look for incident descriptions or SLA breach mentions | *"Are there known reliability issues — late data, silent failures, schema breaks, or idempotency gaps I should prioritise?"* |
+
 ## Output Discipline
 
 Every output MUST satisfy the four rules below. Skip a rule only by writing `N/A — [reason]` so the omission is visible.

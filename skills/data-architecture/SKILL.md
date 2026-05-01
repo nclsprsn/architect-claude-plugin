@@ -29,6 +29,18 @@ TOGAF signals present → **TOGAF mode**: align to Phase C — Information Syste
 
 No TOGAF signals → **Framework-agnostic mode**: data-domain quality assessment without phase tagging.
 
+## Information to Gather
+
+Ask only for what is not already provided in context. Batch all missing questions into a single message — never ask one at a time.
+
+| Field | Infer from context if possible | Question if missing |
+|-------|-------------------------------|---------------------|
+| **Data domains in scope** | Infer from the document or system description | *"Which data domains are in scope? E.g. customer, product, transaction, operational, analytical. Or should I infer from the document?"* |
+| **Current topology** | Look for architecture diagrams or technology mentions | *"What is the current topology? (A) Centralised warehouse (B) Data lake / lakehouse (C) Data mesh (D) Hybrid / unclear — describe briefly"* |
+| **Business outcome this data serves** | Look for use cases, KPIs, or consumer descriptions | *"What business decision or process depends on this data? One sentence — what breaks if the data is wrong or late?"* |
+| **Regulatory / compliance scope** | Infer from domain (finance → PCI, health → HIPAA, EU → GDPR) | *"What regulatory constraints apply? (GDPR, HIPAA, PCI-DSS, AI Act, sector-specific, none known)"* |
+| **Known data quality pain points** | Look for existing complaints, SLA breaches, or quality incidents | *"Are there known data quality issues, consumer complaints, or trust gaps I should prioritise in the assessment?"* |
+
 ## Output Discipline
 
 Every output MUST satisfy the four rules below. Skip a rule only by writing `N/A — [reason]` so the omission is visible.

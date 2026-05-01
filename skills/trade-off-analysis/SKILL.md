@@ -29,6 +29,18 @@ TOGAF signals in context → **TOGAF mode**: format output as a full ADR (Contex
 
 No TOGAF signals → **Framework-agnostic mode**: recommendation memo with weighted comparison table.
 
+## Information to Gather
+
+Ask only for what is not already provided in context. Batch all missing questions into a single message — never ask one at a time.
+
+| Field | Infer from context if possible | Question if missing |
+|-------|-------------------------------|---------------------|
+| **Options to compare** | Look for explicitly named alternatives | *"What options should be evaluated? Provide 2–4. If only one option is presented, name one more ambitious alternative — otherwise the analysis has no analytical value."* |
+| **Decision criteria priority** | Infer from domain (payment → security/resilience first; analytics → cost/scalability first) | *"Which criteria matter most for this decision? E.g. cost, security, scalability, team fit, reversibility, time to market. Or should I select the most relevant from context?"* |
+| **Business outcome** | Look for a problem statement or objective | *"What business outcome does this decision serve? One sentence — what does success look like for the customer or the business?"* |
+| **Decision maker and timeline** | Infer from stakeholder mentions or urgency signals | *"Who makes this decision, and by when must it be made? This shapes whether the output is a working brief or a formal recommendation."* |
+| **Hard constraints** | Look for budget, regulatory, technology lock-in, or team skill signals | *"Are there hard constraints that eliminate options before scoring? E.g. must run on existing cloud, must comply with PCI-DSS, team has no Kubernetes skills."* |
+
 ## Output Discipline
 
 Every output MUST satisfy the four rules below. Skip a rule only by writing `N/A — [reason]` so the omission is visible.

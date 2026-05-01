@@ -29,6 +29,18 @@ TOGAF signals present → **TOGAF mode**: tag each risk to its ADM phase and imp
 
 No TOGAF signals → **Framework-agnostic mode**: category-based heat map without phase tagging.
 
+## Information to Gather
+
+Ask only for what is not already provided in context. Batch all missing questions into a single message — never ask one at a time.
+
+| Field | Infer from context if possible | Question if missing |
+|-------|-------------------------------|---------------------|
+| **System / initiative in scope** | Infer from document title or description | *"What system, programme, or initiative is this risk assessment for? One sentence."* |
+| **Assessment horizon** | Infer from project phase signals | *"What horizon should this cover? (A) H1 — pre-launch risks only (B) H1 + H2 — delivery and operating risks (C) Full H1–H3 including strategic and structural risks"* |
+| **Existing risk register** | Look for a provided register or list of known risks | *"Is there an existing risk register or list of known risks I should build from? If yes, share it and I will enrich and extend it."* |
+| **Risk appetite** | Infer from domain (regulated → low appetite; startup → higher tolerance) | *"What is the risk appetite? (A) Low — regulatory or safety-critical context (B) Medium — standard enterprise (C) High — experimental or startup context"* |
+| **Stakeholder for the output** | Infer from document framing or audience signals | *"Who receives this output? (A) Architecture Review Board (B) Programme board / steerco (C) Engineering team (D) Executive / CxO"* |
+
 ## Output Discipline
 
 Every output MUST satisfy the four rules below. Skip a rule only by writing `N/A — [reason]` so the omission is visible.

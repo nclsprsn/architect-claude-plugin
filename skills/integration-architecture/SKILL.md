@@ -29,6 +29,18 @@ TOGAF signals present → **TOGAF mode**: align to Phase C (Application Architec
 
 No TOGAF signals → **Framework-agnostic mode**: integration quality assessment without phase tagging.
 
+## Information to Gather
+
+Ask only for what is not already provided in context. Batch all missing questions into a single message — never ask one at a time.
+
+| Field | Infer from context if possible | Question if missing |
+|-------|-------------------------------|---------------------|
+| **Integration scope** | Infer from the described systems or diagram | *"Which integration points are in scope? (A) Full landscape (B) Specific service pair or flow (C) API surface only (D) Event-driven layer only"* |
+| **Known pain points** | Look for incident descriptions, latency complaints, or coupling concerns | *"Are there known production incidents, SLA breaches, or bottlenecks this review should prioritise?"* |
+| **SLA / SLO targets** | Look for latency budgets, availability targets, or throughput figures | *"What are the SLA / SLO targets? E.g. P99 latency < Xms, availability > 99.9%, max message lag < Xs."* |
+| **Team ownership model** | Infer from org signals (squads, domains, APIs named by team) | *"Who owns each integration boundary — is there a clear producer and consumer team per contract?"* |
+| **Hard constraints** | Look for regulatory, cost, or technology lock-in signals | *"Are there hard constraints I should factor in? (technology mandates, regulatory data residency, budget, team skill set)"* |
+
 ## Output Discipline
 
 Every output MUST satisfy the four rules below. They operationalise the accountability principles (Bias for Action, Earn Trust, Have Backbone, Deliver Results, Broad Responsibility). Skip a rule only by writing `N/A — [reason]` so the omission is visible.

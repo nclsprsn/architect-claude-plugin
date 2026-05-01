@@ -33,6 +33,18 @@ TOGAF signals present → note the ADM phase. Frame accordingly:
 
 No TOGAF signals → proceed with framework-agnostic framing.
 
+## Information to Gather
+
+Ask only for what is not already provided in context. Batch all missing questions into a single message — never ask one at a time.
+
+| Field | Infer from context if possible | Question if missing |
+|-------|-------------------------------|---------------------|
+| **Stakeholder role** | Infer from name, title, or described responsibilities | *"What is the stakeholder's role? (A) CEO / board member (B) CTO / CIO (C) CFO (D) CISO (E) DPO / Legal (F) Programme sponsor (G) Client technical lead (H) Other — describe)"* |
+| **Desired action or alignment** | Look for an explicit ask or decision point in the context | *"What do you need this stakeholder to do, decide, or believe after reading this? One sentence — the clearer the ask, the sharper the communication."* |
+| **Communication channel** | Look for channel signals (email thread, meeting prep, deck, memo) | *"What format is needed? (A) Email (B) Briefing memo (C) Deck outline (D) Talking points for a meeting (E) Formal written recommendation"* |
+| **Deadline or urgency** | Look for dates, milestones, or decision windows | *"Is there a deadline for the stakeholder's response or decision? Naming it lets me build urgency into the close."* |
+| **Known objections or sensitivities** | Infer from role (CFO → cost; CISO → risk; legal → liability) | *"What objections, concerns, or political sensitivities should I anticipate? Naming them lets me pre-empt them — or consciously choose to avoid them."* |
+
 ## Output Discipline
 
 Every output MUST satisfy the four rules below. Skip a rule only by writing `N/A — [reason]` so the omission is visible.

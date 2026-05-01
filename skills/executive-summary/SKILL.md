@@ -42,6 +42,18 @@ TOGAF signals present → note the ADM phase. Frame language accordingly:
 
 No TOGAF signals → proceed with framework-agnostic rewrite.
 
+## Information to Gather
+
+Ask only for what is not already provided in context. Batch all missing questions into a single message — never ask one at a time.
+
+| Field | Infer from context if possible | Question if missing |
+|-------|-------------------------------|---------------------|
+| **Primary audience** | Infer from the document's addressee or requested format | *"Who is the primary audience? (A) CEO / board (B) CTO / CIO (C) CFO (D) Programme sponsor (E) Client executive — and what is their primary concern: cost, risk, speed, or competitive position?"* |
+| **Commitment ask** | Look for a budget, sign-off, or approval request in the source document | *"What decision or commitment does this communication need to unlock? Be specific: budget approval, architecture sign-off, escalation, programme air cover."* |
+| **Source document or context** | Look for a provided document, deck, or ADR to rewrite | *"Is there a source document to rewrite? If yes, share it. If not, describe the recommendation and the context in 3–5 sentences."* |
+| **Key numbers available** | Look for cost estimates, latency targets, risk probabilities | *"What numbers are available to anchor the communication? E.g. cost estimate, projected saving, risk probability × impact, timeline. Flag any that are unknown."* |
+| **Known objections** | Infer from audience role (CFO → cost; CISO → security; CTO → complexity) | *"What objections or questions is the audience likely to raise? Naming them lets me pre-empt them in the structure."* |
+
 ## Output Discipline
 
 Every output MUST satisfy the four rules below. Skip a rule only by writing `N/A — [reason]` so the omission is visible.

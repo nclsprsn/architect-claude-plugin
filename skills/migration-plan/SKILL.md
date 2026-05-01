@@ -29,6 +29,18 @@ TOGAF signals present → **TOGAF mode**: structure the roadmap as a TOGAF Trans
 
 No TOGAF signals → **Framework-agnostic mode**: phased delivery roadmap with H1/H2/H3 wave structure, dependency sequencing, and critical path.
 
+## Information to Gather
+
+Ask only for what is not already provided in context. Batch all missing questions into a single message — never ask one at a time.
+
+| Field | Infer from context if possible | Question if missing |
+|-------|-------------------------------|---------------------|
+| **Current and target state** | Look for gap analysis output, as-is / to-be descriptions, or architecture documents | *"Is there a gap analysis or current/target architecture description I should use as input? If not, describe the current state and the target state in 2–3 sentences each."* |
+| **Hard deadlines** | Look for regulatory, contractual, or go-live date mentions | *"Are there hard deadlines the plan must respect? E.g. regulatory cutover date, contract expiry, platform EOL, business go-live."* |
+| **Team capacity and constraints** | Look for team size, skill signals, or concurrent programme mentions | *"What team capacity is available? E.g. number of squads, skill constraints (cloud, data, legacy platform), competing programme commitments."* |
+| **Risk appetite for migration** | Infer from domain and stakeholder signals | *"What is the risk appetite for the migration? (A) Low — zero-downtime required, parallel run mandatory (B) Medium — short maintenance window acceptable (C) High — speed over stability, best-effort rollback"* |
+| **Migration pattern preference** | Look for strangler-fig, big-bang, or incremental language | *"Is there a preferred migration pattern? (A) Strangler-fig (B) Parallel run then cutover (C) Big-bang (D) No preference — recommend based on constraints"* |
+
 ## Output Discipline
 
 Every output MUST satisfy the four rules below. Skip a rule only by writing `N/A — [reason]` so the omission is visible.
