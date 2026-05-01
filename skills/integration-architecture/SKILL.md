@@ -59,7 +59,7 @@ Generate the artifacts appropriate to the integration context. Include only what
 
 ### TOGAF Phase C — Application Architecture Artifacts
 
-TOGAF defines 2 catalogs, 5 matrices, and 7 diagrams for Phase C Application Architecture. Generate those relevant to scope — do not generate all for every engagement.
+TOGAF Phase C Application Architecture canonical artefacts include the following (selection from the TOGAF Architecture Content reference). Generate those relevant to scope — do not generate all for every engagement.
 
 **Catalogs:**
 | Catalog | When to include | Purpose |

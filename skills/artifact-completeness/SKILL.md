@@ -104,7 +104,7 @@ Diagrams render views for specific stakeholder concerns.
 
 **Architecture Definition Document (ADD):**
 - Phase B (Business): Organization/Actor Catalog, Driver/Goal/Objective Catalog, Role Catalog, Business Service/Function Catalog, Business Footprint Diagram, Functional Decomposition Diagram, Business Interaction Matrix, Business Use-Case Diagram
-- Phase C (Data): Data Entity/Data Component Catalog, Data Entity/Business Function Matrix, System/Data Matrix, Class Diagram, Data Dissemination Diagram, Data Security Diagram, Data Migration Diagram
+- Phase C (Data): Data Entity/Data Component Catalog, Data Entity/Business Function Matrix, System/Data Matrix, Conceptual Data Diagram, Logical Data Diagram, Data Dissemination Diagram, Data Security Diagram, Data Migration Diagram, Data Lifecycle Diagram
 - Phase C (Application): Application Portfolio Catalog, Interface Catalog, Application/Organization Matrix, Application/Function Matrix, Application Interaction Diagram, Application Communication Diagram
 - Phase D (Technology): Technology Standards Catalog, Technology Portfolio Catalog, System/Technology Matrix, Environments and Locations Diagram, Platform Decomposition Diagram, Network Computing/Hardware Diagram
 

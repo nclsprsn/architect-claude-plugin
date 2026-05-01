@@ -19,7 +19,7 @@ You are writing a communication for a specific stakeholder. Your job is to land 
 
 **Bold Needs Evidence:** Every qualitative claim gets a number. "Cost saving" → "estimated €X/year." If the number is unknown, flag it explicitly — unknown numbers become the first question in the room, and if you don't have an answer, you lose the room.
 
-**SCQA (non-negotiable):** Every stakeholder communication follows Situation → Complication → Question → Answer. Complete the scaffold before writing — even if the elements are implicit in the output. The Answer is always the first sentence.
+**SCQA (non-negotiable):** Every stakeholder communication follows Situation → Complication → Question → Answer. Complete the scaffold before writing — even if the elements are implicit in the output. The Answer is always the first sentence. *(Practitioner overlay — McKinsey communication framework; not TOGAF-native.)*
 
 **Second-Order Effects:** Name at least one second-order consequence of the communication itself — a follow-on ask it will generate, a political dynamic it will surface, or a precedent it sets.
 
@@ -124,6 +124,9 @@ Before writing: map the stakeholder's position and identify who influences them.
 | **Current stance** | Champion / Neutral / Sceptical / Blocker |
 | **Key influencer** | Who do they listen to? Name the role. |
 | **Political risk** | What would cause them to block or escalate? |
+
+> [!info] Practitioner overlay — not TOGAF-native
+> The Power × Interest grid (Mendelow, 1991) is an external stakeholder mapping framework. TOGAF identifies stakeholders through the Stakeholder Map artefact in Phase A but does not prescribe a specific power/interest model.
 
 Power × Interest grid positioning:
 - **High power, high interest** → Manage closely: detailed communication, regular updates, involve in decisions

@@ -61,7 +61,7 @@ The capability heat map is always required. All other artifacts are conditional 
 
 ### TOGAF Phase B Catalogs
 
-TOGAF defines 9 standard catalogs for Phase B (Business Architecture). Produce those relevant to scope — do not generate all nine for every engagement.
+TOGAF Phase B canonical catalogs include the following (selection from the TOGAF Architecture Content reference — TOGAF 10 Series). Produce those relevant to scope — do not generate all for every engagement.
 
 | Catalog | When to include | Purpose |
 |---------|----------------|---------|
@@ -77,7 +77,7 @@ TOGAF defines 9 standard catalogs for Phase B (Business Architecture). Produce t
 
 ### TOGAF Phase B Matrices
 
-TOGAF defines 5 standard matrices for Phase B. Produce those relevant to scope.
+TOGAF Phase B canonical matrices include the following (selection from the TOGAF Architecture Content reference). Produce those relevant to scope.
 
 | Matrix | When to include | Purpose |
 |--------|----------------|---------|
@@ -126,6 +126,13 @@ Read the full capability map or Phase B document before judging. Identify:
 - The horizon classification in use (H1/H2/H3 or equivalent)
 
 ### Step 2 — Capability Completeness Audit
+
+> [!info] Practitioner overlay — not TOGAF-native (maturity scoring)
+> The 0–4 maturity scale used in this skill is a CMMI-derived practitioner convention (CMMI Institute). TOGAF does not prescribe a capability maturity scoring model — use this scale as an overlay to TOGAF Phase B; cite CMMI if the output is used in a formal assessment.
+
+> [!info] Practitioner overlay — not TOGAF-native (ownership model)
+> The PROVIDED / INTEGRATED / GOVERNED ownership model is a practitioner shorthand used to classify how capabilities are delivered. It is not defined by the TOGAF standard — TOGAF addresses ownership through the Organization/Actor Catalog and Actor/Role Matrix.
+
 For each capability:
 - Does it have an ownership model (PROVIDED / INTEGRATED / GOVERNED or equivalent)?
 - Does it have a maturity score with a one-line rationale?

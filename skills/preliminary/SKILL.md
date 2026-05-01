@@ -28,7 +28,7 @@ Without this phase, every downstream phase (A–H) operates on contested assumpt
 ## TOGAF Detection
 
 If the engagement context mentions TOGAF, ADM, building blocks, or architecture governance:
-→ **TOGAF mode**: produce canonical TOGAF Preliminary Phase deliverables. Use TOGAF Table 56 quality criteria for principles. Reference the Organization's Architecture Repository structure.
+→ **TOGAF mode**: produce canonical TOGAF Preliminary Phase deliverables. Use TOGAF Architecture Principle quality criteria (Completeness, Robustness, Understandability, Consistency, Stability — from the TOGAF Architecture Content guidance) for principles. Reference the Organization's Architecture Repository structure.
 
 Otherwise:
 → **Framework-agnostic mode**: produce an Architecture Principles framework and an EA governance lightweight model appropriate to the client's maturity and scale.
@@ -72,7 +72,7 @@ One table per principle, following the TOGAF template:
 
 Minimum: one principle per domain — Business, Data, Application, Technology. Typically 4–8 principles total; more than 12 is a smell (scope creep or lack of prioritisation).
 
-Quality check (TOGAF Table 56): each principle must be **Complete** (no gaps), **Robust** (handles edge cases), **Understandable** (no jargon), **Consistent** (no contradiction with other principles), **Stable** (resistant to trivial change).
+Quality check (TOGAF Architecture Principle criteria): each principle must be **Complete** (no gaps), **Robust** (handles edge cases), **Understandable** (no jargon), **Consistent** (no contradiction with other principles), **Stable** (resistant to trivial change).
 
 ### 2. Tailored Architecture Framework
 
@@ -126,6 +126,6 @@ Does this meet the bar for a client deliverable? A completed Preliminary Phase o
 After completing the Preliminary Phase:
 
 - **Forward — Phase A**: Invoke `architecture-vision` to develop the Architecture Vision, Statement of Architecture Work, and Stakeholder Map. The agreed principles are the foundation.
-- **Validate — Principles quality**: Invoke `principles-check` to audit the principles against TOGAF Table 56 quality criteria before Phase A begins.
+- **Validate — Principles quality**: Invoke `principles-check` to audit the principles against TOGAF Architecture Principle quality criteria before Phase A begins.
 - **Document decisions**: If a significant governance decision was made (e.g., architecture board charter, dispensation policy), invoke `adr-generator` to capture it as an ADR.
 - **Communicate**: If C-level sign-off is needed on the principles or governance model, invoke `executive-summary` or `stakeholder-communication`.

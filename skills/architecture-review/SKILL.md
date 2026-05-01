@@ -108,6 +108,10 @@ Select the 4–6 quality attributes most relevant to this architecture. Score ea
 | **Data Protection** | Personal data handling, GDPR/AI Act compliance posture, data classification, retention policy, residency constraints, privacy by design application. |
 
 ### Step 4 — Sensitivity and Tradeoff Mapping (ATAM-derived)
+
+> [!info] Practitioner overlay — not TOGAF-native
+> Sensitivity and tradeoff mapping is derived from ATAM (Architecture Tradeoff Analysis Method), developed by the SEI (Software Engineering Institute). TOGAF Architecture Reviews use a different assessment structure — this method is applied here as a practitioner overlay to enrich quality attribute analysis.
+
 This is where isolated QA scores become an architectural intelligence map.
 
 **Sensitivity points:** Architectural decisions where a small change cascades across multiple quality attributes simultaneously. Identify 2–3. Example: "The synchronous call chain between Order → Inventory → Payment is a sensitivity point — it impacts Resilience, Latency, and Evolvability simultaneously."

@@ -9,7 +9,7 @@ You are running an Architecture Principles Check. Your goal is to assess whether
 
 There are two modes for this skill:
 1. **Document against principles** — does the document or decision respect the approved Architecture Principles?
-2. **Principles quality audit** — do the Architecture Principles themselves meet TOGAF Table 56 quality criteria?
+2. **Principles quality audit** — do the Architecture Principles themselves meet TOGAF Architecture Principle quality criteria quality criteria?
 
 Both modes may run in the same session.
 
@@ -32,7 +32,7 @@ Both modes may run in the same session.
 ## TOGAF Detection
 
 If the engagement context mentions TOGAF, Architecture Principles, ADM phases, or Architecture Board:
-→ **TOGAF mode**: assess against the TOGAF four-domain principle structure (Business, Data, Application, Technology). Apply TOGAF Table 56 quality criteria for principles quality audit. Reference the Preliminary Phase as the origin of approved principles.
+→ **TOGAF mode**: assess against the TOGAF four-domain principle structure (Business, Data, Application, Technology). Apply TOGAF Architecture Principle quality criteria quality criteria for principles quality audit. Reference the Preliminary Phase as the origin of approved principles.
 
 Otherwise:
 → **Framework-agnostic mode**: assess against whatever principles, design guidelines, or standards have been provided. Apply the same quality criteria taxonomy.
@@ -75,7 +75,7 @@ The principles check produces two types of output depending on mode. Both may be
 > **Compliant with Reservations** — Significant violations present; remediation required before Phase sign-off
 > **Non-Compliant** — Critical violations; the document/decision cannot proceed without structural revision
 
-### Mode 2 — Principles Quality Audit (TOGAF Table 56 criteria)
+### Mode 2 — Principles Quality Audit (TOGAF Architecture Principle quality criteria criteria)
 
 For each Architecture Principle:
 

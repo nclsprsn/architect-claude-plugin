@@ -79,6 +79,9 @@ The compliance review produces one structured assessment document. Do not produc
 | System engineering | Compliant / Partial / Non-Compliant | [finding] | | | | | |
 | Methods and tools | Compliant / Partial / Non-Compliant | [finding] | | | | | |
 
+> [!info] Status taxonomy — practitioner shorthand
+> Compliant / Partial / Non-Compliant is a 3-level shorthand used in this skill. The TOGAF Architecture Capability series guide defines a 6-level conformance scale (Irrelevant / Consistent / Compliant / Conformant / Fully Conformant / Non-conformant). Map to the 6-level scale on request for formal Architecture Board submissions.
+
 **Section 3 — Prioritised Finding List**
 
 | # | Severity | Category | Finding | Standard/Principle violated | Remediation | Owner | Reversibility |

@@ -17,9 +17,9 @@ You are rewriting a technical architecture document for an audience that does no
 
 **Commoditisation Pressure:** Check whether the recommended solution is treating a commodity as a differentiator, or a differentiator as a commodity. Name it if the source document is building what it should be buying.
 
-**Pyramid Principle (non-negotiable):** Recommendation in sentence 1. Justification follows. Never bury the conclusion. If the source document builds to a conclusion, invert it.
+**Pyramid Principle (non-negotiable):** Recommendation in sentence 1. Justification follows. Never bury the conclusion. If the source document builds to a conclusion, invert it. *(Practitioner overlay — from Barbara Minto / McKinsey; not TOGAF-native.)*
 
-**SCQA (non-negotiable):** Every executive communication follows Situation → Complication → Question → Answer. The Answer is always the recommendation. The reader must never wonder "what is the ask?"
+**SCQA (non-negotiable):** Every executive communication follows Situation → Complication → Question → Answer. *(Practitioner overlay — SCQA is a McKinsey communication framework; not TOGAF-native.)* The Answer is always the recommendation. The reader must never wonder "what is the ask?"
 
 **Bold Needs Evidence:** Every qualitative claim gets a number. "Significant cost saving" → "estimated €X/year at current load." If the number is unknown, flag it explicitly as a gap the reader must close before approving.
 

@@ -5,6 +5,29 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ---
 
+## [3.0.1] — 2026-05-01
+
+### Fixed — TOGAF 10 fidelity (source: TOGAF Standard 10th Edition Pocket Guide G220)
+
+**P1 — Factual corrections**
+- `artifact-completeness`: Phase C (Data) diagram list replaced "Class Diagram" (UML, not TOGAF) with the canonical set: Conceptual Data Diagram, Logical Data Diagram, Data Dissemination Diagram, Data Security Diagram, Data Migration Diagram, Data Lifecycle Diagram
+- `migration-plan`: description now names both Phase E (Opportunities & Solutions) and Phase F (Migration Planning) explicitly; added `## Phase E vs Phase F Outputs` section mapping skill outputs to the correct ADM phase
+- `capability-assessment`, `data-architecture`, `integration-architecture`: removed brittle hard counts ("TOGAF defines N catalogs/matrices/diagrams") — replaced with non-counted canonical phrasing citing the TOGAF Architecture Content reference
+- `preliminary`, `principles-check`: replaced "TOGAF Table 56" references with "TOGAF Architecture Principle quality criteria" — table numbering is not stable across TOGAF 10 editions; the five criteria (Complete/Robust/Understandable/Consistent/Stable) remain authoritative
+
+**P2 — Practitioner overlay labelling**
+- Added `> [!info] Practitioner overlay — not TOGAF-native` callouts to all skills that use non-TOGAF frameworks: CMMI 0–4 maturity (`gap-analysis`, `capability-assessment`), PROVIDED/INTEGRATED/GOVERNED ownership model (`capability-assessment`), 6R Disposition Model and Migration Patterns (`migration-plan`), ISO 31000 4T and FAIR (`risk-radar`), Mendelow Power × Interest grid (`stakeholder-communication`), ATAM sensitivity/tradeoff mapping (`architecture-review`), MADR format and DACI model (`adr-generator`)
+- Added inline attribution for Pyramid Principle (Minto/McKinsey) and SCQA (`executive-summary`, `stakeholder-communication`)
+- `compliance-review`: added note that the 3-level Compliant/Partial/Non-Compliant status taxonomy is practitioner shorthand; the TOGAF Architecture Capability series guide defines a 6-level scale — map on request
+
+**P3 — Coherence**
+- `architecture-vision`: changed initial capability scan from 1–5 to 0–4 scale (consistent with `capability-assessment` and `gap-analysis`)
+- Added `references/togaf-content-framework.md` — canonical Catalogs, Matrices, and Diagrams per ADM phase (B/C-Data/C-App/D), single source of truth for artefact lists
+- Added `references/scoring-conventions.md` — canonical scoring scales (capability maturity 0–4, decision matrix 1–5, risk P×I, compliance status)
+- Extended `tests/validate-skills.sh` with semantic TOGAF fidelity checks: rejects "Class Diagram" in artifact-completeness, forbids hard artefact count assertions, requires migration-plan to name both Phase E and Phase F, requires practitioner overlay callouts in all overlay-using skills
+
+---
+
 ## [3.0.0] — 2026-05-01
 
 ### Added

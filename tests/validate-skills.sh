@@ -241,6 +241,61 @@ if [[ -f "$claude_md" ]]; then
 fi
 
 echo ""
+echo "=== Validating TOGAF artefact fidelity ==="
+echo ""
+
+# Reject UML "Class Diagram" in Phase C-Data context
+echo "--- artifact-completeness: Phase C-Data diagram names ---"
+if grep -q "Class Diagram" "$REPO_ROOT/skills/artifact-completeness/SKILL.md" 2>/dev/null; then
+  fail "artifact-completeness contains 'Class Diagram' — must be 'Logical Data Diagram' (TOGAF canonical)"
+else
+  pass "artifact-completeness: no 'Class Diagram' (correct — TOGAF uses Logical Data Diagram)"
+fi
+
+# Reject hard counts of TOGAF artefacts across all skills
+echo ""
+echo "--- Forbid hard TOGAF artefact count assertions ---"
+hard_count_hits=$(grep -rn --include="SKILL.md" -E "TOGAF defines [0-9]+ (standard )?(catalog|matrix|matrice|diagram)" "$REPO_ROOT/skills/" 2>/dev/null || true)
+if [[ -n "$hard_count_hits" ]]; then
+  echo "$hard_count_hits"
+  fail "found hard TOGAF artefact count assertion(s) — use 'canonical artefacts include the following' instead"
+else
+  pass "no hard TOGAF artefact count assertions"
+fi
+
+# Require migration-plan to name both Phase E and Phase F explicitly
+echo ""
+echo "--- migration-plan: explicit Phase E and Phase F naming ---"
+mig_file="$REPO_ROOT/skills/migration-plan/SKILL.md"
+if grep -q "Phase E (Opportunities" "$mig_file" 2>/dev/null && grep -q "Phase F (Migration Planning)" "$mig_file" 2>/dev/null; then
+  pass "migration-plan: Phase E (Opportunities) and Phase F (Migration Planning) both named"
+else
+  fail "migration-plan: must name both 'Phase E (Opportunities' and 'Phase F (Migration Planning)' explicitly"
+fi
+
+# Require practitioner overlay callout in skills that use non-TOGAF frameworks
+echo ""
+echo "--- Practitioner overlay callouts ---"
+declare -A OVERLAY_SKILLS
+OVERLAY_SKILLS["gap-analysis"]="CMMI 0-4 maturity"
+OVERLAY_SKILLS["capability-assessment"]="CMMI 0-4 maturity"
+OVERLAY_SKILLS["migration-plan"]="6R Disposition Model"
+OVERLAY_SKILLS["risk-radar"]="ISO 31000 4T model"
+OVERLAY_SKILLS["stakeholder-communication"]="Mendelow Power×Interest"
+OVERLAY_SKILLS["architecture-review"]="ATAM sensitivity mapping"
+OVERLAY_SKILLS["adr-generator"]="MADR format"
+
+for skill in "${!OVERLAY_SKILLS[@]}"; do
+  sfile="$REPO_ROOT/skills/$skill/SKILL.md"
+  label="${OVERLAY_SKILLS[$skill]}"
+  if [[ -f "$sfile" ]] && grep -q "Practitioner overlay" "$sfile" 2>/dev/null; then
+    pass "overlay callout: $skill ($label)"
+  else
+    fail "overlay callout missing: $skill ($label) — add '> [!info] Practitioner overlay — not TOGAF-native'"
+  fi
+done
+
+echo ""
 
 if [[ $ERRORS -eq 0 ]]; then
   echo "All checks passed."

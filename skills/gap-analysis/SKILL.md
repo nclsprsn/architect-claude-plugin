@@ -54,6 +54,9 @@ Every output MUST satisfy the four rules below. They operationalise the accounta
 
 ## Capability Maturity Scale
 
+> [!info] Practitioner overlay — not TOGAF-native
+> The 0–4 maturity scale below is a CMMI-derived practitioner convention (CMMI Institute). TOGAF does not prescribe a capability maturity model — use this scale as an overlay alongside TOGAF Phase B/C/D gap analysis; cite CMMI if the output is used in a formal assessment context.
+
 Score every capability at both As-Is and To-Be using this 5-level scale. The gap = levels to climb. This replaces vague H/M/L baseline/target descriptions.
 
 | Level | Name | What it means |

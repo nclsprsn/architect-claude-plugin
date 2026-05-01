@@ -1,6 +1,6 @@
 ---
 name: migration-plan
-description: Generate a phased migration plan from gap-analysis output or a described current/target state. Sequences work into H1/H2/H3 delivery waves based on dependencies, risk, and business value. Produces a critical path, rollback playbook per wave, go/no-go criteria, 6Rs disposition, and migration risks. TOGAF Phase E/F Transition Architecture aware.
+description: Generate a phased migration plan from gap-analysis output or a described current/target state. Sequences work into H1/H2/H3 delivery waves based on dependencies, risk, and business value. Produces a critical path, rollback playbook per wave, go/no-go criteria, 6Rs disposition, and migration risks. Covers TOGAF Phase E (Opportunities & Solutions) and Phase F (Migration Planning) jointly.
 ---
 
 # Migration Plan
@@ -95,7 +95,24 @@ Every output MUST satisfy the four rules below. Skip a rule only by writing `N/A
 
 ---
 
+## Phase E vs Phase F Outputs
+
+In TOGAF mode, map skill outputs to the correct ADM phase:
+
+| Output | Phase |
+|--------|-------|
+| Migration options identification, opportunity analysis | Phase E — Opportunities & Solutions |
+| Implementation & Migration Strategy, initial Architecture Roadmap | Phase E |
+| Work package sequencing, Transition Architecture definitions (T1, T2…) | Phase F — Migration Planning |
+| Detailed Implementation & Migration Plan | Phase F |
+| Go/no-go gates, rollback playbooks, operational readiness | Phase F |
+
+---
+
 ## 6R Disposition Model
+
+> [!info] Practitioner overlay — not TOGAF-native
+> The 6R Disposition Model originates from the AWS Migration Acceleration Program. Use alongside TOGAF Phase E/F artefacts to classify workloads; it is not defined in the TOGAF standard.
 
 When application or workload migration is in scope, classify every workload before sequencing:
 
@@ -109,6 +126,9 @@ When application or workload migration is in scope, classify every workload befo
 | **Retain** | Keep as-is for now — defer migration decision | Not ready; cost > benefit; dependency not resolved |
 
 ## Migration Patterns
+
+> [!info] Practitioner overlay — not TOGAF-native
+> Migration patterns (strangler-fig, parallel run, big-bang, etc.) are practitioner conventions from Fowler and industry practice. TOGAF prescribes Transition Architecture states (T1, T2…) — these patterns are how you move between them, but the patterns themselves are not part of the TOGAF standard.
 
 | Pattern | When to use | Key risk |
 |---------|-------------|---------|

@@ -111,6 +111,9 @@ Every output MUST satisfy the four rules below. Skip a rule only by writing `N/A
 
 ## Risk Treatment (ISO 31000 / 4T model)
 
+> [!info] Practitioner overlay — not TOGAF-native
+> The 4T treatment model (Tolerate / Treat / Transfer / Terminate) is drawn from ISO 31000:2018. The FAIR quantification model (Loss Magnitude × Loss Event Frequency) is from the FAIR Institute. Both are used here as overlays to TOGAF risk governance — TOGAF itself does not prescribe a risk scoring or treatment taxonomy.
+
 | Treatment | When to apply |
 |-----------|--------------|
 | **Tolerate** | Risk is within appetite; cost of treatment exceeds expected loss |

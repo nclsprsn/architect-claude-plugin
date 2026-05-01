@@ -27,6 +27,9 @@ You are writing an Architectural Decision Record for a decision that has been ma
 
 TOGAF signals present → **TOGAF mode**: add ADM phase tag, impacted building blocks, gap analysis pointer, and architecture contract status. Note: ADRs are NOT a native TOGAF artifact — TOGAF captures architectural decisions through Architecture Principles, Architecture Contracts, and Governance Logs. This skill produces an ADR (MADR format) as a complement to TOGAF governance, not a replacement for it. In TOGAF mode, the ADR should reference the relevant Architecture Principle it enacts or overrides, and flag whether an Architecture Contract update is required.
 
+> [!info] Practitioner overlay — not TOGAF-native
+> This skill uses the MADR (Markdown Architectural Decision Records) template format. The DACI stakeholder model (Driver / Approver / Contributors / Informed) originates from Atlassian. Neither MADR nor DACI is defined by the TOGAF standard — both are used here as practitioner overlays that complement TOGAF governance artefacts.
+
 No TOGAF signals → **Framework-agnostic mode**: clean enhanced MADR without TOGAF enrichment.
 
 ## Information to Gather
