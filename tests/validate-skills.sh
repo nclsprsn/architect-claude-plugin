@@ -21,6 +21,7 @@ SKILLS=(
   "stakeholder-communication"
   "new-arch-doc"
   "capability-assessment"
+  "technology-architecture"
 )
 
 POSTURES=(

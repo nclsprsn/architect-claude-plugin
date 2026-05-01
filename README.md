@@ -60,6 +60,7 @@ claude plugin install gh:nclsprsn/architect-claude-plugin
 | `/data-architecture [path]` | Data quality attributes, topology assessment, GDPR/AI Act check, governance blind spot, second-order effects |
 | `/integration-architecture [path]` | Integration quality attributes, topology fitness, contract governance, reliability patterns, anti-pattern detection |
 | `/data-pipeline-review [path]` | Pipeline pattern vs SLA fitness, idempotency, lineage, data quality checks, observability assessment |
+| `/technology-architecture [path]` | Infrastructure topology fitness, vendor lock-in surface, DR/HA patterns, IaC coverage, observability stack, technology lifecycle, cost model |
 
 ### Decide — make and record decisions
 
@@ -100,6 +101,9 @@ claude plugin install gh:nclsprsn/architect-claude-plugin
 | Reviewing a data platform, data model, or data governance design | `/data-architecture` |
 | Reviewing an API design, event-driven system, or integration layer | `/integration-architecture` |
 | Reviewing an ETL/ELT pipeline, streaming design, or data ingestion | `/data-pipeline-review` |
+| Defining infrastructure topology, DR/HA, and technology standards (Phase D) | `/new-arch-doc phase-d` + `/technology-architecture` |
+| Reviewing cloud or on-prem infrastructure for an existing system | `/technology-architecture` |
+| Assessing vendor lock-in, IaC coverage, or technology lifecycle | `/technology-architecture` |
 | Mapping current state to target state | `/gap-analysis` |
 | Comparing options before committing to a direction | `/trade-off-analysis` |
 | Capturing a decision already made | `/adr-generator` |
@@ -108,7 +112,7 @@ claude plugin install gh:nclsprsn/architect-claude-plugin
 | Pre-launch, pre-release, or pre-migration risk check | `/risk-radar` |
 | Sequencing gap-analysis output into a delivery roadmap | `/migration-plan` |
 | Phasing a migration with TOGAF Transition Architectures | `/gap-analysis` → `/migration-plan` |
-| Architecture board submission | `/architecture-review` + `/risk-radar` |
+| Architecture board submission | `/architecture-review` + `/technology-architecture` + `/risk-radar` |
 | Onboarding a new team to an existing architecture | `/executive-summary` + `/stakeholder-communication` |
 
 ### When NOT to Use
@@ -139,15 +143,15 @@ flowchart TD
     end
     subgraph DESIGN["🔌 Design"]
         direction LR
-        s5["5 · Integration Design<br><code>/integration-architecture</code>"] --> s6["6 · Technology Selection<br><code>/trade-off-analysis</code>"]
+        s5["5 · Integration Design<br><code>/integration-architecture</code>"] --> s6["6 · Technology Architecture<br><code>/new-arch-doc phase-d</code><br><code>/technology-architecture</code>"] --> s7["7 · Technology Selection<br><code>/trade-off-analysis</code>"]
     end
     subgraph VALIDATE["✅ Validate"]
         direction LR
-        s7["7 · Gap Analysis<br><code>/gap-analysis</code>"] --> s8["8 · Review Gate<br><code>/architecture-review</code>"] --> s9["9 · Risk Assessment<br><code>/risk-radar</code>"]
+        s8["8 · Gap Analysis<br><code>/gap-analysis</code>"] --> s9["9 · Review Gate<br><code>/architecture-review</code><br><code>/technology-architecture</code>"] --> s10["10 · Risk Assessment<br><code>/risk-radar</code>"]
     end
     subgraph DELIVER["🚀 Deliver"]
         direction LR
-        s10["10 · Delivery Roadmap<br><code>/migration-plan</code>"] --> s11["11 · ADR Documentation<br><code>/adr-generator</code>"] --> s12["12 · Stakeholder Comms<br><code>/executive-summary</code><br><code>/stakeholder-communication</code>"]
+        s11["11 · Delivery Roadmap<br><code>/migration-plan</code>"] --> s12["12 · ADR Documentation<br><code>/adr-generator</code>"] --> s13["13 · Stakeholder Comms<br><code>/executive-summary</code><br><code>/stakeholder-communication</code>"]
     end
     ENVISION --> DESIGN --> VALIDATE --> DELIVER
 ```
@@ -159,13 +163,14 @@ flowchart TD
 | 3 | Current State | Critique quality attributes, risks, assumptions, and gaps of what exists today | `/architecture-review` |
 | 4 | Target Architecture (Phase C) | Define components, interfaces, and behaviour of the target system | `/new-arch-doc phase-c` |
 | 5 | Integration Design | Assess or design the integration layer: APIs, events, messaging, contracts | `/integration-architecture` |
-| 6 | Technology Selection | Compare platform or technology options before committing | `/trade-off-analysis` |
-| 7 | Gap Analysis | Map baseline → target, identify what must change, sequence the work | `/gap-analysis` |
-| 8 | Review Gate | Validate the design meets the bar before delivery starts | `/architecture-review` |
-| 9 | Risk Assessment | Identify what could go wrong before the build starts | `/risk-radar` |
-| 10 | Delivery Roadmap | Phase gap-analysis output into a sequenced plan with dependencies | `/migration-plan` |
-| 11 | Decision Documentation | Record every significant technical decision made during the engagement | `/adr-generator` |
-| 12 | Stakeholder Communication | Present findings and recommendations to the right audience | `/executive-summary` + `/stakeholder-communication` |
+| 6 | Technology Architecture (Phase D) | Define infrastructure topology, technology standards, DR/HA, and lock-in surface | `/new-arch-doc phase-d` + `/technology-architecture` |
+| 7 | Technology Selection | Compare platform or technology options before committing | `/trade-off-analysis` |
+| 8 | Gap Analysis | Map baseline → target, identify what must change, sequence the work | `/gap-analysis` |
+| 9 | Review Gate | Validate the design meets the bar before delivery starts | `/architecture-review` + `/technology-architecture` |
+| 10 | Risk Assessment | Identify what could go wrong before the build starts | `/risk-radar` |
+| 11 | Delivery Roadmap | Phase gap-analysis output into a sequenced plan with dependencies | `/migration-plan` |
+| 12 | Decision Documentation | Record every significant technical decision made during the engagement | `/adr-generator` |
+| 13 | Stakeholder Communication | Present findings and recommendations to the right audience | `/executive-summary` + `/stakeholder-communication` |
 
 ---
 
@@ -185,15 +190,15 @@ flowchart TD
     end
     subgraph BUILD["⚙️ Build Design"]
         direction LR
-        d7["7 · Pipeline Architecture<br><code>/data-pipeline-review</code>"] --> d8["8 · Technology Selection<br><code>/trade-off-analysis</code>"]
+        d7["7 · Technology Architecture<br><code>/new-arch-doc phase-d</code><br><code>/technology-architecture</code>"] --> d8["8 · Pipeline Architecture<br><code>/data-pipeline-review</code>"] --> d9["9 · Technology Selection<br><code>/trade-off-analysis</code>"]
     end
     subgraph VALIDATE["✅ Validate"]
         direction LR
-        d9["9 · Gap Analysis<br><code>/gap-analysis</code>"] --> d10["10 · Review Gate<br><code>/architecture-review + /data-architecture</code>"] --> d11["11 · Risk Assessment<br><code>/risk-radar</code>"]
+        d10["10 · Gap Analysis<br><code>/gap-analysis</code>"] --> d11["11 · Review Gate<br><code>/architecture-review</code><br><code>/data-architecture</code><br><code>/technology-architecture</code>"] --> d12["12 · Risk Assessment<br><code>/risk-radar</code>"]
     end
     subgraph DELIVER["🚀 Deliver"]
         direction LR
-        d12["12 · ADR Documentation<br><code>/adr-generator</code>"] --> d13["13 · Stakeholder Comms<br><code>/executive-summary</code><br><code>/stakeholder-communication</code>"]
+        d13["13 · ADR Documentation<br><code>/adr-generator</code>"] --> d14["14 · Stakeholder Comms<br><code>/executive-summary</code><br><code>/stakeholder-communication</code>"]
     end
     SCOPE --> ARCHITECTURE --> BUILD --> VALIDATE --> DELIVER
 ```
@@ -206,13 +211,14 @@ flowchart TD
 | 4 | Data Architecture Design | Design logical and physical data architecture: storage, access, topology | `/data-architecture` + `/new-arch-doc` |
 | 5 | Governance & Classification | Define ownership, classification tiers, stewardship model, data contracts | `/data-architecture` |
 | 6 | Privacy & GDPR | Assess privacy-by-design: consent, residency, retention, AI Act obligations | `/data-architecture` |
-| 7 | Pipeline Architecture | Design or review ingestion, transformation, and serving pipelines | `/data-pipeline-review` |
-| 8 | Technology Selection | Compare storage, compute, or orchestration options | `/trade-off-analysis` |
-| 9 | Gap Analysis | Map current data capability to target, sequence the work | `/gap-analysis` |
-| 10 | Review Gate | Validate design at a governance checkpoint before build starts | `/architecture-review` + `/data-architecture` |
-| 11 | Risk Assessment | Surface data, privacy, regulatory, and delivery risks | `/risk-radar` |
-| 12 | Decision Documentation | Record technology, governance, and privacy decisions | `/adr-generator` |
-| 13 | Stakeholder Communication | Present findings to CDO, CISO, CTO, DPO, engineering teams | `/executive-summary` + `/stakeholder-communication` |
+| 7 | Technology Architecture (Phase D) | Define infrastructure topology, cloud stack, DR/HA, data residency, and lock-in surface | `/new-arch-doc phase-d` + `/technology-architecture` |
+| 8 | Pipeline Architecture | Design or review ingestion, transformation, and serving pipelines | `/data-pipeline-review` |
+| 9 | Technology Selection | Compare storage, compute, or orchestration options | `/trade-off-analysis` |
+| 10 | Gap Analysis | Map current data capability to target, sequence the work | `/gap-analysis` |
+| 11 | Review Gate | Validate design at a governance checkpoint before build starts | `/architecture-review` + `/data-architecture` + `/technology-architecture` |
+| 12 | Risk Assessment | Surface data, privacy, regulatory, and delivery risks | `/risk-radar` |
+| 13 | Decision Documentation | Record technology, governance, and privacy decisions | `/adr-generator` |
+| 14 | Stakeholder Communication | Present findings to CDO, CISO, CTO, DPO, engineering teams | `/executive-summary` + `/stakeholder-communication` |
 
 ---
 
@@ -224,7 +230,7 @@ flowchart TD
 | B — Business Architecture | `/new-arch-doc phase-b`, `/capability-assessment`, `/gap-analysis` |
 | C — Information Systems (Operational) | `/new-arch-doc phase-c`, `/integration-architecture`, `/architecture-review`, `/gap-analysis`, `/risk-radar` |
 | C — Information Systems (Decisional) | `/new-arch-doc phase-c`, `/data-architecture`, `/data-pipeline-review`, `/architecture-review`, `/gap-analysis`, `/risk-radar` |
-| D — Technology Architecture | `/new-arch-doc phase-d`, `/gap-analysis`, `/architecture-review` |
+| D — Technology Architecture | `/new-arch-doc phase-d`, `/technology-architecture`, `/gap-analysis`, `/architecture-review` |
 | All phases — options & decisions | `/trade-off-analysis`, `/adr-generator` |
 | All phases — delivery sequencing | `/migration-plan` |
 | Governance / review gates | `/architecture-review`, `/risk-radar` |

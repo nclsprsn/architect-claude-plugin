@@ -14,6 +14,7 @@ A Claude Code plugin for Enterprise Architects and Solution Architects.
 | `data-architecture` | `/data-architecture` | "data architecture review", "review this data model", "data governance check", "is this data design sound", "data platform assessment" |
 | `integration-architecture` | `/integration-architecture` | "integration architecture review", "review this API design", "event-driven architecture", "assess our integration layer", "integration design" |
 | `data-pipeline-review` | `/data-pipeline-review` | "review this pipeline", "ETL review", "data pipeline assessment", "assess our data ingestion", "batch vs streaming", "pipeline design review" |
+| `technology-architecture` | `/technology-architecture` | "technology architecture review", "review our infrastructure", "cloud architecture review", "phase d review", "assess our tech stack", "infrastructure assessment", "review our DR", "vendor lock-in review" |
 
 ### Decide
 | Skill | Command | Trigger phrases |
