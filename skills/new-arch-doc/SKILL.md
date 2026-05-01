@@ -211,3 +211,7 @@ Generate this content when not using TOGAF:
 
 ## 6. Decision Log
 *Key decisions made during this document's creation. Why was each option rejected? ADR references if applicable.*
+
+## Standards Bar
+
+Before presenting the scaffolded document, ask: *Does this shell, if filled in by a skilled architect, meet the bar for a client deliverable?* If the answer is no — sections are missing, guiding questions are too vague, or the structure does not match the declared phase — add the missing content before presenting.
