@@ -1,11 +1,13 @@
 # architect-claude-plugin
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-2.0.0-blue)](./package.json)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue)](./package.json)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-6366f1)](https://claude.ai/code)
 [![TOGAF-aware](https://img.shields.io/badge/TOGAF-aware-green)](https://www.opengroup.org/togaf)
 
-Claude Code commands for Enterprise Architects and Solution Architects. Run a command on any architecture document or decision context — get a structured, client-ready output in return. TOGAF-aware by default, framework-agnostic when you don't need it.
+Claude Code skills for Enterprise Architects and Solution Architects. Run a skill on any architecture document or decision context — get a structured, client-ready output in return. TOGAF-aware by default, framework-agnostic when you don't need it.
+
+Supports the full TOGAF ADM cycle — from Preliminary through Phase H — covering **specification** (creating architecture artifacts) and **validation** (reviewing, governing, and managing change to deployed architecture).
 
 ## Requirements
 
@@ -15,13 +17,13 @@ Claude Code commands for Enterprise Architects and Solution Architects. Run a co
 
 **VS Code (recommended)**
 
-- [Claude Code VS Code extension](https://marketplace.visualstudio.com/items?itemName=Anthropic.claude-code) — run commands directly on open files without leaving the editor
+- [Claude Code VS Code extension](https://marketplace.visualstudio.com/items?itemName=Anthropic.claude-code) — run skills directly on open files without leaving the editor
 
 **Obsidian (optional — for vault-based architecture practices)**
 
 - [Dataview](https://github.com/blacksmithgu/obsidian-dataview) — query generated ADRs and architecture documents as a live register
 - [Templater](https://github.com/SilentVoid13/Templater) — wire `/new-arch-doc` and `/adr-generator` outputs into vault templates
-- [Mermaid Tools](https://github.com/dartungar/obsidian-mermaid) — render the Mermaid diagrams produced by architecture commands
+- [Mermaid Tools](https://github.com/dartungar/obsidian-mermaid) — render the Mermaid diagrams produced by architecture skills
 
 ## Install
 
@@ -40,17 +42,32 @@ claude --plugin-dir ./architect-claude-plugin
 ## Quick Start
 
 ```bash
+# Don't know where to start? Let the router dispatch you
+/architect-router I'm starting a new TOGAF engagement for a data platform
+
+# Establish Architecture Principles and EA governance model (Preliminary Phase)
+/preliminary docs/organisation-context.md
+
+# Define scope, stakeholders, and Architecture Vision (Phase A)
+/architecture-vision docs/programme-brief.md
+
 # Review an architecture document before a governance gate
 /architecture-review docs/platform-design.md
 
+# Check artifact completeness against TOGAF templates before board submission
+/artifact-completeness docs/architecture-definition-document.md
+
+# Run an Architecture Compliance Assessment for a live implementation (Phase G)
+/implementation-governance docs/delivery-status-report.md
+
+# Process a change request for a deployed architecture (Phase H)
+/change-management CR-007: migrate from PostgreSQL to Aurora — business driver and impact
+
+# Validate a document against Architecture Principles
+/principles-check docs/data-architecture.md
+
 # Identify gaps between current and target state
 /gap-analysis docs/current-state-assessment.md
-
-# Pre-migration or pre-launch risk check
-/risk-radar docs/migration-proposal.md
-
-# Review a data platform or data governance design
-/data-architecture docs/data-platform-design.md
 
 # Compare two options and get a recommendation
 /trade-off-analysis API gateway: Kong vs AWS API Gateway for our microservices migration
@@ -67,14 +84,20 @@ claude --plugin-dir ./architect-claude-plugin
 
 ---
 
-## Commands
+## Skills
+
+### Route — entry point
+
+| Skill | What it does |
+|-------|-------------|
+| `/architect-router [context]` | Detect TOGAF ADM phase and intent (specify vs validate), recommend the right skill to invoke next |
 
 ### Discover — understand the landscape
 
-| Command | What it does |
-|---------|-------------|
+| Skill | What it does |
+|-------|-------------|
 | `/architecture-review [path]` | Chief architect critique: quality attributes, assumption stress-test, disruptive alternative, second-order effects |
-| `/capability-assessment [path]` | Score a capability map: completeness, maturity evidence quality, ownership model, Phase B → Phase C traceability |
+| `/capability-assessment [path]` | Score a Phase B capability map: completeness, maturity evidence quality, ownership model, Phase B → Phase C traceability |
 | `/gap-analysis [path]` | Baseline → target gap table, scored by domain and effort, sequenced into H1/H2/H3 roadmap |
 | `/risk-radar [path]` | Risk heat map × RAID log × top mitigations × one systemic risk worth naming |
 | `/data-architecture [path]` | Data quality attributes, topology assessment, GDPR/AI Act check, governance blind spot, second-order effects |
@@ -84,29 +107,42 @@ claude --plugin-dir ./architect-claude-plugin
 
 ### Decide — make and record decisions
 
-| Command | What it does |
-|---------|-------------|
+| Skill | What it does |
+|-------|-------------|
 | `/trade-off-analysis [context]` | Evaluate 2–3 options → clear recommendation → ADR-ready output |
 | `/adr-generator [context]` | Write a clean MADR from a decision already made — faster than trade-off-analysis |
 
 ### Communicate — land the message
 
-| Command | What it does |
-|---------|-------------|
+| Skill | What it does |
+|-------|-------------|
 | `/executive-summary [path]` | Rewrite technical doc for C-level: Pyramid Principle, business implications, numbered claims |
-| `/stakeholder-communication [path]` | Tailor a communication for a named role: CTO / Head of Eng / CPO / CFO / Procurement / Board |
+| `/stakeholder-communication [path]` | Tailor a communication for a named role: CTO / Head of Eng / CPO / CFO / CISO / DPO / Procurement / Board |
 
 ### Plan — sequence and phase the delivery
 
-| Command | What it does |
-|---------|-------------|
+| Skill | What it does |
+|-------|-------------|
 | `/migration-plan [path]` | Phase gap-analysis output into a dependency-sequenced H1/H2/H3 roadmap with critical path, quick wins, and TOGAF Transition Architectures |
 
 ### Document — create architecture artifacts
 
-| Command | What it does |
-|---------|-------------|
+| Skill | What it does |
+|-------|-------------|
 | `/new-arch-doc [phase]` | Scaffold a TOGAF phase document (A–D) or framework-agnostic proposal with guiding questions |
+
+### Govern — validate, govern, and manage change
+
+| Skill | What it does |
+|-------|-------------|
+| `/preliminary [context]` | Establish Architecture Principles, tailor the framework, define the Organizational Model for EA, produce Request for Architecture Work (Preliminary Phase) |
+| `/architecture-vision [context]` | Statement of Architecture Work, Architecture Vision, stakeholder map, communications plan, initial capability assessment (Phase A) |
+| `/requirements-management [context]` | Requirements Impact Assessments, Architecture Requirements Repository, traceability matrix — continuous across all ADM phases |
+| `/compliance-review [path]` | 8-category TOGAF Compliance Assessment with Architecture Board verdict: Approve / Approve with Conditions / Reject |
+| `/principles-check [path]` | Validate a document against Architecture Principles (Mode 1), or audit the principles themselves against TOGAF Table 56 quality criteria (Mode 2) |
+| `/artifact-completeness [path]` | Score an artifact against its canonical TOGAF template — required Catalogs, Matrices, and Diagrams per the Architecture Content Framework |
+| `/implementation-governance [context]` | Architecture Contracts, 8-category Compliance Assessments, dispensation and exception log (Phase G) |
+| `/change-management [context]` | Classify change requests (simplification / incremental / re-architecting), assess impact, determine whether a new ADM cycle is required (Phase H) |
 
 ---
 
@@ -114,26 +150,34 @@ claude --plugin-dir ./architect-claude-plugin
 
 | Situation | Use |
 |-----------|-----|
-| Starting a new engagement or TOGAF phase | `/new-arch-doc` |
+| Don't know which skill to invoke | `/architect-router` |
+| Starting a new TOGAF engagement — no agreed principles yet | `/preliminary` |
+| Starting a new architecture cycle — define scope and vision | `/architecture-vision` |
 | Defining business capabilities, value streams, and org model (Phase B) | `/new-arch-doc phase-b` + `/capability-assessment` |
 | Scoring an existing capability map for completeness and maturity evidence | `/capability-assessment` |
-| Reviewing a document or proposal before a review gate | `/architecture-review` |
+| Reviewing a document or proposal before a governance gate | `/architecture-review` |
+| Checking that an artifact has all required TOGAF components | `/artifact-completeness` |
+| Validating a document against Architecture Principles | `/principles-check` |
+| Running a full compliance assessment before Architecture Board submission | `/compliance-review` |
 | Reviewing a data platform, data model, or data governance design | `/data-architecture` |
 | Reviewing an API design, event-driven system, or integration layer | `/integration-architecture` |
 | Reviewing an ETL/ELT pipeline, streaming design, or data ingestion | `/data-pipeline-review` |
 | Defining infrastructure topology, DR/HA, and technology standards (Phase D) | `/new-arch-doc phase-d` + `/technology-architecture` |
 | Reviewing cloud or on-prem infrastructure for an existing system | `/technology-architecture` |
-| Assessing vendor lock-in, IaC coverage, or technology lifecycle | `/technology-architecture` |
 | Mapping current state to target state | `/gap-analysis` |
 | Comparing options before committing to a direction | `/trade-off-analysis` |
 | Capturing a decision already made | `/adr-generator` |
+| Governing an implementation against the approved architecture (Phase G) | `/implementation-governance` |
+| Processing a change request to a deployed architecture (Phase H) | `/change-management` |
+| Managing requirements that change mid-engagement | `/requirements-management` |
 | Preparing a steerco or executive review deck | `/executive-summary` |
 | Writing to a specific stakeholder (CTO, CFO, Board…) | `/stakeholder-communication` |
 | Pre-launch, pre-release, or pre-migration risk check | `/risk-radar` |
 | Sequencing gap-analysis output into a delivery roadmap | `/migration-plan` |
-| Phasing a migration with TOGAF Transition Architectures | `/gap-analysis` → `/migration-plan` |
-| Architecture board submission | `/architecture-review` + `/technology-architecture` + `/risk-radar` |
-| Onboarding a new team to an existing architecture | `/executive-summary` + `/stakeholder-communication` |
+| Full specification flow (Preliminary → F) | See Specification Track diagram |
+| Full validation flow (artifact → Architecture Board → governance) | See Validation Track diagram |
+| Architecture board submission | `/artifact-completeness` → `/compliance-review` → `/architecture-review` |
+| Post-deployment architecture change | `/change-management` → `/implementation-governance` |
 
 ### When NOT to Use
 
@@ -147,114 +191,106 @@ claude --plugin-dir ./architect-claude-plugin
 
 ## Architect Workflow
 
-Most engagements follow one of two tracks depending on whether the system under design integrates operational business processes or builds a decisional / data platform.
+The plugin covers two distinct moments in an architecture engagement: **specifying** (creating architecture artifacts) and **validating** (reviewing, governing, and managing change). A third diagram shows how the router dispatches between them.
 
 ---
 
-### Track 1 — Operational SI Engagement
+### Diagram A — Specification Track (Full ADM)
 
-Applies to systems that run business operations: CRM, ERP, order management, API platform, microservices migration. The work moves from vision to delivery roadmap.
+From Preliminary through Phase F, with Requirements Management running continuously across all phases.
 
 ```mermaid
 flowchart TD
-    subgraph ENVISION["🏗️ Envision"]
-        direction LR
-        s1["1 · Architecture Vision<br><code>/new-arch-doc phase-a</code>"] --> s2["2 · Business Architecture<br><code>/new-arch-doc phase-b</code><br><code>/capability-assessment</code>"] --> s3["3 · Current State<br><code>/architecture-review</code>"] --> s4["4 · Target Architecture<br><code>/new-arch-doc phase-c</code>"]
+    subgraph RM["📋 Requirements Management — continuous"]
+        rm["/requirements-management"]
     end
-    subgraph DESIGN["🔌 Design"]
-        direction LR
-        s5["5 · Integration Design<br><code>/integration-architecture</code>"] --> s6["6 · Technology Architecture<br><code>/new-arch-doc phase-d</code><br><code>/technology-architecture</code>"] --> s7["7 · Technology Selection<br><code>/trade-off-analysis</code>"]
-    end
-    subgraph VALIDATE["✅ Validate"]
-        direction LR
-        s8["8 · Gap Analysis<br><code>/gap-analysis</code>"] --> s9["9 · Review Gate<br><code>/architecture-review</code><br><code>/technology-architecture</code>"] --> s10["10 · Risk Assessment<br><code>/risk-radar</code>"]
-    end
-    subgraph DELIVER["🚀 Deliver"]
-        direction LR
-        s11["11 · Delivery Roadmap<br><code>/migration-plan</code>"] --> s12["12 · ADR Documentation<br><code>/adr-generator</code>"] --> s13["13 · Stakeholder Comms<br><code>/executive-summary</code><br><code>/stakeholder-communication</code>"]
-    end
-    ENVISION --> DESIGN --> VALIDATE --> DELIVER
+    pre["Preliminary<br>/preliminary<br>Principles · Framework · Org Model"] --> va
+    va["Phase A — Vision<br>/architecture-vision<br>Statement of Architecture Work"] --> vb
+    vb["Phase B — Business<br>/capability-assessment<br>/gap-analysis"] --> vc_d
+    vb --> vc_a
+    vc_d["Phase C — Data<br>/data-architecture<br>/data-pipeline-review"] --> vd
+    vc_a["Phase C — Application<br>/integration-architecture"] --> vd
+    vd["Phase D — Technology<br>/technology-architecture"] --> ve
+    ve["Phase E — Opportunities<br>/gap-analysis"] --> vf
+    vf["Phase F — Migration Planning<br>/migration-plan"]
+    rm -.->|"new or changed requirements"| va
+    rm -.->|"new or changed requirements"| vb
+    rm -.->|"new or changed requirements"| vd
+    rm -.->|"new or changed requirements"| vf
 ```
-
-| # | Activity | What you do | Command |
-|---|----------|------------|---------|
-| 1 | Architecture Vision (Phase A) | Frame business drivers, stakeholders, scope, and constraints | `/new-arch-doc phase-a` |
-| 2 | Business Architecture (Phase B) | Define capability map, value streams, maturity baseline, and org model | `/new-arch-doc phase-b` + `/capability-assessment` |
-| 3 | Current State | Critique quality attributes, risks, assumptions, and gaps of what exists today | `/architecture-review` |
-| 4 | Target Architecture (Phase C) | Define components, interfaces, and behaviour of the target system | `/new-arch-doc phase-c` |
-| 5 | Integration Design | Assess or design the integration layer: APIs, events, messaging, contracts | `/integration-architecture` |
-| 6 | Technology Architecture (Phase D) | Define infrastructure topology, technology standards, DR/HA, and lock-in surface | `/new-arch-doc phase-d` + `/technology-architecture` |
-| 7 | Technology Selection | Compare platform or technology options before committing | `/trade-off-analysis` |
-| 8 | Gap Analysis | Map baseline → target, identify what must change, sequence the work | `/gap-analysis` |
-| 9 | Review Gate | Validate the design meets the bar before delivery starts | `/architecture-review` + `/technology-architecture` |
-| 10 | Risk Assessment | Identify what could go wrong before the build starts | `/risk-radar` |
-| 11 | Delivery Roadmap | Phase gap-analysis output into a sequenced plan with dependencies | `/migration-plan` |
-| 12 | Decision Documentation | Record every significant technical decision made during the engagement | `/adr-generator` |
-| 13 | Stakeholder Communication | Present findings and recommendations to the right audience | `/executive-summary` + `/stakeholder-communication` |
 
 ---
 
-### Track 2 — Decisional SI Engagement
+### Diagram B — Validation & Governance Track
 
-Applies to systems built to store, process, and expose data for analysis and AI: data platform, data mesh, lakehouse, ML feature store, BI layer. Privacy and governance are first-class concerns from step one.
+From artifact submission through Architecture Board decision, Phase G governance, and Phase H change management. Phase H feeds back to the start of a new ADM cycle.
 
 ```mermaid
 flowchart TD
-    subgraph SCOPE["🔍 Scope"]
-        direction LR
-        d1["1 · Business Architecture<br><code>/new-arch-doc phase-b</code><br><code>/capability-assessment</code>"] --> d2["2 · Data Domain Scoping<br><code>/new-arch-doc phase-c</code>"] --> d3["3 · Source Assessment<br><code>/data-architecture</code>"]
-    end
-    subgraph ARCHITECTURE["🗄️ Architecture"]
-        direction LR
-        d4["4 · Data Architecture Design<br><code>/data-architecture + /new-arch-doc</code>"] --> d5["5 · Governance & Classification<br><code>/data-architecture</code>"] --> d6["6 · Privacy & GDPR<br><code>/data-architecture</code>"]
-    end
-    subgraph BUILD["⚙️ Build Design"]
-        direction LR
-        d7["7 · Technology Architecture<br><code>/new-arch-doc phase-d</code><br><code>/technology-architecture</code>"] --> d8["8 · Pipeline Architecture<br><code>/data-pipeline-review</code>"] --> d9["9 · Technology Selection<br><code>/trade-off-analysis</code>"]
-    end
-    subgraph VALIDATE["✅ Validate"]
-        direction LR
-        d10["10 · Gap Analysis<br><code>/gap-analysis</code>"] --> d11["11 · Review Gate<br><code>/architecture-review</code><br><code>/data-architecture</code><br><code>/technology-architecture</code>"] --> d12["12 · Risk Assessment<br><code>/risk-radar</code>"]
-    end
-    subgraph DELIVER["🚀 Deliver"]
-        direction LR
-        d13["13 · ADR Documentation<br><code>/adr-generator</code>"] --> d14["14 · Stakeholder Comms<br><code>/executive-summary</code><br><code>/stakeholder-communication</code>"]
-    end
-    SCOPE --> ARCHITECTURE --> BUILD --> VALIDATE --> DELIVER
+    artifact["Architecture artifact<br>submitted for review"] --> pc
+    pc["/principles-check<br>Validate against<br>Architecture Principles"] --> ac
+    ac["/artifact-completeness<br>Check TOGAF template<br>Catalogs · Matrices · Diagrams"] --> cr
+    cr["/compliance-review<br>8-category Compliance Assessment"] --> board{Architecture Board<br>decision}
+    board -->|Approve| contract["Architecture Contract signed<br>/implementation-governance"]
+    board -->|Approve with Conditions| dispense["Dispensation logged<br>/implementation-governance"]
+    board -->|Reject| revise["Revise artifact<br>back to phase skill"]
+    contract --> gov
+    dispense --> gov
+    gov["/implementation-governance<br>Phase G — ongoing monitoring<br>compliance checks · exception log"] --> change
+    change["/change-management<br>Phase H — classify change request<br>simplification · incremental · re-architecting"]
+    change -->|Re-architecting trigger| newcycle["New ADM cycle<br>/preliminary or /architecture-vision"]
+    change -->|Simplification / Incremental| gov
 ```
 
-| # | Activity | What you do | Command |
-|---|----------|------------|---------|
-| 1 | Business Architecture (Phase B) | Define data domain ownership model, data capability maturity, and governance roles | `/new-arch-doc phase-b` + `/capability-assessment` |
-| 2 | Data Domain Scoping (Phase C) | Define data domains, producers, consumers, and the platform's scope | `/new-arch-doc phase-c` |
-| 3 | Source Assessment | Assess existing sources: quality, format, ownership, classification, lineage | `/data-architecture` |
-| 4 | Data Architecture Design | Design logical and physical data architecture: storage, access, topology | `/data-architecture` + `/new-arch-doc` |
-| 5 | Governance & Classification | Define ownership, classification tiers, stewardship model, data contracts | `/data-architecture` |
-| 6 | Privacy & GDPR | Assess privacy-by-design: consent, residency, retention, AI Act obligations | `/data-architecture` |
-| 7 | Technology Architecture (Phase D) | Define infrastructure topology, cloud stack, DR/HA, data residency, and lock-in surface | `/new-arch-doc phase-d` + `/technology-architecture` |
-| 8 | Pipeline Architecture | Design or review ingestion, transformation, and serving pipelines | `/data-pipeline-review` |
-| 9 | Technology Selection | Compare storage, compute, or orchestration options | `/trade-off-analysis` |
-| 10 | Gap Analysis | Map current data capability to target, sequence the work | `/gap-analysis` |
-| 11 | Review Gate | Validate design at a governance checkpoint before build starts | `/architecture-review` + `/data-architecture` + `/technology-architecture` |
-| 12 | Risk Assessment | Surface data, privacy, regulatory, and delivery risks | `/risk-radar` |
-| 13 | Decision Documentation | Record technology, governance, and privacy decisions | `/adr-generator` |
-| 14 | Stakeholder Communication | Present findings to CDO, CISO, CTO, DPO, engineering teams | `/executive-summary` + `/stakeholder-communication` |
+---
+
+### Diagram C — Routing Quick Reference
+
+How `/architect-router` dispatches by phase and intent.
+
+```mermaid
+flowchart TD
+    user["Architect: help me with this"] --> router
+    router["/architect-router<br>Detect phase + intent"]
+    router --> spec{Specifying?}
+    router --> val{Validating?}
+    spec -->|Preliminary| pre["/preliminary"]
+    spec -->|Phase A| va["/architecture-vision"]
+    spec -->|Phase B| vb["/capability-assessment<br>/gap-analysis"]
+    spec -->|Phase C Data| vcd["/data-architecture<br>/data-pipeline-review"]
+    spec -->|Phase C App| vca["/integration-architecture"]
+    spec -->|Phase D| vd["/technology-architecture"]
+    spec -->|Phase E/F| vef["/gap-analysis<br>/migration-plan"]
+    spec -->|Phase G| vg["/implementation-governance"]
+    spec -->|Phase H| vh["/change-management"]
+    spec -->|Ongoing RM| vrm["/requirements-management"]
+    val -->|Principles| pc["/principles-check"]
+    val -->|Completeness| ac["/artifact-completeness"]
+    val -->|Compliance| cr["/compliance-review"]
+    val -->|Deep review| ar["/architecture-review"]
+    val -->|Decision| dt["/trade-off-analysis<br>/adr-generator"]
+```
 
 ---
 
 ### TOGAF ADM Phase Mapping
 
-| Phase | Primary commands |
-|-------|-----------------|
-| A — Architecture Vision | `/new-arch-doc phase-a`, `/stakeholder-communication` |
+| Phase | Primary skills |
+|-------|---------------|
+| Preliminary | `/preliminary` |
+| A — Architecture Vision | `/architecture-vision`, `/new-arch-doc phase-a`, `/stakeholder-communication` |
 | B — Business Architecture | `/new-arch-doc phase-b`, `/capability-assessment`, `/gap-analysis` |
 | C — Information Systems (Operational) | `/new-arch-doc phase-c`, `/integration-architecture`, `/architecture-review`, `/gap-analysis`, `/risk-radar` |
 | C — Information Systems (Decisional) | `/new-arch-doc phase-c`, `/data-architecture`, `/data-pipeline-review`, `/architecture-review`, `/gap-analysis`, `/risk-radar` |
 | D — Technology Architecture | `/new-arch-doc phase-d`, `/technology-architecture`, `/gap-analysis`, `/architecture-review` |
+| E — Opportunities & Solutions | `/gap-analysis`, `/migration-plan` |
+| F — Migration Planning | `/migration-plan` |
+| G — Implementation Governance | `/implementation-governance`, `/compliance-review` |
+| H — Architecture Change Management | `/change-management` |
+| Requirements Management (continuous) | `/requirements-management` |
 | All phases — options & decisions | `/trade-off-analysis`, `/adr-generator` |
-| All phases — delivery sequencing | `/migration-plan` |
-| Governance / review gates | `/architecture-review`, `/risk-radar` |
-| Reporting / steering committees | `/executive-summary`, `/stakeholder-communication` |
+| All phases — validation gates | `/artifact-completeness`, `/principles-check`, `/compliance-review` |
+| Governance / steering committees | `/executive-summary`, `/stakeholder-communication` |
 
 ---
 
@@ -281,26 +317,19 @@ Posture without accountability is theatre. Every skill enforces four output rule
 - **Named owner + review trigger** on every recommendation, risk, gap, and decision — role + evidence threshold or event, not a calendar date
 - **Broad Responsibility line** on every output — societal, environmental, regulatory, or customers-of-customers implication; `N/A — [reason]` only when no plausible downstream impact exists
 
+### Skill Chaining
+
+Each skill ends with a `## Next Step` block that recommends the downstream skill to invoke — either forward (next ADM phase) or lateral (validation gate, decision capture, or communication). The architect accepts or overrides the suggestion; Claude invokes the next skill if the intent is clear.
+
 ### TOGAF Default
 
 TOGAF vocabulary (ADM phases, building blocks, gap analysis) is active by default. If your project does not use TOGAF, the skills degrade gracefully to framework-agnostic mode — just don't mention TOGAF in your prompts.
 
 ---
 
-## Roadmap
-
-| Skill | What it will do |
-|-------|----------------|
-| `data-mesh-designer` | Generate a data mesh topology design from domain ownership and data product definitions |
-| `workshop-facilitator` | Produce a structured workshop agenda + facilitation guide for architecture sessions |
-| `rfp-evaluator` | Evaluate vendor RFP responses against a set of architecture requirements |
-| `pattern-library` | Suggest architecture patterns and reference architectures from a problem description |
-
----
-
 ## Troubleshooting
 
-**The command runs but the output ignores my TOGAF context.**
+**The skill runs but the output ignores my TOGAF context.**
 Include TOGAF vocabulary in your prompt or document. The skills detect TOGAF signals (ADM phases, building blocks, gap analysis) to switch into full TOGAF mode. If none are present, they fall back to framework-agnostic output.
 
 **The output is too generic — it doesn't reflect my specific architecture.**
@@ -314,6 +343,9 @@ Ensure standard TOGAF terms appear in the document: "ADM", "Building Block", "Ba
 
 **Output is missing the Broad Responsibility line.**
 The skill should always emit one. If it outputs `N/A`, it must include a reason. If neither appears, re-run with an explicit reminder: append `-- ensure Broad Responsibility line is present` to your command.
+
+**I don't know which skill to invoke.**
+Run `/architect-router` with a short description of what you're trying to do. The router detects ADM phase and intent (specifying vs validating) and recommends the right skill.
 
 ---
 
