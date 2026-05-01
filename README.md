@@ -195,7 +195,7 @@ claude --plugin-dir ./architect-claude-plugin
 | Sequencing gap-analysis output into a delivery roadmap | `/migration-plan` |
 | Full specification flow (Preliminary → F) | See Specification Track diagram |
 | Full validation flow (artifact → Architecture Board → governance) | See Validation Track diagram |
-| Architecture board submission | `/artifact-completeness` → `/compliance-review` → `/architecture-review` |
+| Architecture board submission | `/principles-check` → `/architecture-review` → `/artifact-completeness` → `/compliance-review` |
 | Post-deployment architecture change | `/change-management` → `/implementation-governance` |
 
 ### When NOT to Use

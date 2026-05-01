@@ -4,6 +4,11 @@ A Claude Code plugin for Enterprise Architects and Solution Architects.
 
 ## Skills
 
+### Route
+| Skill | Command | Trigger phrases |
+|-------|---------|----------------|
+| `architect-router` | `/architect-router` | "where should I begin", "which skill should I use", "help me with this engagement", "what should I do next", "route my request" |
+
 ### Discover
 | Skill | Command | Trigger phrases |
 |-------|---------|----------------|
@@ -41,7 +46,6 @@ A Claude Code plugin for Enterprise Architects and Solution Architects.
 ### Govern
 | Skill | Command | Trigger phrases |
 |-------|---------|----------------|
-| `architect-router` | `/architect-router` | "where should I begin", "which skill should I use", "help me with this engagement", "what should I do next", "route my request" |
 | `preliminary` | `/preliminary` | "preliminary phase", "architecture principles", "tailored architecture framework", "organizational model for EA", "request for architecture work" |
 | `architecture-vision` | `/architecture-vision` | "architecture vision", "statement of architecture work", "phase A", "define scope and vision", "communications plan for architects" |
 | `requirements-management` | `/requirements-management` | "requirements management", "requirements impact assessment", "architecture requirements repository", "traceability matrix", "manage architecture requirements" |
@@ -102,4 +106,4 @@ Every output produced by these skills carries four mandatory accountability mark
 
 ## TOGAF Default
 
-TOGAF is the default vocabulary (ADM phases A–D, building blocks, gap analysis). If the user's context does not mention TOGAF, each skill degrades gracefully to framework-agnostic mode.
+TOGAF is the default vocabulary (ADM Preliminary through Phase H, building blocks, gap analysis). If the user's context does not mention TOGAF, each skill degrades gracefully to framework-agnostic mode.
