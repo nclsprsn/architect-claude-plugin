@@ -7,31 +7,8 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 pass() { echo "  ✓ $1"; }
 fail() { echo "  ✗ $1"; ERRORS=$((ERRORS + 1)); }
 
-SKILLS=(
-  "architecture-review"
-  "gap-analysis"
-  "risk-radar"
-  "data-architecture"
-  "integration-architecture"
-  "data-pipeline-review"
-  "migration-plan"
-  "trade-off-analysis"
-  "adr-generator"
-  "executive-summary"
-  "stakeholder-communication"
-  "new-arch-doc"
-  "capability-assessment"
-  "technology-architecture"
-  "architect-router"
-  "preliminary"
-  "architecture-vision"
-  "requirements-management"
-  "implementation-governance"
-  "change-management"
-  "compliance-review"
-  "principles-check"
-  "artifact-completeness"
-)
+# Discover skills dynamically from the skills/ directory
+mapfile -t SKILLS < <(ls -d "$REPO_ROOT/skills"/*/ 2>/dev/null | xargs -n1 basename | sort)
 
 POSTURES=(
   "Working Backwards"
@@ -81,7 +58,7 @@ for skill in "${SKILLS[@]}"; do
 
   # --- Required sections ---
 
-  for section in "## Core Mindset" "## TOGAF Detection" "## Information to Gather" "## Output Discipline" "## Standards Bar"; do
+  for section in "## Core Mindset" "## TOGAF Detection" "## Information to Gather" "## Output Discipline" "## Standards Bar" "## Next Step"; do
     if grep -q "^${section}" "$file"; then
       pass "section: $section"
     else
