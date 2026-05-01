@@ -1,4 +1,4 @@
-# architect-claude
+# architect-claude-plugin
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-2.0.0-blue)](./package.json)
@@ -14,7 +14,7 @@ Claude Code commands for Enterprise Architects and Solution Architects. Run a co
 ## Install
 
 ```bash
-claude plugin install gh:nclsprsn/architect-claude
+claude plugin install gh:nclsprsn/architect-claude-plugin
 ```
 
 ## Quick Start

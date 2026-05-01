@@ -1,5 +1,5 @@
 {
-  "name": "architect-claude",
+  "name": "architect-claude-plugin",
   "version": "2.0.0",
   "description": "Claude Code plugin for Enterprise Architects and Solution Architects — architecture review, trade-off analysis, executive communication, and document scaffolding. TOGAF-aware.",
   "keywords": ["claude-code", "plugin", "architecture", "togaf", "enterprise-architecture", "solution-architecture", "adr"],
@@ -9,6 +9,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nclsprsn/architect-claude"
+    "url": "https://github.com/nclsprsn/architect-claude-plugin"
   }
 }

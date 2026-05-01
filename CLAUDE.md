@@ -1,4 +1,4 @@
-# architect-claude
+# architect-claude-plugin
 
 A Claude Code plugin for Enterprise Architects and Solution Architects.
 
