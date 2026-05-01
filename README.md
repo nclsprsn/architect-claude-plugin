@@ -1,6 +1,15 @@
 # architect-claude
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue)](./package.json)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-6366f1)](https://claude.ai/code)
+[![TOGAF-aware](https://img.shields.io/badge/TOGAF-aware-green)](https://www.opengroup.org/togaf)
+
 Claude Code commands for Enterprise Architects and Solution Architects. Run a command on any architecture document or decision context — get a structured, client-ready output in return. TOGAF-aware by default, framework-agnostic when you don't need it.
+
+## Requirements
+
+- [Claude Code](https://claude.ai/code) CLI installed and authenticated
 
 ## Install
 
@@ -98,6 +107,14 @@ claude plugin install gh:nclsprsn/architect-claude
 | Phasing a migration with TOGAF Transition Architectures | `/gap-analysis` → `/migration-plan` |
 | Architecture board submission | `/architecture-review` + `/risk-radar` |
 | Onboarding a new team to an existing architecture | `/executive-summary` + `/stakeholder-communication` |
+
+### When NOT to Use
+
+- **Detailed implementation planning** — use a dedicated planning tool or write the plan yourself; these skills operate at architecture level, not sprint level
+- **Line-by-line code review** — these skills review architecture and design decisions, not code quality or correctness
+- **Generating production code** — the skills produce architecture documentation and decision records, not deployable artefacts
+- **Replacing stakeholder interviews** — the skills structure your thinking and output; they cannot substitute for domain knowledge or client context that hasn't been provided
+- **Lightweight decisions** — don't run `/trade-off-analysis` or `/adr-generator` on a config parameter or a naming convention; the overhead outweighs the value
 
 ---
 
@@ -248,6 +265,25 @@ TOGAF vocabulary (ADM phases, building blocks, gap analysis) is active by defaul
 | `workshop-facilitator` | Produce a structured workshop agenda + facilitation guide for architecture sessions |
 | `rfp-evaluator` | Evaluate vendor RFP responses against a set of architecture requirements |
 | `pattern-library` | Suggest architecture patterns and reference architectures from a problem description |
+
+---
+
+## Troubleshooting
+
+**The command runs but the output ignores my TOGAF context.**
+Include TOGAF vocabulary in your prompt or document. The skills detect TOGAF signals (ADM phases, building blocks, gap analysis) to switch into full TOGAF mode. If none are present, they fall back to framework-agnostic output.
+
+**The output is too generic — it doesn't reflect my specific architecture.**
+Pass the actual document or decision context as input, not a description of it. `/architecture-review docs/platform-design.md` is significantly richer than `/architecture-review our platform uses microservices`.
+
+**`/trade-off-analysis` gives me a tie with no clear winner.**
+The skill is designed to produce a recommendation, not a neutral comparison. If you get an undecided output, add a tiebreaker criterion in your prompt: the business constraint, timeline pressure, or team capability that should break the tie.
+
+**The skill doesn't detect TOGAF even though my document uses it.**
+Ensure standard TOGAF terms appear in the document: "ADM", "Building Block", "Baseline", "Target Architecture", "Gap Analysis", "Phase A/B/C/D". A document that describes TOGAF intent without using the vocabulary will be treated as framework-agnostic.
+
+**Output is missing the Broad Responsibility line.**
+The skill should always emit one. If it outputs `N/A`, it must include a reason. If neither appears, re-run with an explicit reminder: append `-- ensure Broad Responsibility line is present` to your command.
 
 ---
 
