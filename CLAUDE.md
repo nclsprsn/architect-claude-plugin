@@ -49,7 +49,7 @@ All skills operate from the Architect Mindset:
 
 ## Output Discipline (active in every skill)
 
-Every output produced by these skills carries four mandatory accountability markers, operationalising the Andes Principles (Bias for Action, Earn Trust, Have Backbone, Deliver Results, Broad Responsibility):
+Every output produced by these skills carries four mandatory accountability markers, operationalising the accountability principles (Bias for Action, Earn Trust, Have Backbone, Deliver Results, Broad Responsibility):
 
 - **Confidence marker** on every claim, score, and recommendation: `[proven]` / `[informed estimate]` / `[working hypothesis]`
 - **Reversibility tag** on every decision: **one-way door** (slow, deliberate) / **two-way door** (move fast, learn fast)

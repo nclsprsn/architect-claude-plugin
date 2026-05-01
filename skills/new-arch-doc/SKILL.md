@@ -40,7 +40,7 @@ Use the generic architecture proposal template at the bottom of this skill.
 
 ## Output Discipline
 
-Every scaffold produced by this skill MUST embed the four rules below into the document shell. They operationalise the Andes accountability principles (Bias for Action, Earn Trust, Have Backbone, Deliver Results, Broad Responsibility). The author may write `N/A — [reason]` against a rule, but the prompt must always be visible — never silent.
+Every scaffold produced by this skill MUST embed the four rules below into the document shell. They operationalise the accountability principles (Bias for Action, Earn Trust, Have Backbone, Deliver Results, Broad Responsibility). The author may write `N/A — [reason]` against a rule, but the prompt must always be visible — never silent.
 
 1. **Confidence marker** on every claim, score, and recommendation:
    - `[proven]` — measured at scale or supported by a published benchmark

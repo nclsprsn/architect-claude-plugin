@@ -31,7 +31,7 @@ No TOGAF signals → **Framework-agnostic mode**: integration quality assessment
 
 ## Output Discipline
 
-Every output MUST satisfy the four rules below. They operationalise the Andes accountability principles (Bias for Action, Earn Trust, Have Backbone, Deliver Results, Broad Responsibility). Skip a rule only by writing `N/A — [reason]` so the omission is visible.
+Every output MUST satisfy the four rules below. They operationalise the accountability principles (Bias for Action, Earn Trust, Have Backbone, Deliver Results, Broad Responsibility). Skip a rule only by writing `N/A — [reason]` so the omission is visible.
 
 1. **Confidence marker** on every claim, score, and recommendation:
    - `[proven]` — measured at scale or supported by a published benchmark
