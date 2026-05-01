@@ -9,7 +9,19 @@ Claude Code commands for Enterprise Architects and Solution Architects. Run a co
 
 ## Requirements
 
+**Required**
+
 - [Claude Code](https://claude.ai/code) CLI installed and authenticated
+
+**VS Code (recommended)**
+
+- [Claude Code VS Code extension](https://marketplace.visualstudio.com/items?itemName=Anthropic.claude-code) — run commands directly on open files without leaving the editor
+
+**Obsidian (optional — for vault-based architecture practices)**
+
+- [Dataview](https://github.com/blacksmithgu/obsidian-dataview) — query generated ADRs and architecture documents as a live register
+- [Templater](https://github.com/SilentVoid13/Templater) — wire `/new-arch-doc` and `/adr-generator` outputs into vault templates
+- [Mermaid Tools](https://github.com/dartungar/obsidian-mermaid) — render the Mermaid diagrams produced by architecture commands
 
 ## Install
 
