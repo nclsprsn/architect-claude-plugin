@@ -1,6 +1,6 @@
 ---
 name: risk-radar
-description: Identify and score risks across five categories (Technical, Operational, Security, Organisational, Dependency). Produces a risk heat map, RAID log, top mitigations, and surfaces one systemic risk that is easy to overlook. TOGAF-aware.
+description: Identify and score risks across six categories (Technical, Operational, Security, Organisational, Dependency, Data Protection). Produces a risk heat map, RAID log, top mitigations, and surfaces one systemic risk that is easy to overlook. TOGAF-aware.
 ---
 
 # Risk Radar
@@ -37,6 +37,7 @@ No TOGAF signals → **Framework-agnostic mode**: category-based heat map withou
    - **Security** — attack surface, trust boundaries, data exposure, compliance gaps
    - **Organisational** — key-person dependency, skills gaps, change resistance, governance gaps
    - **Dependency** — vendor lock-in, third-party reliability, integration coupling, data sovereignty
+   - **Data Protection** — GDPR/AI Act regulatory exposure, data breach consequence and notification obligations, classification debt, residency violations, consent management gaps
 2. Score each risk: Probability (H/M/L) × Impact (H/M/L). Label score: Critical (H×H), High (H×M or M×H), Medium, Low.
 3. Assign horizon: H1, H2, or H3.
 4. Name the top three mitigations with effort estimate (H/M/L).
@@ -50,7 +51,7 @@ No TOGAF signals → **Framework-agnostic mode**: category-based heat map withou
 ## Risk Heat Map
 | Risk | Category | Probability | Impact | Horizon | Score |
 |------|----------|-------------|--------|---------|-------|
-| [risk name] | Technical / Operational / Security / Organisational / Dependency | H/M/L | H/M/L | H1/H2/H3 | Critical / High / Medium / Low |
+| [risk name] | Technical / Operational / Security / Organisational / Dependency / Data Protection | H/M/L | H/M/L | H1/H2/H3 | Critical / High / Medium / Low |
 
 ## RAID Log
 **Risks:** [top risks from heat map, one line each]

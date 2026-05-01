@@ -10,6 +10,7 @@ A Claude Code plugin for Enterprise Architects and Solution Architects.
 | `architecture-review` | `/architecture-review` | "review this architecture", "critique this doc", "architecture review" |
 | `gap-analysis` | `/gap-analysis` | "gap analysis", "baseline vs target", "what needs to change", "what's the gap" |
 | `risk-radar` | `/risk-radar` | "what are the risks", "risk assessment", "risk register", "RAID log", "what could go wrong" |
+| `data-architecture` | `/data-architecture` | "data architecture review", "review this data model", "data governance check", "is this data design sound", "data platform assessment" |
 
 ### Decide
 | Skill | Command | Trigger phrases |

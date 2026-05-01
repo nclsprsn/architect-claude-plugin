@@ -1,0 +1,1 @@
+Use the data-architecture skill to produce a data architecture assessment. If a document or diagram was provided, read it first. If no architecture context is clear from context, ask the user to describe the data platform, data model, or governance situation to assess.

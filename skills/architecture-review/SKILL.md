@@ -44,6 +44,7 @@ Otherwise:
    - **Operability** — who runs this at 3am, and can they?
    - **Cost Efficiency** — what does the unit economics look like at scale?
    - **Portability** — what is the lock-in surface, and is it intentional?
+   - **Data Protection** — personal data handling, GDPR/AI Act compliance posture, data classification, retention policy, residency constraints, privacy by design application
 4. Apply Pyramid Principle check: does the document lead with the recommendation?
 5. Apply commoditisation curve check to every technology choice.
 6. Stress-test the primary assumption: state it explicitly, then describe the failure scenario.
@@ -61,6 +62,7 @@ Otherwise:
 | Attribute | Finding | Severity |
 |-----------|---------|----------|
 | [relevant attributes only] | ... | Critical / Important / Minor |
+| Data Protection | [GDPR/AI Act posture, classification, retention, residency] | Critical / Important / Minor |
 
 ## Pyramid Principle
 [Pass — recommendation stated in paragraph 1]

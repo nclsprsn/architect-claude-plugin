@@ -11,6 +11,7 @@ SKILLS=(
   "architecture-review"
   "gap-analysis"
   "risk-radar"
+  "data-architecture"
   "trade-off-analysis"
   "adr-generator"
   "executive-summary"

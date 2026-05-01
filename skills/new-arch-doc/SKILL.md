@@ -132,18 +132,27 @@ Generate this content for Phase C documents:
 
 ## 1. Baseline [Data / Application] Architecture
 *Current state: key data entities or application components, integration points, known problems. What is brittle? What is approaching end-of-life?*
+*Data governance baseline (for data architecture): who owns each data domain? Is there a data catalogue? What classification scheme is in use? What is the lineage traceability today?*
 
 ## 2. Target [Data / Application] Architecture
 *Target state working backwards from the business outcome. What capabilities does this unlock? Name the horizon: H1 / H2 / H3.*
 *Disruptive alternative: is there an emerging approach (AI-native, event-driven, data mesh, etc.) that makes the current direction look conservative?*
+*Data quality target (for data architecture): what are the SLAs for accuracy, completeness, and timeliness? How will data contracts be enforced between producers and consumers?*
 
 ## 3. Gap Analysis
 | Component / Data Entity | Baseline | Target | Gap | Priority |
 |-------------------------|----------|--------|-----|----------|
 | *[list each]* | *[current]* | *[target]* | *[delta]* | High / Med / Low |
+| Data Governance | *[current ownership / catalogue state]* | *[target governance model]* | *[gap]* | High / Med / Low |
+| Privacy by Design | *[current GDPR posture]* | *[target compliance posture]* | *[gap]* | High / Med / Low |
 
 ## 4. Interoperability
 *How do components integrate? What are the interface contracts? What standards apply? Where are the integration risks?*
+*Data contracts and schema governance (for data architecture): how are schemas versioned and validated? Who owns the contract between data producers and consumers?*
+
+## 4.5 Privacy & Data Protection *(data architecture only)*
+*What personal data is processed? Under what legal basis? Data minimisation applied? Retention schedule defined? Residency constraints identified? Consent management approach?*
+*AI Act considerations (if applicable): what risk tier? What transparency and logging obligations apply?*
 
 ## 5. Risks & Assumptions
 *Primary assumption + failure scenario. Commoditisation check: is anything being custom-built that is becoming a product?*

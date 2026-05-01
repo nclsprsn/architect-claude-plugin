@@ -2,7 +2,7 @@
 
 A Claude Code plugin for Enterprise Architects and Solution Architects.
 
-Eight skills and slash commands covering architecture review, gap analysis, risk assessment, decision recording, stakeholder communication, executive reporting, and document scaffolding. TOGAF-aware by default, framework-agnostic fallback.
+Nine skills and slash commands covering architecture review, data architecture assessment, gap analysis, risk assessment, decision recording, stakeholder communication, executive reporting, and document scaffolding. TOGAF-aware by default, framework-agnostic fallback.
 
 ## Install
 
@@ -19,6 +19,7 @@ claude plugin install gh:nclsprsn/architect-claude
 | `/architecture-review [path]` | `architecture-review` | Chief architect critique: quality attributes, assumption stress-test, disruptive alternative, second-order effects |
 | `/gap-analysis [path]` | `gap-analysis` | Baseline → target gap table, scored by domain and effort, sequenced into H1/H2/H3 roadmap |
 | `/risk-radar [path]` | `risk-radar` | Risk heat map × RAID log × top mitigations × one systemic risk worth naming |
+| `/data-architecture [path]` | `data-architecture` | Data quality attributes, topology assessment, GDPR/AI Act check, governance blind spot, second-order effects |
 
 ### Decide — make and record decisions
 
@@ -52,7 +53,7 @@ Use this table to pick the right skill at each phase of an architecture engageme
 |-------|---------------|
 | A — Architecture Vision | `/new-arch-doc phase-a`, `/stakeholder-communication` |
 | B — Business Architecture | `/new-arch-doc phase-b`, `/gap-analysis` |
-| C — Information Systems | `/new-arch-doc phase-c`, `/gap-analysis`, `/risk-radar` |
+| C — Information Systems | `/new-arch-doc phase-c`, `/data-architecture`, `/gap-analysis`, `/risk-radar` |
 | D — Technology Architecture | `/new-arch-doc phase-d`, `/gap-analysis`, `/architecture-review` |
 | All phases — options & decisions | `/trade-off-analysis`, `/adr-generator` |
 | Governance / review gates | `/architecture-review`, `/risk-radar` |
@@ -64,6 +65,7 @@ Use this table to pick the right skill at each phase of an architecture engageme
 |-----------|-----|
 | Starting a new engagement or TOGAF phase | `/new-arch-doc` |
 | Reviewing a document or proposal before a review gate | `/architecture-review` |
+| Reviewing a data platform, data model, or data governance | `/data-architecture` |
 | Mapping current state to target state | `/gap-analysis` |
 | Comparing options before committing to a direction | `/trade-off-analysis` |
 | Capturing a decision already made | `/adr-generator` |
@@ -100,6 +102,7 @@ TOGAF vocabulary (ADM phases, building blocks, gap analysis) is active by defaul
 /architecture-review docs/platform-architecture.md
 /gap-analysis docs/current-state-assessment.md
 /risk-radar docs/migration-proposal.md
+/data-architecture docs/data-platform-design.md
 
 # Decide
 /trade-off-analysis API gateway selection for our microservices migration
@@ -122,6 +125,7 @@ Skills planned for future versions:
 | Skill | What it will do |
 |-------|----------------|
 | `capability-assessment` | Score architecture maturity across domains against a target capability level |
+| `data-mesh-designer` | Generate a data mesh topology design from domain ownership and data product definitions |
 | `migration-plan` | Generate a phased migration plan from gap-analysis output |
 | `workshop-facilitator` | Produce a structured workshop agenda + facilitation guide for architecture sessions |
 | `rfp-evaluator` | Evaluate vendor RFP responses against a set of architecture requirements |
