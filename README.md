@@ -57,6 +57,31 @@ Most engagements follow one of two tracks depending on whether the system under 
 
 ---
 
+### Track 1 — Operational SI
+
+```mermaid
+flowchart TD
+    subgraph ENVISION["🏗️ Envision"]
+        direction LR
+        s1["1 · Architecture Vision<br><code>/new-arch-doc phase-a</code>"] --> s2["2 · Current State<br><code>/architecture-review</code>"] --> s3["3 · Target Architecture<br><code>/new-arch-doc phase-c</code>"]
+    end
+    subgraph DESIGN["🔌 Design"]
+        direction LR
+        s4["4 · Integration Design<br><code>/integration-architecture</code>"] --> s5["5 · Technology Selection<br><code>/trade-off-analysis</code>"]
+    end
+    subgraph VALIDATE["✅ Validate"]
+        direction LR
+        s6["6 · Gap Analysis<br><code>/gap-analysis</code>"] --> s7["7 · Review Gate<br><code>/architecture-review</code>"] --> s8["8 · Risk Assessment<br><code>/risk-radar</code>"]
+    end
+    subgraph DELIVER["🚀 Deliver"]
+        direction LR
+        s9["9 · Delivery Roadmap<br><code>/migration-plan</code>"] --> s10["10 · ADR Documentation<br><code>/adr-generator</code>"] --> s11["11 · Stakeholder Comms<br><code>/executive-summary</code><br><code>/stakeholder-communication</code>"]
+    end
+    ENVISION --> DESIGN --> VALIDATE --> DELIVER
+```
+
+---
+
 ### Track 1 — Operational SI Engagement
 
 An Operational SI engagement designs or reviews a system that runs business operations: CRM, ERP, order management, API platform, microservices migration. The work moves from vision to delivery roadmap.
@@ -117,6 +142,35 @@ Step  Activity                        Skill
       recommendations to the          tailored message per role
       right audience.                 (CTO, CFO, Board, Head of Eng…).
 ──────────────────────────────────────────────────────────────────────────
+```
+
+---
+
+### Track 2 — Decisional SI
+
+```mermaid
+flowchart TD
+    subgraph SCOPE["🔍 Scope"]
+        direction LR
+        d1["1 · Data Domain Scoping<br><code>/new-arch-doc phase-c</code>"] --> d2["2 · Source Assessment<br><code>/data-architecture</code>"]
+    end
+    subgraph ARCHITECTURE["🗄️ Architecture"]
+        direction LR
+        d3["3 · Data Architecture Design<br><code>/data-architecture + /new-arch-doc</code>"] --> d4["4 · Governance & Classification<br><code>/data-architecture</code>"] --> d5["5 · Privacy & GDPR<br><code>/data-architecture</code>"]
+    end
+    subgraph BUILD["⚙️ Build Design"]
+        direction LR
+        d6["6 · Pipeline Architecture<br><code>/data-pipeline-review</code>"] --> d7["7 · Technology Selection<br><code>/trade-off-analysis</code>"]
+    end
+    subgraph VALIDATE["✅ Validate"]
+        direction LR
+        d8["8 · Gap Analysis<br><code>/gap-analysis</code>"] --> d9["9 · Review Gate<br><code>/architecture-review + /data-architecture</code>"] --> d10["10 · Risk Assessment<br><code>/risk-radar</code>"]
+    end
+    subgraph DELIVER["🚀 Deliver"]
+        direction LR
+        d11["11 · ADR Documentation<br><code>/adr-generator</code>"] --> d12["12 · Stakeholder Comms<br><code>/executive-summary</code><br><code>/stakeholder-communication</code>"]
+    end
+    SCOPE --> ARCHITECTURE --> BUILD --> VALIDATE --> DELIVER
 ```
 
 ---
