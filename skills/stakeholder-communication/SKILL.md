@@ -1,6 +1,6 @@
 ---
 name: stakeholder-communication
-description: Write a communication (email, memo, briefing, deck outline) tailored to a specific stakeholder role. Applies role-specific framing, SCQA structure, Pyramid Principle, influence mapping, and closes with a decision-forcing ask. Expanded stakeholder profiles including CISO, Legal/Compliance, DPO. Source document optional.
+description: Write a role-tailored communication (email, memo, briefing, or deck outline) for a specific stakeholder. Adapts framing, vocabulary, and decision ask to the audience: CTO, CFO, CISO, Legal, DPO, Architecture Board, delivery team. Use when preparing for a stakeholder meeting, sending a decision brief, or translating an architecture position for a non-technical audience. Trigger phrases: "write a message for", "communication for [role]", "how to present this to", "brief the CTO".
 ---
 
 # Stakeholder Communication
@@ -254,3 +254,12 @@ Structure for longer communications:
 ## Standards Bar
 
 *Before presenting: does the communication open with the Answer (not the preamble)? Does every claim have a number or an explicit gap flag? Does it close with a specific, named, dated commitment ask? Would the stakeholder know exactly what to do after reading the first two sentences? If no — fix it.*
+
+## Next Step
+
+After producing a stakeholder communication:
+
+- **If the communication proposes a decision**: invoke `adr-generator` to capture the decision formally once the stakeholder responds.
+- **If the audience is C-level and the source is a technical document**: invoke `executive-summary` first to ensure the technical content is appropriately translated before `stakeholder-communication` tailors the tone.
+- **If the communication is about a risk**: invoke `risk-radar` to validate that the risk framing and treatment recommendation are architecturally sound before sending.
+- **If the communication is an Architecture Board briefing**: invoke `compliance-review` or `architecture-review` to confirm the architecture position being communicated is current and approved.

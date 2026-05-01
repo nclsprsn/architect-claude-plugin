@@ -257,3 +257,13 @@ Prioritise findings: Critical (blocks approval) → Important (must be addressed
 ## Standards Bar
 Does this meet the bar for a client deliverable? [Yes / No — reason]
 ```
+
+## Next Step
+
+After completing an architecture review:
+
+- **If verdict is Approve**: the document may proceed to the Architecture Board. Invoke `compliance-review` if a formal governance submission is needed, or `artifact-completeness` to verify completeness before submission.
+- **If verdict is Needs Work**: invoke the relevant phase skill (`capability-assessment`, `data-architecture`, `technology-architecture`, etc.) to address the specific domain findings. Re-run `architecture-review` after revision.
+- **If verdict is Reject**: escalate Critical findings to the Architecture Sponsor. Identify which ADM phase must be re-entered to address the structural problems.
+- **Document critical decisions surfaced**: invoke `adr-generator` for any one-way door architectural decisions the review forced to the surface.
+- **Communicate findings**: invoke `executive-summary` for a C-level summary of the review outcome, or `stakeholder-communication` for a specific audience.

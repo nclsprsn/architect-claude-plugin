@@ -1,6 +1,6 @@
 ---
 name: trade-off-analysis
-description: Evaluate 2-4 architectural options against quality attributes using a weighted decision matrix, quality attribute scenarios, and sensitivity analysis. Produces a clear recommendation with ADR-ready output. Works backwards from business outcome. Surfaces disruptive alternatives. TOGAF-aware by default, framework-agnostic fallback.
+description: Evaluate 2–4 architectural options against quality attributes using a weighted decision matrix, quality attribute scenarios, and sensitivity analysis. Produces a clear recommendation with ADR-ready output. Use when choosing between competing architecture directions, technology options, or design patterns. Trigger phrases: "compare these options", "trade-off analysis", "which option should we pick", "help me decide between".
 ---
 
 # Trade-off Analysis
@@ -296,3 +296,13 @@ Change the top two weights and check whether the leader changes. If the recommen
 ## Standards Bar
 
 *Before presenting: does this analysis provide a weighted matrix with rationale per cell, a sensitivity check, a measurable quality attribute scenario per relevant attribute, and a clear recommendation with owner and review trigger? If no — add the missing elements.*
+
+## Next Step
+
+After completing a trade-off analysis:
+
+- **Capture the decision**: invoke `adr-generator` to document the selected option as an Architectural Decision Record. The trade-off matrix and sensitivity analysis from this skill feed directly into the ADR's Decision Matrix and Consequences sections.
+- **If the decision is a one-way door**: flag this explicitly in the ADR and invoke `risk-radar` to assess the risk profile of committing to the chosen option.
+- **If the chosen option requires new architecture work**: invoke the relevant phase skill (`data-architecture`, `integration-architecture`, `technology-architecture`) to develop the chosen option into a full architecture design.
+- **If stakeholder alignment is needed on the recommendation**: invoke `stakeholder-communication` for role-specific briefings, or `executive-summary` for C-level presentation of the recommendation.
+- **Validate the chosen option**: before implementing, invoke `architecture-review` to stress-test the decision for quality attributes, failure modes, and assumption validity.

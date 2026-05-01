@@ -1,6 +1,6 @@
 ---
 name: adr-generator
-description: Write a complete ADR (Architectural Decision Record) in enhanced MADR format. Includes DACI stakeholder model, weighted decision matrix, force field analysis, quality attribute scenarios, artifact recommendations (diagrams, tables, callouts), ADR lifecycle and linking, and anti-pattern guards. TOGAF-aware.
+description: Write a complete Architecture Decision Record (ADR) in MADR format. Includes DACI stakeholder model, weighted decision matrix, force-field analysis, and quality attribute scenarios. Use when capturing an architecture decision, documenting a one-way door choice, or producing a governance-ready decision log entry. Trigger phrases: "write an ADR", "document this decision", "create an ADR", "capture this decision".
 ---
 
 # ADR Generator
@@ -316,3 +316,13 @@ sequenceDiagram
 
 Does this meet the bar for a client deliverable? [Yes / No — reason]
 ```
+
+## Next Step
+
+After producing an ADR:
+
+- **Communicate the decision**: invoke `stakeholder-communication` to notify relevant stakeholders, or `executive-summary` if the ADR must be presented to C-level.
+- **If the decision revealed new risks**: invoke `risk-radar` to assess the risk profile of the chosen option and its rejected alternatives.
+- **If the decision affects an architecture artifact**: invoke `artifact-completeness` to verify the affected ADD section is updated to reflect the decision.
+- **If trade-offs between options are still contested**: invoke `trade-off-analysis` before finalising the ADR to produce a quantified decision matrix.
+- **Register the decision**: link the ADR to the relevant Architecture Repository artefact so it is traceable in the governance record.

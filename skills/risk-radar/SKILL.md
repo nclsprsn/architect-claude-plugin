@@ -283,3 +283,13 @@ flowchart LR
 ## Standards Bar
 
 *Before presenting: does this risk radar surface what is non-obvious, provide actionable treatment decisions, and meet the bar for a steerco or architecture review board? If no — add missing risks, add the bow-tie, add the interconnection map.*
+
+## Next Step
+
+After completing a risk radar:
+
+- **For Critical or High risks that affect architecture decisions**: invoke `adr-generator` to capture the risk treatment decision as an ADR — especially when the treatment involves a one-way door (e.g., choosing a higher-cost but more resilient platform).
+- **If risks surfaced architecture gaps**: invoke the relevant phase skill (`data-architecture`, `integration-architecture`, `technology-architecture`) to address the root cause, not just the symptom.
+- **For risks that affect compliance posture**: invoke `compliance-review` to assess whether the risk creates a Phase G conformance gap.
+- **If a risk changes the implementation sequencing**: invoke `migration-plan` or `requirements-management` to reflect the new constraint in the delivery plan.
+- **Communicate critical risks**: invoke `stakeholder-communication` to brief the Architecture Sponsor or Architecture Board on risks that require a governance decision, or `executive-summary` for C-level escalation.

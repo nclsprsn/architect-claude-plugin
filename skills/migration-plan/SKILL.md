@@ -318,3 +318,14 @@ flowchart LR
 ## Standards Bar
 
 *Before presenting: does this migration plan provide go/no-go criteria, rollback playbooks, and operational readiness checks that a delivery team and steerco can act on? If no — add the missing gates, playbooks, or readiness checklist.*
+
+## Next Step
+
+After completing a Phase E/F migration plan:
+
+- **Forward — Phase G**: invoke `implementation-governance` to establish the Architecture Contracts and governance model for each delivery wave. The Architecture Contract must be signed before delivery begins.
+- **Validate — Compliance before delivery**: invoke `compliance-review` to assess the Phase E/F plan against the Architecture Principles and approved standards before submitting to the Architecture Board.
+- **Validate — Artifact completeness**: invoke `artifact-completeness` to check that the Implementation & Migration Plan contains all required components (work packages, sequencing rationale, risk register, benefits realisation plan, Transition Architecture markers).
+- **Document phasing decisions**: invoke `adr-generator` for significant delivery sequencing decisions (e.g., big-bang vs strangler-fig, parallel-run vs hard cutover).
+- **Manage late-arriving requirements**: invoke `requirements-management` if new constraints (regulatory, budget, staffing) have emerged that affect the migration sequencing.
+- **Communicate the plan**: invoke `stakeholder-communication` for delivery team briefings, or `executive-summary` for the Architecture Sponsor and steering committee.

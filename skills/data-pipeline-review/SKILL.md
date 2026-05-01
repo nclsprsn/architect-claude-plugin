@@ -304,3 +304,14 @@ flowchart LR
 ## Standards Bar
 
 *Before presenting: does this pipeline review provide enough specificity on idempotency, test coverage, contract boundaries, and runbook completeness that a data engineering team can act on it immediately? If no — add the missing test inventory, the runbook register, or the contract boundaries.*
+
+## Next Step
+
+After completing a data pipeline review:
+
+- **Forward — Technology Architecture**: invoke `technology-architecture` to review the infrastructure and orchestration platform that hosts the pipeline.
+- **Forward — Integration Architecture**: invoke `integration-architecture` if the pipeline crosses application boundaries or involves event-driven patterns.
+- **Validate — Compliance**: invoke `compliance-review` if the pipeline handles regulated data (personal data, financial data, health records) and needs Architecture Board governance.
+- **Document pipeline decisions**: invoke `adr-generator` for architecture decisions on ingestion pattern (streaming vs batch), orchestration tool, or data contract standard.
+- **Manage requirements changes**: invoke `requirements-management` if freshness SLAs, retention policies, or data residency requirements have changed during the review.
+- **Communicate**: invoke `stakeholder-communication` for a briefing to the data engineering lead or platform owner on the review findings and remediation priorities.

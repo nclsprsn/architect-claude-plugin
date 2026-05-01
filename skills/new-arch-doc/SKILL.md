@@ -111,3 +111,13 @@ Does this meet the bar for a client deliverable? *If the shell were filled in by
 | Information Systems — Application | `skills/new-arch-doc/phase-c-application.md` | Application portfolio, integration topology, API catalog |
 | Technology Architecture | `skills/new-arch-doc/phase-d.md` | Infrastructure topology, environments, lock-in register, DR/HA |
 | Framework-agnostic | `skills/new-arch-doc/framework-agnostic.md` | Non-TOGAF architecture proposal |
+
+## Next Step
+
+After scaffolding a new architecture document:
+
+- **Validate the structure**: invoke `artifact-completeness` to verify the scaffolded document contains all required Catalogs, Matrices, Diagrams, and structural sections for its ADM phase before beginning detailed content work.
+- **Review the draft**: invoke `architecture-review` once content has been populated to critique the quality and identify gaps.
+- **Validate against principles**: invoke `principles-check` before Architecture Board submission to confirm the document is consistent with the approved Architecture Principles.
+- **If the document is a Phase A Vision**: invoke `architecture-vision` for additional Phase A detail — stakeholder map, communications plan, Statement of Architecture Work.
+- **If the document is Phase B/C/D**: invoke the relevant domain skill (`capability-assessment`, `data-architecture`, `integration-architecture`, `technology-architecture`) to enrich the content beyond the scaffold.

@@ -1,6 +1,6 @@
 ---
 name: capability-assessment
-description: Review or score a business capability map, maturity model, or TOGAF Phase B document. Checks capability completeness, maturity evidence quality, ownership model, value stream coverage, and Phase B-to-Phase C traceability. TOGAF Phase B aware.
+description: Review or score a TOGAF Phase B business capability map, capability maturity model, or Phase B Architecture Definition Document. Use when auditing capability completeness, validating maturity evidence, checking value stream coverage, or assessing readiness to proceed to Phase C. Trigger phrases: "capability assessment", "score our capabilities", "is our capability map complete", "phase B review", "capability maturity".
 ---
 
 # Capability Assessment
@@ -238,3 +238,14 @@ Prioritise: Critical (blocks Phase C/D work) → Important (must address before 
 ## Standards Bar
 Does this meet the bar for a client deliverable? [Yes / No — reason]
 ```
+
+## Next Step
+
+After completing a Phase B capability assessment:
+
+- **Forward — Phase C**: the capability map is the input to Phase C design work. Invoke `data-architecture` to develop the Data Architecture, or `integration-architecture` for the Application Architecture, depending on which capability gaps are most urgent.
+- **Forward — Gap Analysis**: invoke `gap-analysis` with the capability assessment output to produce a structured As-Is → To-Be gap and dependency map.
+- **Validate — Principles alignment**: invoke `principles-check` to verify that the capability model is consistent with the Business Architecture Principles established in Preliminary.
+- **Validate — Artifact completeness**: invoke `artifact-completeness` to check that the Phase B Architecture Definition Document section is complete before Architecture Board submission.
+- **Document capability decisions**: invoke `adr-generator` for significant capability sourcing decisions (build vs buy vs partner) that arise during the assessment.
+- **Communicate**: invoke `executive-summary` or `stakeholder-communication` for Phase B sign-off with the Architecture Sponsor or business domain owners.

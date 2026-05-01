@@ -367,3 +367,14 @@ Any item under "Eliminated" or "New" is a gap requiring a resolution decision.
 
 Does this meet the bar for a client deliverable? [Yes / No — reason]
 ```
+
+## Next Step
+
+After completing a gap analysis:
+
+- **Forward — Phase E/F**: invoke `migration-plan` to sequence the gaps into a phased implementation roadmap with Transition Architectures.
+- **Forward — Phase B/C/D design**: if gaps reveal missing architecture content, invoke the relevant phase skill (`capability-assessment`, `data-architecture`, `integration-architecture`, `technology-architecture`) to fill the design gaps.
+- **Validate — Principles alignment**: invoke `principles-check` to verify that the proposed Target Architecture (To-Be) is consistent with the Architecture Principles.
+- **Document decisions**: invoke `adr-generator` to capture significant gap remediation decisions (e.g., build vs buy, platform replacement, domain decomposition) that are one-way doors.
+- **Manage new requirements**: invoke `requirements-management` if the gap analysis surfaced new architecture requirements not previously documented.
+- **Communicate**: invoke `executive-summary` or `stakeholder-communication` to brief the Architecture Sponsor on gap priorities before Phase E/F planning begins.

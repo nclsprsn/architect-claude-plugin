@@ -347,3 +347,15 @@ flowchart LR
 ## Standards Bar
 
 *Before presenting: does this assessment surface governance ownership, compliance posture, and topology fit with enough specificity that a data governance board or architecture review can act on it? If no — add the missing classification matrix, contract register, or RACI.*
+
+## Next Step
+
+After completing a Phase C Data Architecture:
+
+- **Forward — Phase C Application**: invoke `integration-architecture` to develop the Application Architecture, ensuring data contracts from the Data Architecture are respected at application boundaries.
+- **Forward — Phase D**: invoke `technology-architecture` to develop the Technology Architecture that hosts the data platform.
+- **Forward — Gap Analysis**: invoke `gap-analysis` to produce the Data Architecture gap map (baseline ABBs → target ABBs) for the Architecture Roadmap.
+- **Validate — Principles alignment**: invoke `principles-check` to verify compliance with Data Architecture Principles (data sovereignty, data quality, privacy by design).
+- **Validate — Artifact completeness**: invoke `artifact-completeness` to check that the Phase C Data ADD section is complete — Catalogs, Matrices (System/Data, Business Function/Data Entity), and required Diagrams are all present.
+- **Document data governance decisions**: invoke `adr-generator` for decisions on data mesh topology, data ownership model, or data contract standards.
+- **Manage emerging requirements**: invoke `requirements-management` if new data regulations or data quality requirements have emerged during this phase.

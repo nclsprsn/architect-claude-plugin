@@ -390,3 +390,15 @@ flowchart TD
 
 Does this meet the bar for a client deliverable? [Yes / No — reason]
 ```
+
+## Next Step
+
+After completing a Phase D Technology Architecture:
+
+- **Forward — Phase E/F**: invoke `gap-analysis` to produce the Technology Architecture gap map, then `migration-plan` to sequence the gaps into a phased roadmap with Transition Architectures.
+- **Validate — Principles alignment**: invoke `principles-check` to verify the technology choices respect the Technology Architecture Principles (especially portability, standards adherence, and lock-in surface).
+- **Validate — Artifact completeness**: invoke `artifact-completeness` to check the Phase D ADD section — Technology Standards Catalog, Technology Portfolio Catalog, System/Technology Matrix, and Environments and Locations Diagram all required.
+- **Validate — Compliance**: invoke `compliance-review` for an Architecture Board submission, especially if the technology choices deviate from the Standards Information Base.
+- **Document technology decisions**: invoke `adr-generator` for platform selection decisions, vendor choices, or cloud provider selections that are one-way doors.
+- **Assess risks**: invoke `risk-radar` to evaluate technology risk (vendor lock-in, obsolescence, security boundary gaps, DR coverage) as a final quality gate before sign-off.
+- **Communicate**: invoke `executive-summary` for Phase D sign-off with the Architecture Sponsor, or `stakeholder-communication` for delivery team briefing on technology standards.

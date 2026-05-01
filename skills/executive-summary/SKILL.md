@@ -1,6 +1,6 @@
 ---
 name: executive-summary
-description: Rewrite a technical architecture document as a C-level executive communication. Pyramid Principle + SCQA structure enforced. Business implication explicit in every section. Numbers anchor every claim. Decision-forcing close. Slide-ready output option. TOGAF-aware. Surfaces bold provocations when the source document plays it safe.
+description: Rewrite a technical architecture document as an executive-ready communication. Enforces Pyramid Principle and SCQA structure, leads with business implication, anchors every claim with numbers, and closes with a named decision ask. Use when preparing for C-level review, Architecture Sponsor sign-off, or board presentation. Trigger phrases: "write an exec summary", "rewrite for executives", "executive summary", "make this board-ready".
 ---
 
 # Executive Summary
@@ -257,3 +257,12 @@ Before writing the full output, draft the 30-second version: *What we decided. W
 ## Standards Bar
 
 *Before presenting: does every section have a number? Is the recommendation in the first sentence? Does the document close with a named, dated commitment ask? Would a C-level reader who reads only the [!abstract] and [!important] callouts understand the decision and the ask? If no — fix it.*
+
+## Next Step
+
+After producing an executive summary:
+
+- **Tailor for a specific role**: invoke `stakeholder-communication` if the message must be adapted for a specific stakeholder (CTO, CFO, Legal, programme manager) rather than a generic C-level audience.
+- **If the source document was not yet reviewed**: invoke `architecture-review` or `compliance-review` to validate the content before the executive summary is used in a governance forum.
+- **If the summary reveals a decision that must be captured**: invoke `adr-generator` to formally document the decision the executive summary is proposing.
+- **If the summary is for an Architecture Board submission**: invoke `artifact-completeness` to confirm the underlying artifact is complete before presentation.
