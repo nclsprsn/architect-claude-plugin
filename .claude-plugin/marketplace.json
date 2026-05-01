@@ -8,7 +8,7 @@
     {
       "name": "architect-claude-plugin",
       "source": ".",
-      "description": "Architecture review, trade-off analysis, gap analysis, risk radar, ADR generation, executive communication, and TOGAF Phase A–D document scaffolding.",
+      "description": "Full TOGAF ADM coverage from Preliminary through Phase H — specification, validation, and governance tracks. Architecture review, gap analysis, risk radar, capability assessment, ADR generation, compliance assessment, implementation governance, change management, and executive communication.",
       "author": {
         "name": "nclsprsn"
       },

@@ -26,6 +26,7 @@ Run through every check in `tests/validate-skills.sh` manually. Report pass ✓ 
 - [ ] `## Information to Gather`
 - [ ] `## Output Discipline`
 - [ ] `## Standards Bar`
+- [ ] `## Next Step`
 - [ ] `## Artifact Selection Guide` *(skip for `new-arch-doc`)*
 
 ### TOGAF Detection branches

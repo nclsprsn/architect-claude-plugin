@@ -177,13 +177,12 @@ If a file path was provided as an argument, read that file first. If no path was
 
 ## Step 4 — Patch registries
 
-Make the following four changes. Each is a targeted edit — do not rewrite surrounding content.
+Make the following three changes. Each is a targeted edit — do not rewrite surrounding content.
 
-### 4a — `tests/validate-skills.sh`
+> [!info] `tests/validate-skills.sh` requires no patching.
+> The validator discovers skills dynamically via `mapfile` from the `skills/` directory. Creating `skills/<name>/SKILL.md` is sufficient for it to be picked up automatically.
 
-Add `"<skill-name>"` to the `SKILLS=(...)` array (maintain alphabetical or logical order within the existing grouping).
-
-### 4b — `CLAUDE.md`
+### 4a — `CLAUDE.md`
 
 Add a row to the appropriate table in the Skills section:
 
@@ -191,7 +190,7 @@ Add a row to the appropriate table in the Skills section:
 | `<skill-name>` | `/<skill-name>` | "<trigger phrase 1>", "<trigger phrase 2>", "<trigger phrase 3>" |
 ```
 
-### 4c — `README.md`
+### 4b — `README.md`
 
 Add a row to the Commands table under the appropriate section (Discover / Decide / Communicate / Plan / Document):
 
@@ -201,7 +200,7 @@ Add a row to the Commands table under the appropriate section (Discover / Decide
 
 Also add a row to the TOGAF ADM Phase Mapping table if the skill targets a specific ADM phase.
 
-### 4d — `CHANGELOG.md`
+### 4c — `CHANGELOG.md`
 
 Add a line under the `[Unreleased]` section (create the section if absent):
 
@@ -216,7 +215,7 @@ Run `bash tests/validate-skills.sh` and fix any failures before committing. The 
 Once clean, commit with:
 
 ```bash
-git add skills/<name>/SKILL.md commands/<name>.md tests/validate-skills.sh CLAUDE.md README.md CHANGELOG.md
+git add skills/<name>/SKILL.md commands/<name>.md CLAUDE.md README.md CHANGELOG.md
 git commit -m "✨ Add <skill-name> skill: <one-sentence summary>"
 ```
 
