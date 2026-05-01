@@ -38,6 +38,19 @@ A Claude Code plugin for Enterprise Architects and Solution Architects.
 |-------|---------|----------------|
 | `new-arch-doc` | `/new-arch-doc` | "scaffold an architecture document", "new arch doc", "create architecture document" |
 
+### Govern
+| Skill | Command | Trigger phrases |
+|-------|---------|----------------|
+| `architect-router` | `/architect-router` | "where should I begin", "which skill should I use", "help me with this engagement", "what should I do next", "route my request" |
+| `preliminary` | `/preliminary` | "preliminary phase", "architecture principles", "tailored architecture framework", "organizational model for EA", "request for architecture work" |
+| `architecture-vision` | `/architecture-vision` | "architecture vision", "statement of architecture work", "phase A", "define scope and vision", "communications plan for architects" |
+| `requirements-management` | `/requirements-management` | "requirements management", "requirements impact assessment", "architecture requirements repository", "traceability matrix", "manage architecture requirements" |
+| `implementation-governance` | `/implementation-governance` | "implementation governance", "architecture contract", "compliance assessment", "phase G", "governance review", "architecture board submission" |
+| `change-management` | `/change-management` | "architecture change management", "change request", "phase H", "manage change to architecture", "re-architecture trigger" |
+| `compliance-review` | `/compliance-review` | "compliance review", "validate this architecture", "conformance check", "architecture board review", "is this architecture compliant" |
+| `principles-check` | `/principles-check` | "check against principles", "validate principles", "architecture principles review", "does this meet our principles" |
+| `artifact-completeness` | `/artifact-completeness` | "is this artifact complete", "check artifact against TOGAF template", "ADD completeness", "architecture document completeness check" |
+
 ## Commit Format
 
 Every commit in this repository uses a **gitmoji prefix** followed by a short imperative subject line. No `Co-Authored-By` trailers.

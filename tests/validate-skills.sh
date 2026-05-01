@@ -22,6 +22,7 @@ SKILLS=(
   "new-arch-doc"
   "capability-assessment"
   "technology-architecture"
+  "architect-router"
 )
 
 POSTURES=(
