@@ -57,7 +57,7 @@ Most engagements follow one of two tracks depending on whether the system under 
 
 ---
 
-### Track 1 — Operational SI
+### Track 1 — Operational SI Engagement
 
 ```mermaid
 flowchart TD
@@ -79,10 +79,6 @@ flowchart TD
     end
     ENVISION --> DESIGN --> VALIDATE --> DELIVER
 ```
-
----
-
-### Track 1 — Operational SI Engagement
 
 An Operational SI engagement designs or reviews a system that runs business operations: CRM, ERP, order management, API platform, microservices migration. The work moves from vision to delivery roadmap.
 
@@ -146,7 +142,7 @@ Step  Activity                        Skill
 
 ---
 
-### Track 2 — Decisional SI
+### Track 2 — Decisional SI Engagement
 
 ```mermaid
 flowchart TD
@@ -172,10 +168,6 @@ flowchart TD
     end
     SCOPE --> ARCHITECTURE --> BUILD --> VALIDATE --> DELIVER
 ```
-
----
-
-### Track 2 — Decisional SI Engagement
 
 A Decisional SI engagement designs or reviews a system built to store, process, and expose data for analysis and AI: data platform, data mesh, lakehouse, ML feature store, BI layer. Privacy and governance are first-class concerns from step one.
 
