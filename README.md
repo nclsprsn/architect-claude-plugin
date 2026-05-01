@@ -53,9 +53,145 @@ claude plugin install gh:nclsprsn/architect-claude
 
 ## Architect Workflow
 
-### TOGAF ADM Phase Mapping
+Most engagements follow one of two tracks depending on whether the system under design integrates operational business processes or builds a decisional / data platform. The flows below show every step of each track, what you do at that step, and which skill to reach for.
 
-Use this table to pick the right skill at each phase of an architecture engagement.
+---
+
+### Track 1 — Operational SI Engagement
+
+An Operational SI engagement designs or reviews a system that runs business operations: CRM, ERP, order management, API platform, microservices migration. The work moves from vision to delivery roadmap.
+
+```
+Step  Activity                        Skill
+──────────────────────────────────────────────────────────────────────────
+ 1    Architecture Vision             /new-arch-doc phase-a
+      Frame the engagement: business  Scaffold Phase A — business context,
+      drivers, stakeholders, scope,   key drivers, assumptions, success
+      and constraints.                criteria, and stakeholder map.
+
+ 2    Current State Assessment        /architecture-review
+      Critique what exists today:     Run a chief-architect review on the
+      quality attributes, risks,      existing design docs or system
+      assumptions, and gaps.          description.
+
+ 3    Target Architecture Design      /new-arch-doc phase-c
+      Define what the system should   Scaffold Phase C (Information
+      look like: components,          Systems) with guiding questions for
+      interfaces, behaviour.          each architectural concern.
+
+ 4    Integration Design              /integration-architecture
+      Assess or design the            Review topology, contract governance,
+      integration layer: APIs,        anti-patterns, reliability patterns,
+      events, messaging, contracts.   and second-order coupling effects.
+
+ 5    Technology Selection            /trade-off-analysis
+      Compare platform or technology  Structured option comparison →
+      options before committing.      clear recommendation → ADR-ready.
+
+ 6    Gap Analysis                    /gap-analysis
+      Map baseline → target,          Scored gap table by domain and
+      identify what must change,      effort, sequenced into an
+      and sequence the work.          H1/H2/H3 roadmap.
+
+ 7    Architecture Review Gate        /architecture-review
+      Validate the design meets       Stress-test quality attributes,
+      the bar before delivery starts. surface disruptive alternatives,
+                                      confirm assumptions hold.
+
+ 8    Risk Assessment                 /risk-radar
+      Identify what could go wrong    Heat map × RAID log × top
+      before the build starts.        mitigations × systemic risk.
+
+ 9    Delivery Roadmap                /migration-plan
+      Phase the gap-analysis output   H1/H2/H3 roadmap with critical path,
+      into a sequenced plan with      quick wins, and TOGAF Transition
+      dependencies and milestones.    Architecture states.
+
+10    Decision Documentation          /adr-generator
+      Record every significant        Clean MADR per decision — context,
+      technical decision made         choice, alternatives considered,
+      during the engagement.          consequences.
+
+11    Stakeholder Communication       /executive-summary  +  /stakeholder-communication
+      Present findings and            Pyramid-Principle exec summary +
+      recommendations to the          tailored message per role
+      right audience.                 (CTO, CFO, Board, Head of Eng…).
+──────────────────────────────────────────────────────────────────────────
+```
+
+---
+
+### Track 2 — Decisional SI Engagement
+
+A Decisional SI engagement designs or reviews a system built to store, process, and expose data for analysis and AI: data platform, data mesh, lakehouse, ML feature store, BI layer. Privacy and governance are first-class concerns from step one.
+
+```
+Step  Activity                        Skill
+──────────────────────────────────────────────────────────────────────────
+ 1    Data Domain Scoping             /new-arch-doc phase-c
+      Define data domains, producers, Scaffold Phase C (Information
+      consumers, and the scope of     Systems — Decisional) with guiding
+      the data platform.              questions for domain ownership.
+
+ 2    Source Assessment               /data-architecture
+      Assess existing data sources:   Data quality attributes, topology
+      quality, format, ownership,     review, GDPR/AI Act compliance
+      classification, lineage.        posture, governance blind spots.
+
+ 3    Data Architecture Design        /data-architecture  +  /new-arch-doc
+      Design the logical and          Quality attributes + topology
+      physical data architecture:     assessment → scaffold the Phase C
+      storage, access, topology.      architecture document.
+
+ 4    Governance & Classification     /data-architecture
+      Define data ownership,          Governance blind-spot identification,
+      classification tiers,           classification framework,
+      and stewardship model.          ownership assignment, data contracts.
+
+ 5    Privacy & GDPR Review           /data-architecture
+      Assess privacy-by-design        GDPR/AI Act compliance check,
+      posture: consent, residency,    data subject rights coverage,
+      retention, AI Act obligations.  Privacy by Design gaps.
+
+ 6    Pipeline Architecture           /data-pipeline-review
+      Design or review the            Pattern vs SLA fitness, idempotency,
+      ingestion, transformation,      lineage coverage, data quality
+      and serving pipelines.          checks, observability assessment.
+
+ 7    Technology Selection            /trade-off-analysis
+      Compare storage, compute,       Structured option comparison →
+      or orchestration options.       clear recommendation → ADR-ready.
+
+ 8    Gap Analysis                    /gap-analysis
+      Map current data capability     Scored gap table across data
+      to target, identify what        domains and delivery effort,
+      must change.                    sequenced H1/H2/H3.
+
+ 9    Architecture Review Gate        /architecture-review  +  /data-architecture
+      Validate the design at a        Chief-architect critique (all
+      governance checkpoint before    quality attributes) + data-specific
+      build starts.                   assessment (governance, privacy).
+
+10    Risk Assessment                 /risk-radar
+      Surface data, privacy,          Heat map covering Data Protection
+      regulatory, and delivery        category + RAID log + systemic
+      risks.                          risk.
+
+11    Decision Documentation          /adr-generator
+      Record technology, governance,  Clean MADR per decision — faster
+      and privacy decisions made      than trade-off-analysis when the
+      during the engagement.          choice is already made.
+
+12    Stakeholder Communication       /executive-summary  +  /stakeholder-communication
+      Present findings to the right   Pyramid-Principle exec summary +
+      audience: CDO, CISO, CTO,       tailored message per role — data
+      DPO, engineering teams.         literacy varies widely here.
+──────────────────────────────────────────────────────────────────────────
+```
+
+---
+
+### TOGAF ADM Phase Mapping
 
 | Phase | Primary skills |
 |-------|---------------|
@@ -145,8 +281,6 @@ Skills planned for future versions:
 |-------|----------------|
 | `capability-assessment` | Score architecture maturity across domains against a target capability level |
 | `data-mesh-designer` | Generate a data mesh topology design from domain ownership and data product definitions |
-| `workshop-facilitator` | Produce a structured workshop agenda + facilitation guide for architecture sessions |
-| `migration-plan` | Generate a phased migration plan from gap-analysis output |
 | `workshop-facilitator` | Produce a structured workshop agenda + facilitation guide for architecture sessions |
 | `rfp-evaluator` | Evaluate vendor RFP responses against a set of architecture requirements |
 | `pattern-library` | Suggest architecture patterns and reference architectures from a problem description |
