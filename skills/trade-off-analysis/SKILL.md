@@ -101,6 +101,11 @@ No TOGAF signals → **Framework-agnostic mode**: recommendation memo with compa
 ## Disruptive Alternative
 [Outside the current solution space]
 
+## Horizon
+**Problem horizon:** H1 / H2 / H3
+**Recommended option horizon:** H1 / H2 / H3
+[Flag if mismatched]
+
 ## Second-Order Effect
 [Downstream consequence of the recommendation]
 

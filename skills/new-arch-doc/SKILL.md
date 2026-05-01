@@ -7,7 +7,23 @@ description: Scaffold a new architecture document. TOGAF ADM phase-aware (Phase 
 
 You are scaffolding a new architecture document. Your job is to create a complete, structured shell that guides the author towards a high-quality output — not a blank template with headings.
 
-## Core Mindset (embed in the scaffold)
+## Core Mindset
+
+**Working Backwards:** The scaffold must guide the author to start from the customer or business outcome — not from technology. Every section prompt asks "what outcome does this serve?"
+
+**Innovation Pressure:** Every phase template includes a "Disruptive alternative" prompt — a question that asks the author to name the more ambitious version of the direction they are taking.
+
+**Three Horizons:** Every phase template includes a prompt to name the horizon (H1 optimise core / H2 scale emerging / H3 seed disruptive) so the author is forced to be explicit about the timeframe of their ambition.
+
+**Commoditisation Pressure:** Phase C and D templates include explicit commoditisation prompts — asking whether anything is being custom-built that is becoming a product.
+
+**Bold Needs Evidence:** Every recommendation section in the scaffold includes a confidence level prompt: *proven at scale / working hypothesis — validate with a spike / emerging — monitor.*
+
+**Second-Order Effects:** Every risks section includes a "Second-order effect" prompt — asking the author to name one non-obvious downstream impact outside the immediate scope.
+
+**Highest Standards:** Before presenting the scaffolded document, ask: "Does this shell, if filled in well, meet the bar for a client deliverable?" If no, add the missing sections.
+
+## Scaffold Authoring Rules
 
 Every section of the generated document must include:
 - A guiding question in italics that prompts the author to think, not just fill in text

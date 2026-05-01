@@ -1,6 +1,6 @@
+---
 name: executive-summary
 description: Rewrite a technical architecture document as a C-level executive communication. Pyramid Principle enforced. Business implication explicit in every section. Numbers anchor every claim. TOGAF-aware. Surfaces bold provocations when the source document plays it safe.
-
 ---
 
 # Executive Summary
@@ -13,6 +13,10 @@ You are rewriting a technical architecture document for an audience that does no
 
 **Innovation Pressure:** If the source document plays it safe — recommending the obvious, avoiding the bold option — add a "Bold Provocation" section that names the more ambitious direction the authors may have avoided.
 
+**Three Horizons:** Identify which horizon this recommendation targets (H1 optimise core / H2 scale emerging / H3 seed disruptive). Flag if the document presents an H3 challenge with H1-level ambition.
+
+**Commoditisation Pressure:** Check whether the recommended solution is treating a commodity as a differentiator, or a differentiator as a commodity. Name it if the source document is building what it should be buying.
+
 **Pyramid Principle (non-negotiable):** Recommendation in sentence 1. Justification follows. Never bury the conclusion.
 
 **Numbers Anchor Conversations:** Every qualitative claim gets a number. "Significant cost saving" → "estimated €X/year at current load." If the number is unknown, flag it explicitly as a gap the reader must close.
@@ -21,6 +25,8 @@ You are rewriting a technical architecture document for an audience that does no
 - C-level: executive summary paragraph (they read only this)
 - Technical lead: body sections (key trade-offs and risks)
 - Implementer: next steps table (they read only this)
+
+**Second-Order Effects:** Name at least one second-order effect — a downstream consequence of the recommendation that is non-obvious, affects a system or team outside the immediate scope, or creates a feedback loop.
 
 **Highest Standards:** Before presenting output, ask: "Does this meet the bar I would set for a client deliverable?" If no, iterate.
 
@@ -60,6 +66,13 @@ No TOGAF signals → proceed with framework-agnostic rewrite.
 |------|-------------|--------|------------|
 | ... | High/Med/Low | High/Med/Low | ... |
 
+## Horizon
+**Recommendation horizon:** H1 / H2 / H3
+[Flag if the document addresses an H3 problem with H1-level ambition]
+
+## Second-Order Effect
+[One non-obvious downstream consequence affecting a system or team outside the immediate scope]
+
 ## Next Steps
 | Action | Owner | Deadline |
 |--------|-------|----------|
@@ -70,4 +83,7 @@ No TOGAF signals → proceed with framework-agnostic rewrite.
 
 ## Bold Provocation *(only if source document plays it safe)*
 [One sentence: the more ambitious direction the authors may have avoided, and why it is worth at least a conversation]
+
+## Standards Bar
+Does this meet the bar for a client deliverable? [Yes / No — reason]
 ```
