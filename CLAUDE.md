@@ -1,0 +1,27 @@
+# architect-claude
+
+A Claude Code plugin for Enterprise Architects and Solution Architects.
+
+## Skills
+
+| Skill | Command | Trigger phrases |
+|-------|---------|----------------|
+| `architecture-review` | `/architecture-review` | "review this architecture", "critique this doc", "architecture review" |
+| `trade-off-analysis` | `/trade-off-analysis` | "compare these options", "trade-off analysis", "which option should we pick" |
+| `executive-summary` | `/executive-summary` | "write an exec summary", "rewrite for executives", "executive summary" |
+| `new-arch-doc` | `/new-arch-doc` | "scaffold an architecture document", "new arch doc", "create architecture document" |
+
+## Core Posture (active in every skill)
+
+All skills operate from the Architect Mindset:
+- **Work backwards** from the business outcome, not forwards from the technology
+- **Surface a disruptive alternative** that questions whether the problem was framed correctly
+- **Name the horizon** (H1 optimise / H2 scale / H3 disrupt) — flag if the architecture addresses an H3 problem with H1 thinking
+- **Apply the commoditisation curve** — genesis → custom → product → utility. Never custom-build a commodity
+- **Anchor every claim** with a number, reference architecture, or first-principles reasoning
+- **Name second-order effects** — at least one non-obvious downstream consequence
+- **Highest Standards** — close every output by asking: "Does this meet the bar for a client deliverable?"
+
+## TOGAF Default
+
+TOGAF is the default vocabulary (ADM phases A–D, building blocks, gap analysis). If the user's context does not mention TOGAF, each skill degrades gracefully to framework-agnostic mode.
