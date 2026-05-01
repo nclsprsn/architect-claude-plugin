@@ -79,29 +79,3 @@ No TOGAF signals → **Framework-agnostic mode**: category-based heat map withou
 ## Standards Bar
 Does this meet the bar for a client deliverable? [Yes / No — reason]
 ```
-
-**Step 3: Verify**
-```bash
-head -3 /home/nclsprsn/architect-claude/skills/risk-radar/SKILL.md
-```
-Expected: line 1 = `---`, line 2 = `name: risk-radar`
-
-```bash
-grep -c "Core Mindset\|TOGAF Detection\|Analysis Process\|Output Format\|Risk Worth Naming\|Second-Order Effect\|Standards Bar" /home/nclsprsn/architect-claude/skills/risk-radar/SKILL.md
-```
-Expected: ≥ 7
-
-**Step 4: Create `/home/nclsprsn/architect-claude/commands/risk-radar.md`**:
-
-```
-Use the risk-radar skill to produce a risk assessment and RAID log.
-
-If a file path was provided, read that file first. If no document was provided, ask the user to describe the system or architecture to assess before proceeding.
-```
-
-**Step 5: Commit**
-```bash
-cd /home/nclsprsn/architect-claude && git add skills/risk-radar/SKILL.md commands/risk-radar.md && git commit -m "✨ add risk-radar skill and command"
-```
-
-Report: DONE with git log --oneline, or BLOCKED with exact error.

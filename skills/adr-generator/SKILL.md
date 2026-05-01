@@ -78,4 +78,7 @@ No TOGAF signals → **Framework-agnostic mode**: clean MADR without TOGAF enric
 **ADM phase:** A / B / C / D
 **Impacted building blocks:** [list]
 **Related gap analysis:** [pointer if applicable]
+
+## Standards Bar
+Does this meet the bar for a client deliverable? [Yes / No — reason]
 ```

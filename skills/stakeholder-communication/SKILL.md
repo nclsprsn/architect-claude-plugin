@@ -17,7 +17,7 @@ You are writing a communication for a specific stakeholder. Your job is to land 
 
 **Commoditisation Pressure:** When communicating technology choices to non-technical stakeholders, translate the commoditisation curve into business language: "market-standard tool" vs "custom-built competitive differentiator." Never use technical commodity vocabulary with a business audience.
 
-**Numbers Anchor Conversations:** Every qualitative claim gets a number. "Cost saving" → "estimated €X/year." If the number is unknown, flag it explicitly — unknown numbers become the first question in the room.
+**Bold Needs Evidence:** Every qualitative claim gets a number. "Cost saving" → "estimated €X/year." If the number is unknown, flag it explicitly — unknown numbers become the first question in the room.
 
 **Second-Order Effects:** Name at least one second-order consequence of the communication itself — a follow-on ask it will generate, a political dynamic it will surface, or a precedent it sets.
 
