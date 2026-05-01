@@ -1,7 +1,7 @@
 # architect-claude-plugin
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-3.0.0-blue)](./package.json)
+[![Version](https://img.shields.io/badge/version-3.0.1-blue)](./package.json)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-6366f1)](https://claude.ai/code)
 [![TOGAF-aware](https://img.shields.io/badge/TOGAF-aware-green)](https://www.opengroup.org/togaf)
 
@@ -139,7 +139,7 @@ claude --plugin-dir ./architect-claude-plugin
 | `/architecture-vision [context]` | Statement of Architecture Work, Architecture Vision, stakeholder map, communications plan, initial capability assessment (Phase A) |
 | `/requirements-management [context]` | Requirements Impact Assessments, Architecture Requirements Repository, traceability matrix — continuous across all ADM phases |
 | `/compliance-review [path]` | 8-category TOGAF Compliance Assessment with Architecture Board verdict: Approve / Approve with Conditions / Reject |
-| `/principles-check [path]` | Validate a document against Architecture Principles (Mode 1), or audit the principles themselves against TOGAF Table 56 quality criteria (Mode 2) |
+| `/principles-check [path]` | Validate a document against Architecture Principles (Mode 1), or audit the principles themselves against TOGAF Architecture Principle quality criteria (Mode 2) |
 | `/artifact-completeness [path]` | Score an artifact against its canonical TOGAF template — required Catalogs, Matrices, and Diagrams per the Architecture Content Framework |
 | `/implementation-governance [context]` | Architecture Contracts, 8-category Compliance Assessments, dispensation and exception log (Phase G) |
 | `/change-management [context]` | Classify change requests (simplification / incremental / re-architecting), assess impact, determine whether a new ADM cycle is required (Phase H) |
@@ -269,6 +269,59 @@ flowchart TD
     val -->|Compliance| cr["/compliance-review"]
     val -->|Deep review| ar["/architecture-review"]
     val -->|Decision| dt["/trade-off-analysis<br>/adr-generator"]
+```
+
+---
+
+### Diagram D — Complete Skill Map
+
+All 23 skills organised by function track. `/architect-router` dispatches to any track; run it first if you are unsure where to start.
+
+```mermaid
+flowchart LR
+    subgraph ROUTE["Route"]
+        ar["/architect-router"]
+    end
+    subgraph DISCOVER["Discover"]
+        rev["/architecture-review"]
+        ca["/capability-assessment"]
+        ga["/gap-analysis"]
+        rr["/risk-radar"]
+        da["/data-architecture"]
+        ia["/integration-architecture"]
+        dpr["/data-pipeline-review"]
+        ta["/technology-architecture"]
+    end
+    subgraph PLAN["Plan"]
+        mp["/migration-plan"]
+    end
+    subgraph DOCUMENT["Document"]
+        nad["/new-arch-doc"]
+    end
+    subgraph DECIDE["Decide"]
+        toa["/trade-off-analysis"]
+        adrg["/adr-generator"]
+    end
+    subgraph COMMUNICATE["Communicate"]
+        es["/executive-summary"]
+        sc["/stakeholder-communication"]
+    end
+    subgraph GOVERN["Govern"]
+        pre["/preliminary"]
+        av["/architecture-vision"]
+        rm["/requirements-management"]
+        pc["/principles-check"]
+        ac["/artifact-completeness"]
+        cr["/compliance-review"]
+        ig["/implementation-governance"]
+        cm["/change-management"]
+    end
+    ar --> DISCOVER
+    ar --> PLAN
+    ar --> DOCUMENT
+    ar --> DECIDE
+    ar --> COMMUNICATE
+    ar --> GOVERN
 ```
 
 ---
