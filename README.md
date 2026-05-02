@@ -43,11 +43,26 @@ If you produce architecture documents, review other people's designs, or sit on 
 /plugin install architect@architect-claude
 ```
 
-Local development:
+**Local development — session only** (changes apply on restart, no install step):
 
 ```bash
 git clone https://github.com/nclsprsn/architect-claude-plugin
 claude --plugin-dir ./architect-claude-plugin
+```
+
+**Local development — permanent install** (replaces the GitHub source):
+
+```bash
+git clone https://github.com/nclsprsn/architect-claude-plugin
+claude plugin marketplace add ./architect-claude-plugin
+claude plugin install architect@architect-claude
+```
+
+To pick up local edits after install:
+
+```bash
+claude plugin update architect@architect-claude
+# then restart Claude Code
 ```
 
 ---
