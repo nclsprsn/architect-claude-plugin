@@ -39,22 +39,22 @@ If you produce architecture documents, review other people's designs, or sit on 
 ## Install
 
 ```
-/plugin marketplace add nclsprsn/architect-claude-plugin
+/plugin marketplace add nclsprsn/architect-claude
 /plugin install architect@architect-claude
 ```
 
 **Local development — session only** (changes apply on restart, no install step):
 
 ```bash
-git clone https://github.com/nclsprsn/architect-claude-plugin
-claude --plugin-dir ./architect-claude-plugin
+git clone https://github.com/nclsprsn/architect-claude
+claude --plugin-dir ./architect-claude
 ```
 
 **Local development — permanent install** (replaces the GitHub source):
 
 ```bash
-git clone https://github.com/nclsprsn/architect-claude-plugin
-claude plugin marketplace add ./architect-claude-plugin
+git clone https://github.com/nclsprsn/architect-claude
+claude plugin marketplace add ./architect-claude
 claude plugin install architect@architect-claude
 ```
 
