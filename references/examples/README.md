@@ -29,6 +29,30 @@ This chain is intentional — follow it across files to see how TOGAF artefacts 
 
 ---
 
+## File Numbering — Johnny Decimal Areas
+
+Files use `AA.NN-description.md` where `AA` is the area (ADM phase group) and `NN` is the sequential ID within that area.
+
+| Area | ADM phase(s) | Files |
+|------|-------------|-------|
+| **11** | Preliminary | 11.01 Architecture Principles, 11.02 Request for Architecture Work |
+| **12** | Phase A — Vision | 12.01 Statement of Architecture Work |
+| **13** | Phase B — Business (requirements) | 13.01 Architecture Requirements Specification |
+| **21** | Phase B — Business (capabilities) | 21.01 Business Capabilities Catalog |
+| **22** | Phase C — Data | 22.01 Data Architecture, 22.02 Data Pipeline Review |
+| **23** | Phase C — Application | 23.01 Integration Architecture |
+| **24** | Phase D — Technology | 24.01 Technology Architecture |
+| **31** | Decide (cross-phase) | 31.01 Trade-off Analysis, 31.02 Architecture Decision Record |
+| **41** | Communicate (cross-phase) | 41.01 Executive Summary, 41.02 Stakeholder Communication |
+| **51** | Phase E — Opportunities | 51.01 Gap Analysis |
+| **52** | Phase F — Migration Planning | 52.01 Migration Plan |
+| **61** | Validate (cross-phase) | 61.01 Principles Check, 61.02 Architecture Review, 61.03 Risk Radar, 61.04 Artifact Completeness |
+| **71** | Phase G/H — Govern | 71.01 Architecture Contract, 71.02 Compliance Assessment, 71.03 Change Management |
+| **81** | Route | 81.01 Architect Router |
+| **82** | Scaffold | 82.01 New Architecture Document |
+
+---
+
 ## File Index
 
 | # | File | TOGAF artefact | Template source | Producing skill |

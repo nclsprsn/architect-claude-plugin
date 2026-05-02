@@ -5,6 +5,31 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ---
 
+## [3.0.2] — 2026-05-02
+
+### Added
+
+**24 worked examples — `references/examples/`**
+- Full ACME Corp Customer Onboarding Modernisation scenario instantiated end-to-end across all 23 skills
+- Preliminary: `11.01` Architecture Principles (6 principles, 4-field template), `11.02` Request for Architecture Work
+- Phase A: `12.01` Statement of Architecture Work (§7.6, 9 clauses)
+- Phase B: `21.01` Business Capabilities Catalog (20 capabilities, CMMI 0–4), `13.01` Architecture Requirements Specification (§7.11, 9 sections)
+- Phase C: `22.01` Data Architecture (DAMA-DMBOK, GDPR, 5 domains), `22.02` Data Pipeline Review (S3→SQS→Lambda→Document AI→KYC), `23.01` Integration Architecture (7 integration points, EIP anti-patterns), `31.01` Trade-off Analysis (BPM vs Kafka vs Step Functions)
+- Phase D: `24.01` Technology Architecture (12 components, 6 anti-patterns, cost model)
+- Phase E: `51.01` Gap Analysis (7 domains, 15 gaps, TOGAF matrix, dependency DAG), `31.02` Architecture Decision Record (MADR with weighted matrix)
+- Phase F: `52.01` Migration Plan (strangler-fig, 6Rs for 7 workloads, 3 Transition Architectures, rollback playbooks)
+- Phase G: `71.01` Architecture Contract (§7.18), `71.02` Compliance Assessment (8 categories), `71.03` Change Management (Phase H, CR-2025-008, Major classification)
+- Validate: `61.01` Principles Check, `61.02` Architecture Review (12-item fix list), `61.03` Risk Radar (10-risk RAID log, bow-tie), `61.04` Artifact Completeness
+- Communicate: `41.01` Executive Summary (Pyramid Principle, Before/After), `41.02` Stakeholder Communication (CISO briefing, Before/After)
+- Route/Scaffold: `81.01` Architect Router (two routing interactions), `82.01` New Architecture Document (Phase D scaffold with guiding questions)
+- All 23 `SKILL.md` files updated with `[!tip]` callouts citing their worked example
+- Files named using **Johnny Decimal** nomenclature (`AA.NN-description.md`) — area numbers map to ADM phases (10s = Preliminary/A, 20s = B/C, 30s = Decide, 40s = Communicate, 50s = E/F, 60s = Validate, 70s = Govern, 80s = Route/Scaffold)
+
+### Changed
+- `tests/validate-skills.sh` — added reference integrity section: checks for stale `example-*.md` paths, verifies all SKILL.md citations resolve, verifies all index-file links resolve, detects orphan example files not listed in the index
+
+---
+
 ## [3.0.1] — 2026-05-01
 
 ### Fixed — TOGAF 10 fidelity (source: TOGAF Standard 10th Edition Pocket Guide G220)
