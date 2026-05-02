@@ -1,5 +1,5 @@
 {
-  "name": "architect-claude-plugin",
+  "name": "architect",
   "version": "3.0.2",
   "description": "Claude Code plugin for Enterprise Architects and Solution Architects — full TOGAF ADM coverage from Preliminary through Phase H, skill chaining, and validation/governance track. TOGAF-aware.",
   "keywords": ["claude-code", "plugin", "architecture", "togaf", "enterprise-architecture", "solution-architecture", "adr"],

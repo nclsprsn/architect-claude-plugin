@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "architect-claude-plugin",
+      "name": "architect",
       "description": "Full TOGAF ADM coverage from Preliminary through Phase H — architecture review, gap analysis, risk radar, capability assessment, ADR generation, compliance assessment, implementation governance, change management, and executive communication.",
       "source": "./",
       "category": "productivity"

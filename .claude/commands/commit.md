@@ -3,7 +3,7 @@ description: Stage and commit changes following the project commit convention â€
 argument-hint: "[optional commit message subject]"
 ---
 
-You are committing changes to the architect-claude-plugin repository. Follow the project commit convention exactly.
+You are committing changes to the architect plugin repository. Follow the project commit convention exactly.
 
 ## Step 1 â€” Inspect the working tree
 

@@ -1,5 +1,5 @@
 ---
-description: Detect TOGAF ADM phase and intent, then route to the right architect-claude-plugin skill
+description: Detect TOGAF ADM phase and intent, then route to the right architect skill
 argument-hint: "[describe where you are in the engagement, or paste context]"
 ---
 

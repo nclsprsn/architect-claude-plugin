@@ -3,7 +3,7 @@ description: Audit an existing skill against the full validator schema and quali
 argument-hint: "<skill-name> — kebab-case, e.g. data-architecture"
 ---
 
-You are auditing an existing skill in the architect-claude-plugin. Your job is two-stage: first confirm structural compliance (everything `validate-skills.sh` checks), then assess content quality (the things the script cannot check).
+You are auditing an existing skill in the architect plugin. Your job is two-stage: first confirm structural compliance (everything `validate-skills.sh` checks), then assess content quality (the things the script cannot check).
 
 ## Step 1 — Identify the skill
 

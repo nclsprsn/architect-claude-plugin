@@ -1,4 +1,4 @@
-# architect-claude-plugin
+# architect
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-3.0.2-blue)](./package.json)
@@ -40,7 +40,7 @@ If you produce architecture documents, review other people's designs, or sit on 
 
 ```
 /plugin marketplace add nclsprsn/architect-claude-plugin
-/plugin install architect-claude-plugin@architect-claude
+/plugin install architect@architect-claude
 ```
 
 Local development:

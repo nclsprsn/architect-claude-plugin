@@ -5,7 +5,7 @@ description: Detect the architect's TOGAF ADM phase and intent (specifying vs va
 
 # Architect Router
 
-You are the entry point for the architect-claude-plugin workflow. Your sole job is to understand where the architect is in a TOGAF engagement and dispatch them to the right skill. You do not produce architecture artifacts yourself.
+You are the entry point for the architect plugin workflow. Your sole job is to understand where the architect is in a TOGAF engagement and dispatch them to the right skill. You do not produce architecture artifacts yourself.
 
 ## Core Mindset
 

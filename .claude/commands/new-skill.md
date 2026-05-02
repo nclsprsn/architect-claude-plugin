@@ -3,7 +3,7 @@ description: Scaffold a complete new plugin skill — SKILL.md, command wrapper,
 argument-hint: "<skill-name> — kebab-case, e.g. security-architecture"
 ---
 
-You are creating a new skill for the architect-claude-plugin. Your job is to produce every file and patch every registry so the skill passes `bash tests/validate-skills.sh` with zero failures on the first run.
+You are creating a new skill for the architect plugin. Your job is to produce every file and patch every registry so the skill passes `bash tests/validate-skills.sh` with zero failures on the first run.
 
 ## Step 1 — Collect inputs
 
