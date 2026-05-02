@@ -102,6 +102,9 @@ Generate the artifacts appropriate to the infrastructure context. Include only w
 | `> [!info]` | Cross-reference to Phase C application architecture, ADR, or security policy |
 | `> [!abstract]` | Executive summary — infrastructure health verdict for non-technical stakeholders |
 
+> [!tip]
+> **Worked example:** see `references/examples/example-technology-architecture.md` for a fully instantiated Phase D Technology Architecture — 12 components, Platform Decomposition Diagram, 6 anti-patterns, cost model, and Phase C→D traceability, anchored to the ACME Corp onboarding engagement.
+
 ---
 
 ## Technology Anti-Pattern Checklist

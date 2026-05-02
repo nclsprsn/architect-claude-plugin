@@ -150,6 +150,9 @@ A log of all Architecture Repository artefacts that must be updated as a result 
 | `> [!info]` | Change accepted with conditions — conditions and review trigger documented |
 | `> [!tip]` | Change request rejected — simpler or more reversible alternative exists |
 
+> [!tip]
+> **Worked example:** see `references/examples/example-change-management.md` for a fully instantiated Phase H change assessment — CR-2025-008 (Partner API Platform), Major classification with four evidence points, Requirements Impact Assessment (6 requirements), Architecture Repository Update Log, and new ADM cycle entry flowchart, anchored to the ACME Corp onboarding engagement.
+
 ## Boundary
 
 Use `change-management` when the question is: *should this change to a deployed or in-flight architecture trigger a new ADM cycle?* This is Phase H — post-build architecture evolution, not implementation monitoring.

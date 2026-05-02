@@ -205,7 +205,7 @@ flowchart TD
 
 ## Worked Examples
 
-The `references/examples/` directory contains eight fully instantiated TOGAF artefacts anchored to a single coherent engagement — ACME Corp Customer Onboarding modernisation — so you can see how artefacts accumulate across phases rather than reading eight disconnected templates. Each example is produced by a specific skill and follows its template exactly.
+The `references/examples/` directory contains thirteen fully instantiated TOGAF artefacts anchored to a single coherent engagement — ACME Corp Customer Onboarding modernisation — so you can see how artefacts accumulate across phases rather than reading disconnected templates. Each example is produced by a specific skill and follows its template exactly.
 
 | File | Artefact | Phase | Skill |
 |------|----------|-------|-------|
@@ -220,6 +220,8 @@ The `references/examples/` directory contains eight fully instantiated TOGAF art
 | `references/examples/example-trade-off-analysis.md` | Trade-off Analysis — orchestration pattern, 3 options, TCO comparison | B→C | `/trade-off-analysis` |
 | `references/examples/example-data-architecture.md` | Phase C Data Architecture — 5 domains, DAMA-DMBOK, GDPR, data contracts | C | `/data-architecture` |
 | `references/examples/example-integration-architecture.md` | Phase C Application Architecture — 7 integration points, 5 EIP anti-patterns, SLO table | C | `/integration-architecture` |
+| `references/examples/example-technology-architecture.md` | Phase D Technology Architecture — 12 components, 6 anti-patterns, cost model, Phase C→D traceability | D | `/technology-architecture` |
+| `references/examples/example-change-management.md` | Phase H Change Management — Partner API Platform CR, Major classification, RIA, Repo Update Log | H | `/change-management` |
 
 ---
 

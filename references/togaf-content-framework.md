@@ -161,3 +161,5 @@ See `references/examples/` for instantiated versions of the artefacts catalogued
 | `examples/example-trade-off-analysis.md` | Trade-off Analysis — orchestration pattern, weighted matrix, TCO (Phase B→C) |
 | `examples/example-data-architecture.md` | Phase C Data Architecture — DAMA-DMBOK, GDPR, data contracts (Phase C) |
 | `examples/example-integration-architecture.md` | Phase C Application Architecture — EIP anti-patterns, SLO table, API maturity (Phase C) |
+| `examples/example-technology-architecture.md` | Phase D Technology Architecture — 12 components, Platform Decomposition Diagram, 6 anti-patterns, cost model (Phase D) |
+| `examples/example-change-management.md` | Phase H Change Management — CR-2025-008, Major classification, Requirements Impact Assessment, Repository Update Log (Phase H) |
