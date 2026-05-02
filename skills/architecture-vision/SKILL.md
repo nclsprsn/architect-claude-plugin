@@ -76,6 +76,9 @@ The formal mandate between the architecture team and the Architecture Sponsor. W
 | **Plan and schedule** | Key milestones aligned to ADM phases; review gates; Architecture Board submission dates — all expressed as delivery events, not calendar dates where possible |
 | **Approvals** | Architecture Sponsor — signature and date; Lead Architect — signature and date; note: unsigned SoAW has no governance standing |
 
+> [!tip]
+> **Worked example:** see `references/examples/example-statement-of-architecture-work.md` for a fully instantiated SoAW with all 9 §7.6 clauses (Title, Project Request, Scope, Architecture Vision Overview, Change-of-Scope Procedures, Roles and Deliverables, Acceptance Criteria, Plan and Schedule, Approvals) anchored to the ACME Corp Customer Onboarding engagement.
+
 ### 2. Architecture Vision
 
 A single consolidated document describing the Target Architecture at a strategic level:

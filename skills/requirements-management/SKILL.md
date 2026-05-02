@@ -83,6 +83,9 @@ Each requirement in the ARS must include:
 - **Owner** — role responsible for validating the requirement is met
 - **Review trigger** — the event (not date) that mandates re-assessment
 
+> [!tip]
+> **Worked example:** see `references/examples/example-architecture-requirements-specification.md` for a fully instantiated ARS with all 9 §7.11 sections (Success measures, Architecture requirements, Service contracts, Implementation guidelines, Requirements for development & management, Interoperability, IT-SM, Constraints, Assumptions) anchored to the ACME Corp Customer Onboarding engagement, including 13 testable requirements with Confidence, Reversibility, and review trigger markers.
+
 ### 2. Requirements Impact Assessment (TOGAF §7.21)
 
 Produce one row per requirement that is new, changed, or at risk. This is the change-impact record submitted to the Architecture Board.

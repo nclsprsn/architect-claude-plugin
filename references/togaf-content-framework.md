@@ -141,3 +141,20 @@ Skills that produce phase artefacts should reference this file rather than asser
 - **"Class Diagram"** is a UML artefact, not a canonical TOGAF Phase C-Data diagram. The TOGAF equivalent is Logical Data Diagram (platform-independent) or Conceptual Data Diagram (business-level).
 - Skills must not assert hard counts (e.g., "TOGAF defines N standard catalogs") — the exact count depends on the full TOGAF Architecture Content series guide, which expands on the Pocket Guide. Use "canonical artefacts include the following" instead.
 - Maturity scoring (0–4 scale) is a CMMI-derived practitioner overlay — see `scoring-conventions.md`.
+
+---
+
+## Worked Examples
+
+See `references/examples/` for instantiated versions of the artefacts catalogued above, all anchored to the ACME Corp Customer Onboarding modernisation engagement. Each example populates the corresponding skill template with realistic content and follows the same coherent scenario end-to-end.
+
+| Example file | Artefact type |
+|-------------|--------------|
+| `examples/example-architecture-principles.md` | Architecture Principles — 6 principles (Phase Preliminary) |
+| `examples/example-request-for-architecture-work.md` | Request for Architecture Work (Phase Preliminary) |
+| `examples/example-statement-of-architecture-work.md` | Statement of Architecture Work — §7.6 (Phase A) |
+| `examples/example-business-capabilities-catalog.md` | Business Capabilities Catalog — 20 capabilities (Phase B) |
+| `examples/example-architecture-requirements-specification.md` | Architecture Requirements Specification — §7.11 (Phase B) |
+| `examples/example-architecture-contract.md` | Architecture Contract — Design & Development — §7.18 (Phase G) |
+| `examples/example-compliance-assessment.md` | Compliance Assessment — 8 categories (Phase G) |
+| `examples/example-adr.md` | Architecture Decision Record — MADR (Phase E) |

@@ -76,6 +76,9 @@ The legally-enforceable governance agreement between the Architecture Team and t
 | **Exit clause** | Conditions under which this Architecture Contract is formally closed: all acceptance criteria met, all dispensations either resolved or formally accepted with permanent waiver, Architecture Board sign-off obtained |
 | **Sign-off** | Architecture Sponsor + Programme Manager + Lead Architect — with date |
 
+> [!tip]
+> **Worked example:** see `references/examples/example-architecture-contract.md` for a fully instantiated Design & Development Architecture Contract with all 10 clauses (Parties, Scope, Architecture Reference, Conformance Requirements, Acceptance Criteria, Reporting Obligations, Dispensation Process, Change Management, Exit Clause, Sign-off), an active Dispensation Log entry, and explicit SLA-to-requirement traceability.
+
 ### 2. Project Impact Assessment
 
 Produced when a new implementation project arrives in Phase G. Assesses the project's architectural impact before an Architecture Contract is issued.
