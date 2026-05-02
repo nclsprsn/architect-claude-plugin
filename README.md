@@ -219,6 +219,7 @@ The `references/examples/` directory contains eight fully instantiated TOGAF art
 | `references/examples/example-adr.md` | Architecture Decision Record — MADR with weighted decision matrix | E | `/adr-generator` |
 | `references/examples/example-trade-off-analysis.md` | Trade-off Analysis — orchestration pattern, 3 options, TCO comparison | B→C | `/trade-off-analysis` |
 | `references/examples/example-data-architecture.md` | Phase C Data Architecture — 5 domains, DAMA-DMBOK, GDPR, data contracts | C | `/data-architecture` |
+| `references/examples/example-integration-architecture.md` | Phase C Application Architecture — 7 integration points, 5 EIP anti-patterns, SLO table | C | `/integration-architecture` |
 
 ---
 

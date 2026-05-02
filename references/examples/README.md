@@ -43,6 +43,7 @@ This chain is intentional — follow it across files to see how TOGAF artefacts 
 | 8 | [example-adr.md](example-adr.md) | Architecture Decision Record (MADR) | MADR template | `adr-generator` |
 | 9 | [example-trade-off-analysis.md](example-trade-off-analysis.md) | Trade-off Analysis — orchestration pattern, weighted matrix, TCO | Trade-off Analysis TOGAF mode | `trade-off-analysis` |
 | 10 | [example-data-architecture.md](example-data-architecture.md) | Phase C Data Architecture — 5 domains, DAMA-DMBOK, GDPR, data contracts | Phase C — Data | `data-architecture` |
+| 11 | [example-integration-architecture.md](example-integration-architecture.md) | Phase C Application Architecture — 7 integration points, 5 EIP anti-patterns, SLO table | Phase C — Application | `integration-architecture` |
 
 ---
 
