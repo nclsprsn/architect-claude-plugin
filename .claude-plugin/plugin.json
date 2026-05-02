@@ -8,8 +8,5 @@
     "url": "https://github.com/nclsprsn"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nclsprsn/architect-claude-plugin"
-  }
+  "repository": "https://github.com/nclsprsn/architect-claude-plugin"
 }
