@@ -1,0 +1,151 @@
+# Example — Architecture Requirements Specification
+
+**Engagement:** ACME Corp Customer Onboarding Modernisation
+**Reference:** ACME-ARS-2024-001
+**Version:** 1.0 — Phase B — For Architecture Board review
+**Template:** TOGAF 10 Pocket Guide §7.11 — Architecture Requirements Specification (9 sections)
+**Produced by skill:** `requirements-management`
+
+> [!info]
+> The ARS captures the architectural requirements that must be satisfied by solutions delivering the Customer Onboarding Modernisation programme. It is the testable bridge between the Architecture Vision (what we are trying to achieve) and the Architecture Contract (what delivery teams are committed to). This document references the Architecture Principles set (ACME-ARCH-PRIN-2024) — see `references/examples/example-architecture-principles.md`.
+
+---
+
+## 1 — Success Measures
+
+The architecture is considered successful when the following measurable outcomes are achieved and sustained for ≥3 months post go-live:
+
+| Measure | Baseline (Q2 2024) | Target | Measurement method | Confidence | Owner |
+|---------|-------------------|--------|--------------------|------------|-------|
+| Average onboarding cycle | 11 working days | ≤ 3 working days | Operations reporting system (end-to-end timestamp per application) | `[proven]` baseline; `[informed estimate]` target | Customer Operations Director (Tom Hayward) |
+| Customer abandonment rate | 23% | ≤ 10% | CRM / digital channel analytics (applications started vs completed) | `[proven]` baseline; `[working hypothesis]` target — dependent on UX programme | Customer Operations Director (Tom Hayward) |
+| Duplicate customer record rate | 18% | < 1% | Data quality report (monthly count of exact-match duplicates in Customer Master Data) | `[proven]` baseline; `[informed estimate]` target | Identity Architect (Priya Sharma) |
+| Identity verification regulatory compliance | Non-compliant (2024 audit) | Fully compliant — zero critical findings at Phase G compliance assessment | Architecture Board compliance assessment ACME-COMP-2025-001 | `[proven]` | CISO (David Okafor) |
+| System uptime — onboarding platform | Unknown (no SLA defined) | ≥ 99.5% during business hours | IT monitoring toolchain; reported in monthly Architecture Board pack | `[working hypothesis]` — SLA to be confirmed in Phase D | IT Operations |
+
+---
+
+## 2 — Architecture Requirements
+
+Requirements are expressed as testable statements. Each references the Phase A Architecture Principle it satisfies.
+
+### Identity Verification Requirements
+
+| Req ID | Requirement statement | Priority | Principle | Confidence | Reversibility | Owner | Review trigger |
+|--------|----------------------|----------|-----------|------------|---------------|-------|----------------|
+| AR-ID-01 | The identity verification service shall meet the assurance level specified in the applicable regulatory directive (Q1 2024); documentary and biometric liveness verification are both mandatory | Must-Have | D-01, T-02 | `[proven]` — regulatory directive is explicit | one-way door | CISO (David Okafor) | Review if regulatory directive is amended |
+| AR-ID-02 | Identity verification shall complete in ≤ 60 seconds of real-time automated processing for ≥ 90% of applicant submissions | Must-Have | B-01 | `[informed estimate]` — benchmark from SaaS provider SLAs | two-way door | Identity Architect (Priya Sharma) | Review if provider SLA changes |
+| AR-ID-03 | The identity verification service shall be adopted as a managed cloud service (SaaS) from the ACME approved provider shortlist; custom KYC development is prohibited | Must-Have | A-01 | `[proven]` — grounded in ACME TCO Analysis 2023 and Principle A-01 | one-way door (requires ADR if overridden) | Lead Architect (Marcus Webb) | Review if ≥2 shortlisted providers fail regulatory compliance check |
+| AR-ID-04 | All personal data processed during identity verification shall remain within the jurisdiction(s) specified by Principle D-02; cross-border transfer requires a documented legal basis | Must-Have | D-02 | `[proven]` — regulatory requirement | one-way door | CISO (David Okafor) | Review if regulatory data-protection regime changes |
+
+### Data Architecture Requirements
+
+| Req ID | Requirement statement | Priority | Principle | Confidence | Reversibility | Owner | Review trigger |
+|--------|----------------------|----------|-----------|------------|---------------|-------|----------------|
+| AR-DA-01 | The Customer Master Data system shall be the sole authoritative record for all customer identity attributes; all consuming applications must access these attributes via API | Must-Have | D-01 | `[proven]` — Principle D-01 statement | one-way door | Identity Architect (Priya Sharma) | Review if a merger introduces an external authoritative identity system |
+| AR-DA-02 | Customer consent records shall be machine-readable, time-stamped, and immutable; consent withdrawal must be processable within 24 hours of customer request | Must-Have | D-02 | `[proven]` — data-protection regime requirement | one-way door | Legal & Compliance | Review if applicable consent regulation changes |
+| AR-DA-03 | A duplicate detection mechanism shall prevent creation of a new customer record where an exact or near-exact match exists; duplicate rate shall fall below 1% within 3 months of go-live | Must-Have | D-01 | `[informed estimate]` — 1% target derived from industry benchmark | two-way door | Identity Architect (Priya Sharma) | Review if master data volume grows >10× and performance degrades |
+
+### Integration Requirements
+
+| Req ID | Requirement statement | Priority | Principle | Confidence | Reversibility | Owner | Review trigger |
+|--------|----------------------|----------|-----------|------------|---------------|-------|----------------|
+| AR-INT-01 | All application-to-application data exchange within the Customer Onboarding domain shall be mediated via documented, versioned, RESTful or event-driven APIs; direct database-level integration is prohibited for all new and significantly changed components | Must-Have | T-01 | `[proven]` — Principle T-01 and ACME Incident Register 2024 | one-way door | Identity Architect (Priya Sharma) | Review if a legacy system cannot expose an API within the programme timeline — exception requires ADR |
+| AR-INT-02 | An API gateway shall mediate all external-facing API traffic; the gateway shall enforce authentication, rate limiting, and input validation for all onboarding API endpoints | Must-Have | T-01, T-02 | `[informed estimate]` — standard cloud API gateway capability | two-way door | IT Operations | Review if ACME adopts a new API management platform |
+| AR-INT-03 | The onboarding orchestration service shall use an event-driven choreography pattern for non-transactional steps (notification, audit logging, risk scoring) to decouple service availability from the synchronous onboarding journey | Should-Have | T-01 | `[working hypothesis]` — pattern selection to be confirmed in Phase C Application Architecture | two-way door | Identity Architect (Priya Sharma) | Review at Phase C Architecture Board gate |
+
+### Security Requirements
+
+| Req ID | Requirement statement | Priority | Principle | Confidence | Reversibility | Owner | Review trigger |
+|--------|----------------------|----------|-----------|------------|---------------|-------|----------------|
+| AR-SEC-01 | All services handling customer identity data shall implement MFA for administrative access, TLS 1.3 minimum for data in transit, and AES-256 minimum for data at rest | Must-Have | T-02 | `[proven]` — ACME Security Standards v3.1 | one-way door | CISO (David Okafor) | Review if ACME Security Standards are superseded |
+| AR-SEC-02 | A Security Architecture review shall be completed and signed off by the CISO (or delegated Security Architect) before each Phase C or D Architecture Description Document is submitted to the Architecture Board | Must-Have | T-02 | `[proven]` — Principle T-02 governance requirement | one-way door | CISO (David Okafor) | Standing requirement; no sunset trigger |
+| AR-SEC-03 | An immutable audit log of all onboarding events (application received, identity verified, account activated, exceptions raised) shall be maintained for a minimum of 7 years | Must-Have | T-02 | `[proven]` — data-protection and financial services retention requirement | one-way door | IT Operations | Review if regulatory retention period changes |
+
+---
+
+## 3 — Service Contracts
+
+Service contracts define the agreed interface and SLA between the onboarding platform and its internal and external service consumers.
+
+| Contract ID | Service | Consumer | SLA — Availability | SLA — Response time | Data contract | Confidence |
+|-------------|---------|----------|--------------------|---------------------|---------------|------------|
+| SC-01 | Identity Verification API | Onboarding Orchestration Service | ≥ 99.5% during business hours | p95 ≤ 3 seconds for synchronous calls | OpenAPI 3.x specification published to ACME API catalogue | `[informed estimate]` |
+| SC-02 | Customer Master Data API | All consuming applications (CRM, CIAM, Notification, Case Management) | ≥ 99.9% (identity master is critical path) | p95 ≤ 200ms for read operations | JSON:API format; versioned (v1.0, semantically versioned) | `[informed estimate]` |
+| SC-03 | Document Capture API | Onboarding Orchestration Service, Case Management | ≥ 99.0% | p95 ≤ 5 seconds for document upload acknowledgement | Multipart form-data; 10MB document size limit; MIME type allowlist | `[working hypothesis]` — size limit to be validated in Phase D |
+| SC-04 | Audit Logging Event Stream | All onboarding services (producers) / Compliance reporting toolchain (consumer) | ≥ 99.9% (write path); best-effort reads | Event delivered to stream within 1 second of originating event | CloudEvents 1.0 specification; JSON schema per event type | `[working hypothesis]` |
+
+---
+
+## 4 — Implementation Guidelines
+
+Guidance for delivery teams implementing the target architecture. These are not requirements — they are the recommended implementation patterns that satisfy the requirements above.
+
+| Guideline ID | Guidance | Rationale | Applies to |
+|--------------|---------|-----------|-----------|
+| IG-01 | Use the ACME approved cloud platform identity provider service as the CIAM layer (AR-ID-03). Do not build a custom credential store. | Satisfies A-01; proven capability in ACME's existing cloud estate | IDENT-04 delivery team |
+| IG-02 | Implement the onboarding orchestration as a managed workflow service (e.g., cloud-native step functions or workflow engine) rather than a custom state machine. | Reduces operational burden; avoids ONBOARD-01 maturity regression after go-live | ONBOARD-01 delivery team |
+| IG-03 | OCR / AI data extraction (DOC-02) should be adopted from the same managed SaaS provider as IDENT-02 where the provider offers both capabilities — this reduces the integration surface and simplifies the data transfer agreement. | Reduces contract complexity; data stays within one processing boundary; potential for cost reduction | DOC-02, IDENT-02 delivery teams |
+| IG-04 | Audit logs (AR-SEC-03) must be written to an append-only log store before any acknowledgement is returned to the originating service. Do not buffer audit events. | Ensures completeness of audit trail even in failure scenarios | All services producing audit events |
+| IG-05 | Consumer-Driven Contract Testing must be implemented for all service contracts listed in Section 3 before Phase G Architecture Contract sign-off. | Prevents regression of service contracts during iterative delivery | All API-producing teams |
+
+---
+
+## 5 — Requirements for Development and Management
+
+| Req ID | Requirement | Standard | Confidence |
+|--------|-------------|---------|------------|
+| RDM-01 | All solution components must have an Architecture Decision Record (ADR) for each major technology choice (platform, framework, integration pattern); ADRs must be filed in the ACME Architecture Repository | ACME Architecture Repository Policy | `[proven]` |
+| RDM-02 | All APIs must be registered in the ACME API Catalogue within 5 business days of first deployment to a non-development environment | ACME API Governance Policy v2 | `[proven]` |
+| RDM-03 | Source code for all custom components must be managed in ACME's approved version control system with mandatory code review before merge to main | ACME Engineering Standards v3.0 | `[proven]` |
+| RDM-04 | Each delivery workstream must nominate an Architecture Liaison role, responsible for attending the monthly Architecture Board review and managing Architecture Contract compliance | Phase G governance requirement | `[informed estimate]` |
+| RDM-05 | Security scanning (SAST, DAST, dependency audit) must be integrated into the CI/CD pipeline for all custom components; a clean scan is a gate for Phase G Architecture Contract compliance | ACME Security Standards v3.1 | `[proven]` |
+
+---
+
+## 6 — Interoperability
+
+| Interoperability requirement | Standard | Applies to | Confidence |
+|-----------------------------|---------|-----------|------------|
+| All APIs must use REST (JSON) or CloudEvents (event-driven); XML/SOAP is prohibited for new components | ACME Integration Standards v2.0 | All services in Customer Onboarding domain | `[proven]` |
+| Identity document data exchange between services must use the W3C Verifiable Credentials data model where the SaaS provider supports it | W3C VC Data Model 2.0 | IDENT-01, IDENT-02 | `[working hypothesis]` — provider support to be confirmed in Phase E |
+| All time-stamped events must use ISO 8601 UTC; no local timezone timestamps in APIs or audit logs | ACME Data Standards v1.1 | All event-producing services | `[proven]` |
+| The Customer Master Data API must support the ACME canonical customer data schema (ACME-SCHEMA-CUST-2024); extensions require Architecture Board approval | ACME Data Standards v1.1 | DATA-01, MASTER-01, MASTER-02 | `[proven]` |
+
+---
+
+## 7 — IT Service Management
+
+| ITSM requirement | ITSM process | Owner | Confidence |
+|-----------------|-------------|-------|------------|
+| All onboarding platform services must be registered in the ACME CMDB within 30 days of first production deployment | Configuration Management | IT Operations | `[proven]` |
+| Incident response SLA for P1 onboarding platform incidents: acknowledge ≤ 15 minutes, resolve ≤ 4 hours during business hours | Incident Management | IT Operations | `[informed estimate]` — SLA to be confirmed in Architecture Contract |
+| A Change Advisory Board (CAB) review is required for all production changes to services covered by Architecture Contract ACME-ARCH-CON-2025-001; standard changes are pre-approved and do not require CAB | Change Management | IT Operations + Lead Architect | `[proven]` |
+| Capacity planning review for the onboarding platform must be conducted quarterly; triggers for unplanned capacity review include: application volume growth >30%, P2 performance incident | Capacity Management | IT Operations | `[informed estimate]` |
+
+---
+
+## 8 — Constraints
+
+The following constraints apply to all architecture and solution decisions for this programme. Constraints are not requirements — they are non-negotiable boundaries within which requirements must be satisfied.
+
+| Constraint ID | Constraint | Source | Confidence | Reversibility |
+|---------------|------------|--------|------------|---------------|
+| CON-01 | All solution components must deploy on the ACME approved cloud platform; platform exceptions require Architecture Board approval | SoAW C-03; Technology Standards Register v4.2 | `[proven]` | two-way door (exception available via Architecture Board) |
+| CON-02 | Programme capex budget ≤ €12M over 3 years; architecture work ≤ 8% of total | SoAW C-01; CFO mandate | `[proven]` | one-way door |
+| CON-03 | Legacy CRM (onboarding module) must be decommissioned by Q4 2025 vendor EoL | SoAW C-05 | `[proven]` | one-way door |
+| CON-04 | Customer personal data must not be processed outside the residency zones specified by Principle D-02 | Principle D-02; regulatory directive | `[proven]` | one-way door |
+| CON-05 | Principle A-01 governs all make/buy/adopt decisions; "build" decisions require Architecture Board ADR with financial justification | Architecture Principles ACME-ARCH-PRIN-2024 | `[proven]` | two-way door (ADR process available) |
+
+---
+
+## 9 — Assumptions
+
+| Assumption ID | Assumption | Risk if wrong | Confidence | Owner |
+|---------------|------------|---------------|------------|-------|
+| ASM-01 | The applicable data-protection regulatory regime does not change materially during the programme (2024–2027) | Principle D-02 and AR-ID-04 may need revision; Data Security Diagram updated | `[informed estimate]` | CISO (David Okafor) |
+| ASM-02 | The ACME approved cloud platform is capable of hosting all candidate solution components without requiring a platform exception | Phase D may identify a gap requiring Architecture Board exception and delay | `[working hypothesis]` — validate in Phase D | IT Operations |
+| ASM-03 | At least two qualified managed Identity Verification SaaS providers satisfy both the regulatory assurance requirement (AR-ID-01) and the data residency constraint (CON-04) | If no compliant provider exists, Principle A-01 exception process is triggered and custom build must be evaluated | `[working hypothesis]` — validate in Phase E provider assessment | Identity Architect (Priya Sharma) |
+| ASM-04 | The Customer Master Data system can be extended to support the canonical customer data schema (ACME-SCHEMA-CUST-2024) without a full platform replacement | Phase C Data Architecture scope increases materially if the system cannot be extended | `[informed estimate]` — current system is vendor-supported and on a compatible version | Identity Architect (Priya Sharma) |
+
+**Broad Responsibility:** This ARS governs architecture that will process the personal identity data of every new ACME customer from Phase G go-live onwards. AR-ID-04 (data residency), AR-SEC-03 (audit log retention), and AR-DA-02 (consent management) have the highest societal impact — a failure in any of these requirements results in harm to individuals, not merely commercial loss. These requirements must be treated as non-negotiable regardless of cost or timeline pressure. `[proven]`
