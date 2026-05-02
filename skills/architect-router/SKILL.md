@@ -69,6 +69,9 @@ Every routing output MUST satisfy these four rules. Skip with explicit `N/A — 
 
 ### Validation track (reviewing / governing artifacts)
 
+> [!info]
+> **Staged validation pipeline:** When preparing for Architecture Board submission, run the skills in order — `principles-check` → `architecture-review` → `artifact-completeness` → `compliance-review`. These are sequential gates, not parallel alternatives. Running `compliance-review` before `principles-check` skips foundational validation.
+
 | Intent | TOGAF Phase | Recommended skill | When |
 |--------|-------------|-------------------|------|
 | Run a chief architect critique on any document | Any | `architecture-review` | Pre-approval review of any artifact |
