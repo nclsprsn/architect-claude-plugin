@@ -55,44 +55,62 @@ Every output MUST satisfy the four rules below. Skip with explicit `N/A — [rea
 
 ## Artifact Selection Guide
 
-Requirements Management produces three canonical outputs. Generate each appropriate to the trigger.
+Requirements Management produces four canonical outputs. Generate each appropriate to the trigger.
 
-### 1. Requirements Impact Assessment
+### 1. Architecture Requirements Specification (TOGAF §7.11)
 
-For each new or changed requirement:
+The ARS is the baseline document that defines *what the architecture must achieve*. Produce it at Phase A/B completion; update it as requirements change throughout the cycle.
 
-| Field | Content |
-|-------|---------|
-| **Requirement ID** | Unique identifier (e.g., REQ-023) |
-| **Statement** | One sentence — what must be true |
-| **Source** | Stakeholder, regulation, or contract that mandates it |
-| **Priority** | Must Have / Should Have / Could Have / Won't Have (MoSCoW) |
-| **Confidence** | `[proven]` / `[informed estimate]` / `[working hypothesis]` |
-| **Horizon** | H1 (now) / H2 (plan for) / H3 (don't close door) |
-| **Affected ADM phases** | Which phases (A–H) are impacted if this requirement changes |
-| **Affected artifacts** | ADD sections, ADRs, or roadmap items that must be updated |
-| **Remediation action** | What must be done, by whom, by when (event-triggered not date-triggered) |
-| **Reversibility** | one-way door / two-way door |
+| Section | Content |
+|---------|---------|
+| **Success measures** | How the stakeholder will know the architecture has delivered its intended value — measurable, not qualitative |
+| **Architecture requirements** | Specific requirements derived from business drivers, expressed as testable statements. Carry Confidence and Reversibility markers |
+| **Architecture service contracts** | Agreed service levels between architecture domains (e.g., Data ↔ Application; Application ↔ Technology) — schema contracts, SLOs, API versioning commitments |
+| **Implementation guidelines** | Mandatory patterns, coding standards, platform constraints the implementation team must observe |
+| **Requirements for development and management** | Governance obligations — review gates, sign-off authorities, change-request process, configuration management |
+| **Interoperability requirements** | Integration standards, protocol mandates, data exchange formats — any requirement that crosses a system boundary |
+| **IT service management requirements** | SLA, RTO, RPO, operational runbook obligations that the architecture must accommodate |
+| **Constraints** | Hard limits that are non-negotiable: regulatory mandates, budget ceilings, approved vendor list, geographic boundary |
+| **Assumptions** | Conditions that are treated as true for this cycle but carry residual risk if wrong — each assumption must have a named owner and a validation event |
 
-### 2. Architecture Requirements Repository Update
+Each requirement in the ARS must include:
+- **Req ID** — unique, persistent identifier
+- **Statement** — one sentence, testable
+- **Source** — regulation, contract clause, or named stakeholder
+- **Priority** — Must Have / Should Have / Could Have / Won't Have (MoSCoW)
+- **Confidence** — `[proven]` / `[informed estimate]` / `[working hypothesis]`
+- **Reversibility** — one-way door / two-way door
+- **Owner** — role responsible for validating the requirement is met
+- **Review trigger** — the event (not date) that mandates re-assessment
 
-A structured log of all active requirements:
+### 2. Requirements Impact Assessment (TOGAF §7.21)
 
-| ID | Statement | Source | Priority | Status | Phase | Owner | Review trigger |
-|----|-----------|--------|----------|--------|-------|-------|----------------|
-| REQ-001 | [statement] | [source] | Must Have | Active | B | [role] | [event] |
+Produce one row per requirement that is new, changed, or at risk. This is the change-impact record submitted to the Architecture Board.
+
+| Req. ID | Requirement statement | Stakeholder priority | Phases to revisit | Lead phase | Investigation results | Recommendation | Confidence | Reversibility | Repository ref |
+|---------|-----------------------|---------------------|------------------|-----------|----------------------|----------------|------------|---------------|----------------|
+| REQ-nnn | [what must be true] | High / Med / Low | [A, C, D, G] | [the single phase that owns the impact decision] | [spike findings, PoC results, vendor confirmation] | Accept / Revise / Defer / Reject | `[proven]` / `[informed estimate]` / `[working hypothesis]` | one-way / two-way | [ADD section or ADR link] |
+
+> [!warning]
+> Any requirement with **High** stakeholder priority and an **Accept** recommendation that implies a one-way door constraint must be escalated to Architecture Sponsor before it is baselined. Do not silently absorb board-level requirements changes into the ARS.
+
+### 3. Architecture Requirements Repository
+
+A structured log of all requirements across the active ADM cycle. This is the living register — updated continuously, not at phase gates only.
+
+| ID | Statement | Source | Priority | Status | Horizon | Phase | Owner (role) | Review trigger | Confidence |
+|----|-----------|--------|----------|--------|---------|-------|--------------|----------------|------------|
+| REQ-001 | [statement] | [source] | Must Have | Active | H1 | B | [role] | [event-based trigger] | `[proven]` |
 
 Status values: `Active` · `Deferred` · `Rejected` · `Superseded` · `Validated`
 
-### 3. Traceability Matrix
+### 4. Traceability Matrix
 
-Links business drivers → requirements → architecture decisions:
+Links business drivers → architecture requirements → architecture decisions → solution components. Cells marked `Gap` are the highest-priority findings — each gap is a requirement that has no architecture decision backing it.
 
-| Business driver | Requirement ID | ADR / Architecture Decision | ADM Phase | Status |
-|----------------|---------------|----------------------------|-----------|--------|
-| [driver] | [REQ-nnn] | [ADR-nnn or decision] | [phase] | Traced / Gap |
-
-Cells marked `Gap` indicate a requirement with no corresponding architecture decision — these are the highest-priority items for the Architecture Sponsor.
+| Business driver | Req. ID | Architecture requirement | ADR / decision | ADM phase | Solution component | Status |
+|----------------|---------|------------------------|---------------|-----------|-------------------|--------|
+| [driver] | [REQ-nnn] | [statement] | [ADR-nnn or decision text] | [phase] | [implementation artefact] | Traced / Gap |
 
 ### Diagrams (Mermaid)
 
@@ -110,6 +128,15 @@ Cells marked `Gap` indicate a requirement with no corresponding architecture dec
 | `> [!important]` | One-way door requirement accepted — doors now closed |
 | `> [!info]` | Requirements that are deferred with a review trigger |
 | `> [!tip]` | Requirement validated against a regulatory source or benchmark |
+
+## Boundary
+
+Use `requirements-management` when the question is: *what are the architecture requirements, have they changed, and do they trace to decisions?* Output is an ARS baseline, a RIA for changed requirements, and a traceability matrix.
+
+- **vs `gap-analysis`** — `gap-analysis` compares baseline vs target capability and scores the gap; `requirements-management` defines and tracks the requirements that the gap closure must satisfy.
+- **vs `compliance-review`** — `compliance-review` assesses conformance against approved standards at Architecture Board level; `requirements-management` tracks the requirements whose non-fulfilment would create conformance gaps.
+- **vs `change-management`** — `change-management` (Phase H) classifies and processes changes to a *deployed* architecture; `requirements-management` runs continuously throughout the ADM to keep the *in-flight* requirements baseline current.
+- **vs `implementation-governance`** — `implementation-governance` (Phase G) monitors build-time conformance against the Architecture Contract; the Architecture Contract's acceptance criteria come from the ARS produced by `requirements-management`.
 
 ## Standards Bar
 
