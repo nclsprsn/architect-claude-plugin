@@ -1,0 +1,180 @@
+# Example — Statement of Architecture Work
+
+**Engagement:** ACME Corp Customer Onboarding Modernisation
+**Version:** 1.0 — For Architecture Sponsor signature
+**Template:** TOGAF 10 Pocket Guide §7.6 — Statement of Architecture Work (9 clauses)
+**Produced by skill:** `architecture-vision`
+
+> [!info]
+> The SoAW is the contract between the architecture team and its sponsor for a single architecture cycle. It consumes the outputs of the RfAW (`example-request-for-architecture-work.md`) and governs all Phase B–G deliverables that follow. Without a signed SoAW the architecture work has no agreed scope and no mechanism to resist scope change. This example follows the 9-clause §7.6 template defined in `skills/architecture-vision/SKILL.md`.
+
+---
+
+## SoAW Reference: ACME-SoAW-2024-001
+
+### 1 — Title
+
+Customer Onboarding Modernisation — Statement of Architecture Work
+Reference: ACME-SoAW-2024-001 · Architecture Cycle: 2024–2027 · Version 1.0 · 2024-11-04
+Originating RfAW: ACME-RfAW-2024-001
+
+---
+
+### 2 — Project Request / Terms of Reference
+
+The Customer Division of ACME Corp has identified that the current Customer Onboarding process is a material constraint on customer acquisition growth. The average onboarding cycle of **11 working days** (Q2 2024 Operations Report) results in a 23% customer abandonment rate (ACME CX Research Q3 2024). The CRM module at the core of the onboarding workflow reaches vendor end-of-life in Q4 2025, and a regulatory directive issued in Q1 2024 requires identity verification to meet a higher assurance standard.
+
+This Statement of Architecture Work is issued under the authority of the signed Request for Architecture Work (ACME-RfAW-2024-001) and mandates the Enterprise Architecture practice to develop, govern, and validate the Target Architecture for the Customer Onboarding Modernisation programme.
+
+| Confidence | Reversibility | Owner | Review trigger |
+|------------|---------------|-------|----------------|
+| `[proven]` — grounded in signed RfAW and referenced operational data | two-way door at draft stage; one-way door once signed by Architecture Sponsor | Head of Enterprise Architecture (Marcus Webb) | Reopen if programme mandate changes or a new regulatory directive supersedes the Q1 2024 requirement |
+
+---
+
+### 3 — Scope
+
+**In scope:**
+- End-to-end Customer Onboarding process: initial application → identity verification → data capture → risk scoring → account activation
+- Systems: Legacy CRM (onboarding module only), Identity Verification Service, Document Capture Service, Customer Master Data system, Notification Service, Customer Identity and Access Management (CIAM) platform
+- Organisational units: Customer Operations, IT Operations, Information Security, Legal & Compliance
+- Architecture domains: Business (Phase B), Data and Application (Phase C), Technology (Phase D)
+- Governance phases: Opportunities & Solutions (Phase E), Migration Planning (Phase F), Implementation Governance (Phase G)
+
+**Explicitly out of scope:**
+
+> [!warning]
+> The following items are out of scope. Stakeholders may assume some are included — they are not. Scope changes require a formal SoAW revision.
+
+- HR systems and Finance ERP
+- In-store and branch onboarding channels (separate programme — ACME-PROG-2024-007)
+- Account management and servicing capabilities post-activation
+- Customer-facing self-service portal redesign (separate UX programme)
+
+**Constraints:**
+
+| ID | Constraint | Type | Confidence |
+|----|------------|------|------------|
+| C-01 | Programme budget ≤ €12M capex over 3 years | Hard budget ceiling | `[proven]` / one-way door |
+| C-02 | Phase A complete by 2025-01-31; Phase B complete by 2025-04-30 | Timeline | `[informed estimate]` / two-way door |
+| C-03 | All components on ACME approved cloud platform (Technology Standards Register v4.2) | Platform constraint | `[proven]` / two-way door (exceptions via Architecture Board) |
+| C-04 | Identity verification must meet the assurance level in the applicable regulatory directive | Regulatory | `[proven]` / one-way door |
+| C-05 | Legacy CRM decommission must complete by Q4 2025 (vendor EoL) | Hard deadline | `[proven]` / one-way door |
+
+**Horizon:** H2 — scale emerging. The target architecture is designed for a 3-year horizon; it does not require infrastructure transformation (H3) or is not a short-cycle optimisation (H1).
+
+---
+
+### 4 — Overview of the Architecture Vision
+
+**Problem statement:** ACME's Customer Onboarding capability is fragmented across 4 disconnected systems, resulting in an 11-day manual cycle, an 18% duplicate-record rate, and a 23% abandonment rate. The current architecture cannot meet the new identity verification regulatory requirement without structural change.
+
+**Vision of the future state:** A cloud-native Customer Onboarding capability where a customer's identity is verified digitally in real time, their data is recorded once in a single authoritative Customer Master Data system, and their account is activated within **3 working days** of application. The architecture adopts managed identity verification and document capture services (Principle A-01), exposes all integrations via documented APIs (Principle T-01), and enforces security at every layer (Principle T-02). The legacy CRM onboarding module is decommissioned by Q4 2025.
+
+**Key architectural decisions required (not yet made):**
+- Selection of managed Identity Verification SaaS provider
+- Event-driven vs synchronous orchestration pattern for the onboarding workflow
+- Cloud region and residency configuration to satisfy Principle D-02
+
+**Business value and success metrics:**
+
+| Metric | Baseline (Q2 2024) | Target | Confidence |
+|--------|--------------------|--------|------------|
+| Average onboarding cycle | 11 working days | ≤ 3 working days | `[proven]` baseline; `[informed estimate]` target |
+| Customer abandonment rate | 23% | ≤ 10% | `[proven]` baseline; `[working hypothesis]` target — dependent on UX programme |
+| Duplicate customer record rate | 18% | < 1% | `[proven]` baseline; `[informed estimate]` target |
+| Identity verification regulatory compliance | Non-compliant (2024 audit) | Fully compliant at Phase G | `[proven]` |
+
+**Broad Responsibility:** The target architecture processes the personal identity data of every new ACME customer. A failure in identity verification accuracy, data security, or data residency has consequences for individuals beyond ACME's commercial interests — incorrect identity verification can deny legitimate customers access; a data breach exposes them to fraud. `[proven]`
+
+---
+
+### 5 — Change-of-Scope Procedures
+
+| Trigger event | Initiator | Approver | Process |
+|---------------|-----------|----------|---------|
+| Scope expansion beyond named in-scope items | Lead Architect (Marcus Webb) | Architecture Sponsor (Sarah Chen) | Formal SoAW revision; Version increment; Architecture Board notification |
+| Budget revision > 15% | Programme Manager | Architecture Sponsor + CFO | SoAW revision; constraint table update; Architecture Board review |
+| Regulatory change materially affecting C-04 | CISO (David Okafor) | Architecture Sponsor | Emergency SoAW amendment; Principles D-01, D-02 review triggered |
+| Key stakeholder change (Architecture Sponsor or Lead Architect) | Programme Board | Programme Board | SoAW countersignature by new role holder; Architecture Board informed |
+
+> [!important]
+> An unsigned SoAW revision does not override the current signed version. Scope changes without a signed SoAW revision are not authorised architecture changes — they are scope creep and must be resisted by the Lead Architect.
+
+---
+
+### 6 — Roles, Responsibilities, and Deliverables
+
+#### Architecture Team
+
+| Role | Name | Responsibility |
+|------|------|----------------|
+| Architecture Sponsor | Chief Customer Officer (Sarah Chen) | Signs SoAW, Architecture Vision, and Architecture Contracts; resolves scope disputes |
+| Lead Architect | Head of Enterprise Architecture (Marcus Webb) | Owns all architecture deliverables; chairs Architecture Board submissions |
+| Identity Domain Architect | Identity Architect (Priya Sharma) | Owns Phase C (Data/Application) deliverables; leads SaaS provider evaluation |
+| Technology Architect | (TBC — to be named by Phase B) | Owns Phase D Technology ADD |
+| Business Analyst | Customer Operations Analyst (TBC) | Supports Phase B capability mapping and process documentation |
+
+#### Deliverables per phase
+
+| Phase | Deliverable | Owner | Effort estimate |
+|-------|-------------|-------|----------------|
+| Preliminary | Architecture Principles (ACME-ARCH-PRIN-2024) — completed | Lead Architect | 3 days |
+| A | Statement of Architecture Work (this document) | Lead Architect | 4 days |
+| A | Architecture Vision | Lead Architect | 3 days |
+| A | Stakeholder Map (Power/Interest) | Lead Architect | 1 day |
+| A | Communications Plan | Lead Architect | 1 day |
+| B | Business Capabilities Catalog | Identity Architect | 5 days |
+| B | Gap Analysis (Baseline → Target, onboarding capabilities) | Identity Architect | 3 days |
+| B | Value Stream / Capability Matrix | Identity Architect | 2 days |
+| C (Data) | Data Architecture ADD — Data Entity Catalog, Data Security Diagram | Identity Architect | 5 days |
+| C (Application) | Application Architecture ADD — Interface Catalog | Identity Architect | 5 days |
+| D | Technology Architecture ADD | Technology Architect | 5 days |
+| E/F | Migration Plan — transition architectures, CRM decommission sequencing | Lead Architect | 6 days |
+| G | Architecture Contract (Design & Development) per workstream | Lead Architect | 2 days per workstream |
+| G | Compliance Assessment | Lead Architect + CISO | 3 days |
+
+---
+
+### 7 — Acceptance Criteria
+
+Phase A is complete when all of the following conditions are met — not when a calendar date is reached:
+
+1. This Statement of Architecture Work is signed by the Architecture Sponsor (Chief Customer Officer) and the Lead Architect.
+2. The Architecture Vision document is signed by the Architecture Sponsor.
+3. The Stakeholder Map has been reviewed and accepted by all named Manage Closely stakeholders (Chief Customer Officer, CISO).
+4. The Architecture Principles set (ACME-ARCH-PRIN-2024) has been approved by the Architecture Board.
+5. The Initial Capability Assessment (Phase A scan, all four sub-assessments) is complete and baselined in the Architecture Repository.
+6. The Communications Plan has been distributed to all stakeholder groups.
+
+> [!important]
+> These criteria gate Phase B — the Lead Architect must not begin Phase B deliverables until all six criteria are met and recorded in the Architecture Repository.
+
+---
+
+### 8 — Plan and Schedule
+
+Milestones are expressed as delivery events, not calendar dates, to remain valid if timeline constraints C-02 shift.
+
+| Milestone | Delivery event | Constraint |
+|-----------|---------------|------------|
+| M-01 | SoAW signed | Precondition for Phase B |
+| M-02 | Architecture Vision signed | Precondition for Architecture Board Phase A review |
+| M-03 | Architecture Board — Phase A review gate | Precondition for Phase B commencement |
+| M-04 | Phase B deliverables complete — Architecture Board Phase B review gate | Precondition for Phase C commencement; must complete before 2025-04-30 (C-02) |
+| M-05 | Phase C and D deliverables complete — Architecture Board Phase C/D review gate | Precondition for Phase E commencement |
+| M-06 | Migration Plan complete — CRM decommission plan confirmed | Must complete before 2025-07-31 to allow 3-month delivery runway before EoL (C-05) |
+| M-07 | Phase G Architecture Contracts signed for all solution delivery workstreams | Precondition for delivery workstreams commencing build |
+| M-08 | Phase G Compliance Assessment complete — all Critical findings resolved | Precondition for production go-live |
+
+---
+
+### 9 — Approvals
+
+| Role | Name | Signature | Date |
+|------|------|-----------|------|
+| Architecture Sponsor | Chief Customer Officer (Sarah Chen) | _signature required_ | ____________ |
+| Lead Architect | Head of Enterprise Architecture (Marcus Webb) | _signature required_ | ____________ |
+
+> [!important]
+> This Statement of Architecture Work has no governance standing until both signatures are recorded. The Lead Architect is responsible for filing the signed document in the ACME Architecture Repository under reference ACME-SoAW-2024-001.
