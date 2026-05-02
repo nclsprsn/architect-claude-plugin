@@ -91,6 +91,9 @@ Every output MUST satisfy the four rules below. Skip a rule only by writing `N/A
 | `> [!tip]` | DataOps pattern (dbt test + source freshness check) that closes a quality gap with low effort |
 | `> [!info]` | OpenLineage / Marquez integration note; reference to dbt best practice or DataOps manifesto principle |
 
+> [!tip]
+> **Worked example:** see `references/examples/example-data-pipeline-review.md` for a fully instantiated pipeline review — ACME Corp document processing pipeline (S3 → SQS → Lambda → Document AI → KYC), idempotency defects, lineage gaps, GDPR data residency finding, SLO gap, and fix list, anchored to the ACME Corp onboarding engagement.
+
 ---
 
 ## Pipeline Quality Attributes

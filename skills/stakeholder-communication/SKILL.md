@@ -84,6 +84,9 @@ Include only what moves the stakeholder toward the desired action. Most communic
 | `> [!abstract]` | One-paragraph executive summary for a long communication |
 | `> [!info]` | Related context, prior decisions, or reference links the reader should know |
 
+> [!tip]
+> **Worked example:** see `references/examples/example-stakeholder-communication.md` for a fully instantiated CISO briefing — technology architecture security findings (API key in ConfigMap, EKS EOL, GDPR consent breach) tailored for the CISO role, with role-specific framing, owner split, and a Before/After transformation pair, anchored to the ACME Corp onboarding engagement.
+
 ---
 
 ## Stakeholder Profiles

@@ -146,6 +146,9 @@ See `references/togaf-content-framework.md` for the canonical artefact inventory
 | `> [!info]` | Optional section that would materially improve the artifact for its audience |
 | `> [!tip]` | Section that exceeds the minimum template requirement — good practice to replicate |
 
+> [!tip]
+> **Worked example:** see `references/examples/example-artifact-completeness.md` for a fully instantiated TOGAF artifact completeness check — Phase C Application Architecture scored against all required Catalogs, Matrices, and Diagrams, with a per-artefact Present/Partial/Missing assessment and Architecture Board submission verdict, anchored to the ACME Corp onboarding engagement.
+
 ## Boundary
 
 Use `artifact-completeness` when the question is: *are all the required TOGAF deliverables for this phase present?* Output is a phase-coverage scorecard (Present / Partial / Absent / N/A per artefact).

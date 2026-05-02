@@ -167,6 +167,9 @@ Run this before using any existing principles set as a compliance baseline. A pr
 | `> [!info]` | Principle has aged — candidate for revision at next Architecture Board review |
 | `> [!tip]` | Design exceeds principle requirements — positive evidence for the Architecture Repository |
 
+> [!tip]
+> **Worked example:** see `references/examples/example-principles-check.md` for a fully instantiated principles validation — 6 Architecture Principles assessed against the Phase D Technology Architecture, with per-principle conformance verdicts, specific evidence, and remediation actions, anchored to the ACME Corp onboarding engagement.
+
 ## Boundary
 
 Use `principles-check` when the question is: *does this design comply with the organisation's named Architecture Principles?* Output is a per-principle conformance verdict.

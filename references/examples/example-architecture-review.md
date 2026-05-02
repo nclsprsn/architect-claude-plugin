@@ -1,0 +1,181 @@
+# Architecture Review — ACME Corp Phase D Technology Architecture
+
+**Document reviewed:** Phase D Technology Architecture — ACME Corp Customer Onboarding (see `example-technology-architecture.md`)
+**Reviewer:** External Senior Architect (independent of the delivery team)
+**Review date:** 2025-10-28
+**Requested by:** Marcus Webb, Head of Enterprise Architecture
+**Architecture Sponsor:** Sarah Chen, Chief Customer Officer
+
+---
+
+## Verdict
+**Needs Work**
+
+The Technology Architecture document is well-structured and self-aware — it names its own Critical finding (KYC API key in ConfigMap) and flags its High gaps. However, this review finds that the document soft-pedals three issues the delivery team has normalised: (1) HashiCorp Vault is itself a single point of failure for the platform's entire secret management chain, yet this is recorded only as "not assessed"; (2) the Technology Standards Catalog is described as "an open artefact gap" without a named owner or event-based closure trigger; and (3) the architecture silently assumes that ACME's ops team can sustain the current operational burden — an assumption that is not stated, not tested, and not bounded. These are not minor oversights; they are the class of issue that surfaces as production incidents six months after go-live.
+
+---
+
+## Business Outcome
+
+Reduce the ACME Corp customer onboarding cycle from 11 days to ≤ 3 days, measurably improving customer acquisition economics and satisfying the Chief Customer Officer's mandate — achieved through a modernised, cloud-hosted platform that is secure, observable, and operable at scale without requiring heroics from a four-engineer team.
+
+---
+
+## Quality Attribute Assessment
+
+| Attribute | Score | Finding | Evidence Status | Confidence | Severity |
+|-----------|-------|---------|----------------|------------|----------|
+| Security | Low | Two Critical exposures: KYC API key in ConfigMap (confirmed) and HashiCorp Vault running as a single-node on-premises instance with no HA, no IaC, and no documented recovery path. If Vault is unavailable, every secret-dependent service fails simultaneously — including the one path to fix the ConfigMap gap. | asserted (ConfigMap gap confirmed by engineering; Vault HA gap not tested) | [proven] for ConfigMap; [working hypothesis] for Vault blast radius | Critical |
+| Resilience | Low | Camunda BPM is a single-node pet. Vault is a single-node pet. DR has never been tested across any tier. The document identifies all three but does not connect them: simultaneous failure of BPM and Vault (e.g., during a remediation window) has no documented recovery choreography. | not assessed | [informed estimate] | Critical |
+| Observability | Low | No SLOs defined. No burn-rate alerts. Trace coverage is partial — the KYC webhook boundary (INT-003) is unobserved. CloudWatch logs are partially structured. The platform cannot currently answer "are we within SLA?" in production. | asserted | [informed estimate] | Important |
+| Evolvability | Medium | EKS and RDS are Terraform-managed, which is correct. S3 and Vault config are not. IaC coverage at ~70% means the platform cannot be reproducibly rebuilt from source — a recovery scenario depends on knowledge held in human memory, not in code. EKS 1.28 is past EOL. | asserted | [informed estimate] | Important |
+| Operability | Low | No runbooks for any high-criticality component. No alert-to-runbook mapping. Camunda process administration is identified as a skills gap on the ops team. GitLab CI runners are hand-configured. The architecture requires a four-engineer team to carry context that should live in documentation. | not assessed | [working hypothesis] | Important |
+| Availability | Medium | EKS Multi-AZ and RDS Multi-AZ provide solid managed-layer HA. Camunda BPM single-node is the dominant availability gap — BPM engine failure terminates all in-flight onboarding cases with no graceful degradation. Fix is identified but not yet executed. | asserted | [informed estimate] | Important |
+| Cost Efficiency | Medium | €800/month in attributable orphaned resource waste is a proven, eliminable cost. EKS BPM node group is oversized. FinOps hygiene is poor but the document has quantified it — credit for that. | asserted (orphaned resources proven via AWS Cost Explorer) | [informed estimate] | Minor |
+| Data Protection | Medium | EU data residency is correctly anchored to eu-west-1 for TECH-002 and TECH-003 — satisfying GDPR Art. 44. However: no data classification schema is documented for the S3 Document Store; retention policy for identity documents is absent; and the secrets rotation policy for Vault is undocumented. The document's Broad Responsibility section correctly identifies the GDPR Art. 33 notification risk, but does not name who holds the DPA notification obligation or what the evidence threshold for triggering it is. | asserted | [informed estimate] | Important |
+
+---
+
+## Sensitivity & Tradeoff Map
+
+**Sensitivity points** (decisions that cascade across multiple quality attributes):
+
+- **HashiCorp Vault single-node deployment** → affects Security (single point of secret compromise), Resilience (failure cascades to all secret-dependent services simultaneously), Operability (manual recovery required, no runbook), and Evolvability (Vault config is not IaC-managed — rebuild requires manual reconstruction). Any change to Vault during a remediation window carries disproportionate blast radius. Change with extreme care.
+- **Camunda BPM single-node pod** → affects Availability (no HA), Resilience (in-flight process state is lost on pod failure), Operability (manual restart required, Camunda admin skills gap on ops team), and Cost Efficiency (node group is oversized for a single-pod deployment). The document correctly flags this but does not connect the simultaneous risk of BPM + Vault failure during a shared maintenance window.
+- **IaC coverage at ~70%** → affects Evolvability (platform cannot be reproducibly rebuilt), Resilience (recovery depends on tribal knowledge), Operability (drift between intended and actual state is undetectable for S3 and Vault), and Security (Vault config drift means security controls may not be in the expected state).
+
+**Tradeoff points** (where satisfying one quality attribute compromises another):
+
+- **Security vs Observability:** Moving the KYC API key from ConfigMap to Vault is unambiguously correct. However, Vault Agent sidecar injection changes how the BPM pod acquires secrets at runtime — this affects trace coverage. If OpenTelemetry instrumentation is not updated to cover the Vault Agent sidecar initialisation phase, the INT-003 trace gap will widen, not narrow, after remediation. The fix for one Critical gap must not introduce a blind spot in the observability stack.
+- **Resilience vs Operability:** Deploying Camunda HA cluster (≥2 replicas with shared RDS session store) is required. However, it increases the operational complexity the four-engineer team must carry: Camunda cluster health, session store connection pool sizing, and split-brain handling all require documented runbooks that do not currently exist. Improving resilience without closing the operability gap shifts risk from availability to human error under pressure.
+
+**Risk themes** (patterns of risk across multiple findings):
+
+- **Undocumented single points of failure:** Vault (single-node), BPM (single-node), GitLab CI runners (hand-configured). The pattern is consistent — the team has accepted single-node deployments for operationally complex components and deferred HA. This is not an isolated oversight; it is a systemic bias toward deferral that will reappear in Phase G governance.
+- **IaC debt normalised as "medium priority":** S3, Vault config, and GitLab runners are all IaC gaps rated Medium. Individually each is defensible. Together they mean that ~30% of the platform is in an undocumented, unauditable, manually operated state — a risk cluster that the document's severity ratings do not fully surface.
+
+---
+
+## Assumption Stress-Test
+
+| # | Assumption | Type | Failure scenario if wrong | Confidence |
+|---|-----------|------|--------------------------|------------|
+| 1 | HashiCorp Vault is reliably available during any remediation or incident window — the document treats Vault as the solution to the ConfigMap gap without examining Vault's own availability posture | testable | If Vault is unavailable during the ConfigMap-to-Vault migration or during any production incident requiring secret rotation, all dependent services (BPM, Document AI, Channel Service) lose the ability to acquire or rotate credentials simultaneously. Recovery requires manual Vault restart with no runbook and no IaC to reconstruct configuration — an unquantified RTO on the dependency that underpins every other security control. | [working hypothesis] |
+| 2 | The four-engineer ops team has sufficient capacity and Camunda knowledge to maintain the self-managed observability stack, operate Camunda HA post-deployment, and manage GitLab CI runner hygiene concurrently with go-live preparation | behavioural | If this assumption is wrong, one of three things happens: (a) the Camunda HA deployment is deferred again; (b) the observability stack degrades silently; or (c) GitLab CI runners fail and the deployment pipeline stops. The document does not model team capacity — it lists Marcus Webb as owner of six of the eight Fix List items without assessing whether one person can close all six before the go-live gate. | [working hypothesis] |
+| 3 | EU data residency is fully satisfied because TECH-002 (RDS) and TECH-003 (S3) are in eu-west-1 | testable | The KYC SaaS vendor (external, identity unspecified in the document) processes customer identity data as part of the verification workflow. If the KYC SaaS vendor processes or stores any personal data outside the EU — even transiently — GDPR Art. 44 is engaged and a data transfer mechanism is required. The document does not name the KYC vendor, does not cite a DPA for the vendor, and does not confirm where vendor-side processing occurs. This is a regulatory gap disguised as a technology gap. | [working hypothesis] |
+
+---
+
+## Failure Mode Analysis
+
+| Critical flow | Business criticality | Highest-probability failure point | Failure scenario | Recovery path | Recovery time estimate | Gap |
+|--------------|---------------------|----------------------------------|-----------------|---------------|----------------------|-----|
+| Customer identity verification (KYC webhook → BPM → KYC SaaS → RDS) | High — blocks onboarding completion for every new customer | Camunda BPM single-node pod crash during active KYC callback | Pod crashes while KYC SaaS webhook delivers verification result. In-flight case state held in BPM memory is lost. KYC SaaS vendor may not retry the webhook. Customer onboarding case is orphaned — requires manual ops intervention to identify and resubmit. No automated detection because SLOs and burn-rate alerts are not configured. | Manual — ops team identifies orphaned cases via Camunda admin console (requires Camunda admin skills, flagged as a gap); manually resubmits verification request | Unknown — ops team must notice the failure, diagnose, restart the pod, identify affected cases, and coordinate with KYC vendor for resubmission. Likely hours, not minutes. | No runbook. No automated alert. No case-level idempotency confirmed. Recovery time undocumented. |
+| Secret rotation — KYC API key (post-remediation) | High — credential rotation is a security-critical operation; failure leaves a stale or rotated key inaccessible | HashiCorp Vault single-node unavailability during rotation event | Vault goes offline during a planned KYC API key rotation. BPM pod cannot acquire the new key from Vault Agent sidecar. BPM pod fails to start or fails secret renewal. All active onboarding cases requiring KYC verification are blocked until Vault recovers. | Manual — Vault restart on on-premises host. No automated failover. No documented RTO. No IaC to reconstruct Vault config if the host is rebuilt. | Unknown — conservative estimate 30–120 minutes for a practised operator; longer if Vault config must be reconstructed from memory. | Vault HA not deployed. Vault config not in IaC. No runbook. This is the single dependency that can simultaneously break the fix for Fix List item 1 and every other secret-dependent service. |
+| New customer onboarding — end-to-end (Channel Service → BPM → Document AI → RDS → Notification) | High — primary business flow; target ≤ 3 days cycle requires this to be reliably automated | Observability gap at INT-003 KYC webhook boundary | A KYC verification fails silently at the webhook boundary. Without a trace span at INT-003, the failure is not attributed to the correct service. Grafana alerts do not fire because application SLO alerts are not configured. Ops team discovers the failure only when a customer escalates or a manual queue review is performed. | Manual — ops team diagnoses via CloudWatch Logs partial structured JSON; correlation is difficult without trace ID coverage at the boundary. | Hours to days (customer-reported failures in the worst case) | Trace gap at INT-003 confirmed. No SLO burn-rate alert. No application-level alert-to-runbook mapping. This is a diagnostic blindspot on the highest-criticality flow. |
+| DR failover — RDS PostgreSQL (identity + process state + consent) | High — contains all customer identity, process, and consent records | Automated Multi-AZ failover during a peak onboarding window | RDS Multi-AZ triggers automated failover (~2 minutes). All services with connection pools must reconnect. If BPM or Channel Service connection pool does not handle connection reset gracefully, the service must be manually restarted. | Partially automatic (RDS failover) + potentially manual (connection pool recovery per service) | 2–5 minutes for RDS failover; additional undocumented time for connection pool recovery per service. Actual RTO is unknown — DR has never been tested. | DR never tested. Connection pool behaviour during RDS failover is not documented. RTO is asserted as 2 minutes but actual recovery chain across all dependent services is unknown. |
+
+---
+
+## Delivery Fitness
+
+**Deployment independence:** EKS workloads are deployed via GitLab CI with Helm — this is structurally independent at the service level. However, the self-hosted GitLab CE runners are hand-configured on on-premises VMs. A runner failure blocks all deployments simultaneously — there is no deployment independence from a single-point-of-failure CI/CD plane. The Vault Agent sidecar dependency also means that any change to Vault configuration requires coordination between the CISO (David Okafor) and the engineering team — an architectural coupling point that will cause inter-team synchronous communication under pressure.
+
+**Cognitive load risk:** Marcus Webb is the named owner of six of the eight Fix List items, owns EKS (TECH-001), ALB (TECH-004), GitLab CI (TECH-006), and the full observability stack (TECH-007, TECH-008, TECH-009). This is a concentration of architectural accountability that exceeds a safe cognitive load boundary for one person during a go-live preparation window. It is also a bus-factor risk: if Marcus Webb is unavailable, the institutional knowledge required to execute the Fix List does not have a named backup.
+
+**Inter-team sync points:** (1) CISO (David Okafor) must sign off on Vault sidecar injection approach before BPM team can close Fix List item 1 — security gate on a Critical fix. (2) Identity Architect (Priya Sharma) owns the Camunda HA cluster deployment (Fix List item 3) but the BPM node group sizing decision sits with Marcus Webb — coordination required. (3) Customer Operations Director (Tom Hayward) owns Legacy CRM retirement (TECH-012) but the target CRM hosting infrastructure has no Phase D entry — this void must be resolved by a cross-team decision before Phase D sign-off. Each of these is a delivery bottleneck.
+
+**DORA signal:** N/A — no deployment frequency, change failure rate, or MTTR data was provided in the document. The presence of hand-configured CI runners, no runbooks, and a single named owner for most fix items is a leading indicator of a low deployment frequency / high change failure rate posture — but this is a [working hypothesis] without measurement data.
+
+---
+
+## Pyramid Principle
+
+Partial pass. The Verdict section leads with the correct conclusion ("Needs Work") and the abstract callout names the Critical finding immediately — this is correct. However, the document buries the Vault single-node HA gap (one of the most significant resilience risks) in the Availability and Recovery Assessment table on page 5, with the severity recorded as "not assessed" rather than Critical. A reader scanning only the executive abstract will not see the Vault gap. The abstract must be updated to name Vault HA alongside the Camunda HA gap.
+
+---
+
+## Provocation
+
+The document describes the KYC API key in a ConfigMap as a Critical security gap — and it is. But the team confirmed this gap exists and shipped to staging anyway. That is the more important signal. An organisation with Principle T-02 (Security by Design, Not Retrofit) in its approved Architecture Principles set should not be discovering a credential-in-plaintext gap at Phase D review; it should have been caught at Phase C Integration Architecture review or at the Phase G architecture contract gate. The fact that it was not is a governance process failure, not just a delivery team oversight. The Architecture Board should ask: what is the security review gate between Phase C and Phase D, who is accountable for it, and what would have to change for this class of finding to be caught one phase earlier?
+
+---
+
+## Disruptive Alternative
+
+**Replace self-managed EKS + Camunda BPM with AWS Step Functions + AWS Fargate.**
+
+The business outcome is a ≤ 3-day onboarding cycle — not a Kubernetes operations capability. The current architecture requires the team to operate EKS cluster lifecycle (node group patching, version upgrades, EOL management), Camunda BPM cluster administration (a specialised skill the ops team does not currently have), self-managed observability (Prometheus, Grafana, Jaeger), and self-hosted GitLab CI runners — all concurrently, with a four-engineer team.
+
+AWS Step Functions eliminates the BPM operational burden entirely: workflow state is managed by AWS, HA is provided by default, and there is no BPM cluster to administer. AWS Fargate eliminates EKS node management — no node group patching, no version upgrade cycle, no EOL exposure. The observability stack can be replaced by AWS managed Prometheus and Grafana (Amazon Managed Grafana) — eliminating the self-managed stack maintenance burden.
+
+**Estimated trade-off:** Migration from Camunda BPMN to Step Functions ASL is a one-way door and a non-trivial re-implementation effort — estimated 6–10 weeks for a four-engineer team [working hypothesis]. If the engagement is already past the Phase C solution building block decision, this is not a go-live option. **It is, however, the correct H3 architectural direction.** The current architecture is accumulating operational debt at a rate that a four-engineer team cannot sustain beyond H1. The disruptive alternative should be recorded as a roadmap item for the Phase H change management cycle, with an exit trigger: re-evaluate when EKS operational incidents exceed 2 per quarter or when a second EKS version EOL cycle requires another upgrade.
+
+**Exit trigger:** Re-evaluate when EKS operational incidents (excluding application bugs) exceed 2 per quarter, or when a second EKS version upgrade cycle consumes more than 0.5 FTE. **Reversibility: one-way door** — Step Functions ASL is not portable to another workflow engine without re-implementation. Vault migration to AWS Secrets Manager is a two-way door (Vault API wrapper available).
+
+---
+
+## Second-Order Effect
+
+The KYC SaaS vendor's identity is not disclosed in the Technology Architecture document. The mTLS KYC webhook integration is described as connecting to an external "KYC SaaS Vendor [PI][C]" — but no vendor name, DPA, data processing agreement, or processing location is referenced in any artefact in scope. This is not merely a documentation gap. Under GDPR Art. 28, ACME is a Data Controller and the KYC SaaS vendor is a Data Processor — this relationship requires a signed Data Processing Agreement (DPA) before any personal data is shared with the vendor. If a DPA is not in place, every KYC verification performed in staging or production is a regulatory breach. The second-order effect: if the Architecture Board approves Phase D sign-off without verifying the DPA, ACME's Data Protection Officer becomes exposed to regulatory liability that originated in a technology architecture review. The DPA status must be confirmed as a go-live gate criterion, with the CISO (David Okafor) as the named owner. `[proven — GDPR Art. 28 requirement]`
+
+---
+
+## Horizon Alignment
+
+**Problem horizon:** H2 — the onboarding modernisation is scaling an emerging digital channel (≤ 3-day cycle) with new platform capability. It is not purely optimising an existing flow (H1) nor seeding a disruptive business model (H3).
+
+**Architecture horizon:** H1/H2 mixed — the managed Kubernetes + RDS + Vault pattern is an H1 operational optimisation of existing enterprise patterns. The Phase D document's H3 section (Fargate / Lambda at > 5,000 onboardings/day) gestures toward H2–H3 thinking, but the current implementation is H1 with H2 ambitions.
+
+**Flag:** The architecture is broadly horizon-aligned for the immediate engagement. The risk is that H1 operational debt (single-node components, IaC gaps, no runbooks) will constrain the team's ability to execute the H2 transition. A team firefighting EKS upgrades and manual Vault operations is not a team with capacity to migrate to a serverless architecture. The H3 direction named in the document is correct — but it will require resolving all H1 debt first, and the Fix List does not sequence the work with that constraint in mind.
+
+---
+
+## Commoditisation Flags
+
+- **Self-managed Prometheus + Grafana + Jaeger (TECH-007, TECH-008):** Observability is a commodity. Amazon Managed Grafana + AWS Managed Prometheus is available at comparable quality. The document names this as its own Disruptive Alternative — the reviewer endorses it. The self-managed stack is consuming ~0.3 FTE ops capacity [informed estimate from source document] in a four-engineer team. Exit trigger: observability stack incident or maintenance > 0.5 FTE/quarter.
+- **Self-hosted GitLab CE (TECH-006) with hand-configured runners:** GitLab SaaS (gitlab.com) or GitHub Actions eliminates runner management entirely. The self-hosted model is defensible only if ACME has a regulatory constraint preventing code hosted on a vendor SaaS platform — this constraint is not documented. If no such constraint exists, self-hosting GitLab CE is custom operation of a commodity CI/CD service. `[working hypothesis]`
+- **HashiCorp Vault self-managed on-premises (TECH-005):** Vault is approaching commodity — AWS Secrets Manager, Azure Key Vault, and GCP Secret Manager all provide managed secrets management at comparable capability for non-complex use cases. Vault was chosen explicitly for Principle C-05 multi-cloud compliance. That rationale is documented and valid for now. **Re-evaluate** if ACME's multi-cloud mandate weakens or if AWS Secrets Manager adds a Vault-compatible API (which it partially has via Parameter Store). Two-way door — Vault API is abstracted in application code.
+
+---
+
+## TOGAF Checks
+
+**ADM phase alignment:** Consistent. The document's scope (Technology Portfolio Catalog, Platform Decomposition, Environments and Locations, IaC coverage, DR posture) is appropriate for Phase D. The Mermaid platform decomposition diagram, component inventory, and Phase C → Phase D traceability table are all correct Phase D artefacts.
+
+**Gap analysis:** Partially complete. Phase C → Phase D traceability is present and identifies the target Customer Master CRM hosting void. However, the Technology Standards Catalog — a required Phase D artefact before Architecture Board sign-off — is flagged as absent with no named owner and no event-based closure trigger. "Open artefact gap" is not a gap remediation plan. Owner: Head of EA (Marcus Webb). Review trigger: before Architecture Board Phase D submission gate.
+
+**Architecture contracts:** Present — ACME-ARCH-CON-2025-001 is referenced. Go-live acceptance criteria are partially updated. Three items are missing from the Architecture Contract acceptance criteria and must be added: (1) Vault HA deployment validated, (2) KYC vendor DPA confirmed and on record in the Architecture Repository, (3) Technology Standards Catalog approved by Architecture Board. Without these three criteria, the Architecture Contract does not gate the risks this review has identified.
+
+**Compliance cycle:** Owner partially named. Marcus Webb is named for most components. However, the compliance review trigger for the Technology Standards Catalog, Vault HA, and KYC vendor DPA is absent. Each requires an event-based trigger, not a calendar date.
+
+---
+
+## Fix List
+
+| # | Severity | Finding | Fix | Owner (role) | Reversibility | Review trigger |
+|---|----------|---------|-----|--------------|---------------|----------------|
+| 1 | Critical | KYC SaaS API key in Kubernetes ConfigMap — credential readable by all pods in namespace, present in CI build logs | Migrate to HashiCorp Vault; inject via Vault Agent sidecar in BPM pod; rotate the exposed key immediately; update OpenTelemetry instrumentation to cover sidecar init phase so the observability fix does not introduce a new trace gap | CISO (David Okafor) | two-way door | Before any staging deployment — no exceptions |
+| 2 | Critical | HashiCorp Vault running as single-node on-premises instance with no HA, no IaC config, no runbook, and no documented RTO — the primary dependency for every secret-dependent service in the platform | Deploy Vault HA cluster (≥2 nodes, Raft storage backend); define Vault configuration as Terraform (Vault provider); write and test Vault recovery runbook; document RTO achieved | CISO (David Okafor) | two-way door | Before Fix List item 1 (Vault must be HA before it becomes the sole secret store for the platform) |
+| 3 | Critical | KYC SaaS vendor DPA not confirmed — ACME shares customer personal data with an external processor without a documented Data Processing Agreement on record | Confirm DPA exists and is on record in the Architecture Repository; if absent, suspend KYC data flows to the vendor until DPA is signed; add DPA confirmation as Architecture Contract acceptance criterion | CISO (David Okafor) | one-way door (regulatory — cannot share personal data with a processor without a DPA; this is not a design decision, it is a legal requirement) | Before any KYC personal data is transmitted to the vendor, including in staging |
+| 4 | Important | EKS 1.28 past EOL — unpatched CVEs accumulating; penetration test required by Architecture Contract will fail on Kubernetes version alone | Upgrade to EKS 1.30 via managed node group rolling update | Head of EA (Marcus Webb) | two-way door | Before go-live gate; before any security audit or penetration test |
+| 5 | Important | Camunda BPM single-node — in-flight process state lost on pod failure; no graceful degradation; case idempotency not confirmed | Deploy Camunda HA cluster (≥2 replicas) with shared RDS PostgreSQL session store; write Camunda cluster runbook; confirm case-level idempotency for KYC webhook | Identity Architect (Priya Sharma) | two-way door | Before integration test sign-off |
+| 6 | Important | No SLOs defined for any service; no burn-rate alerts; trace gap at INT-003 KYC webhook boundary | Define SLOs for all 7 integration points and compute tier; configure burn-rate alerts in Grafana; bridge synthetic span at INT-003 | Head of EA (Marcus Webb) | two-way door | Before go-live gate |
+| 7 | Important | DR never tested — RTO/RPO for RDS, EKS, and Vault are unvalidated hypotheses | Execute RDS Multi-AZ failover test; EKS node failure simulation; Vault recovery test; document actual RTO achieved for each tier | Head of EA (Marcus Webb) | two-way door | Before Architecture Contract go-live gate; must be completed before penetration test |
+| 8 | Important | Marcus Webb named as owner of six of eight Fix List items — cognitive load concentration and bus-factor risk | Assign a named backup owner for each Fix List item; distribute remediation accountability across the team; consider whether an additional ops engineer is required before go-live | Architecture Sponsor (Sarah Chen) | two-way door | Before go-live planning session; re-evaluate if any Fix List item slips past its trigger date |
+| 9 | Important | Technology Standards Catalog absent — required Phase D artefact for Architecture Board sign-off; no owner or closure trigger named in the document | Produce Technology Standards Catalog listing approved versions and refresh cycles per component; add to Architecture Repository; add as Architecture Board Phase D submission gate criterion | Head of EA (Marcus Webb) | two-way door | Before Architecture Board Phase D submission |
+| 10 | Important | S3 Document Store not in IaC — configuration undocumented, unauditable, and cannot be reproduced | Import S3 bucket to Terraform state; enforce IaC-only changes via GitLab CI; add S3 encryption and versioning config to Terraform | Head of EA (Marcus Webb) | two-way door | Before Phase D sign-off |
+| 11 | Minor | GitLab CI runners hand-configured — runner failure requires manual rebuild; no image or playbook exists | Define runner configuration as Ansible playbook or Docker image; test reproducibility | Head of EA (Marcus Webb) | two-way door | Before next runner rebuild event |
+| 12 | Minor | €800/month in untagged and orphaned cloud resources | Apply AWS Config Rule enforcing mandatory tags (owner, environment, cost-centre, application); remediate orphaned EBS snapshots | Head of EA (Marcus Webb) | two-way door | When tagging policy is deployed to AWS Config |
+
+---
+
+## Broad Responsibility
+
+The platform processes customer identity data for ACME's entire onboarding population. The three unstated or soft-pedalled findings in this review — Vault as a single point of failure for the secrets chain, the absent KYC vendor DPA, and the unconfirmed GDPR Art. 28 Data Processor relationship — carry direct regulatory and societal implications. A Vault failure during a credential rotation window does not just cause a service outage; it may leave rotated credentials in an inconsistent state, creating a security exposure window. An absent DPA for the KYC SaaS vendor means customer identity data (names, dates of birth, identity document images) may be flowing to an external processor without legal basis — a GDPR Art. 83(4) infringement risk carrying fines up to €10M or 2% of annual global turnover. These are not abstract concerns: they are live risks in the current architecture as of the review date. The Architecture Sponsor (Sarah Chen) must be made aware of the DPA gap explicitly — it is not a technology decision, it is a legal and regulatory one. `[proven — GDPR Art. 28 and Art. 83]`
+
+---
+
+## Standards Bar
+
+Does this meet the bar for a client deliverable? Yes — the source Technology Architecture document is well-structured and self-aware; this review goes deeper than the self-assessment on three material points (Vault HA, KYC vendor DPA, Marcus Webb cognitive load concentration) that the delivery team had normalised. The Fix List expands from eight items to twelve, promoting Vault HA and KYC vendor DPA to Critical. All findings carry the four mandatory output discipline markers. The Disruptive Alternative (Step Functions + Fargate) is a genuine architectural alternative, not a variant. The Second-Order Effect (KYC vendor DPA gap exposing the Data Protection Officer to regulatory liability) is non-obvious and not named in the source document. The review is ready for presentation to the Architecture Board as a pre-submission quality check.

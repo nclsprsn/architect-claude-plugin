@@ -48,6 +48,13 @@ This chain is intentional — follow it across files to see how TOGAF artefacts 
 | 13 | [example-change-management.md](example-change-management.md) | Phase H Change Management — CR-2025-008 (Partner API Platform), Major classification, Requirements Impact Assessment, Architecture Repository Update Log | Phase H — Change Management | `change-management` |
 | 14 | [example-gap-analysis.md](example-gap-analysis.md) | Phase E Gap Analysis — 7 domains, 15 gaps, dependency DAG, TOGAF Gap Analysis Matrix, swimlane convergence diagram, critical path | Phase E — Opportunities | `gap-analysis` |
 | 15 | [example-migration-plan.md](example-migration-plan.md) | Phase F Migration Plan — strangler-fig pattern, 6Rs (7 workloads), 3 Transition Architectures, per-wave go/no-go gates, rollback playbooks | Phase F — Migration Planning | `migration-plan` |
+| 16 | [example-architecture-review.md](example-architecture-review.md) | Chief Architect Critique — Phase D Technology Architecture, unstated assumptions surfaced, disruptive alternative, 12-item fix list | Validate gate 2 | `architecture-review` |
+| 17 | [example-risk-radar.md](example-risk-radar.md) | Programme RAID Log — 10 risks with heat map, bow-tie analysis, risk interconnection map, top mitigations, systemic risk named | Validate gate 2 (parallel) | `risk-radar` |
+| 18 | [example-principles-check.md](example-principles-check.md) | Architecture Principles Check — 6 principles validated against Phase D Technology Architecture, per-principle conformance verdicts | Validate gate 1 | `principles-check` |
+| 19 | [example-artifact-completeness.md](example-artifact-completeness.md) | Artifact Completeness Check — Phase C Application Architecture scored against all required Catalogs, Matrices, and Diagrams | Validate gate 3 | `artifact-completeness` |
+| 20 | [example-data-pipeline-review.md](example-data-pipeline-review.md) | Data Pipeline Review — document processing pipeline (S3→SQS→Lambda→Document AI→KYC), idempotency defects, lineage gaps, GDPR finding | Phase C — Data | `data-pipeline-review` |
+| 21 | [example-executive-summary.md](example-executive-summary.md) | Executive Summary — 15-gap technical analysis rewritten for CCO using Pyramid Principle, Before/After pair, numbered anchored claims | Communicate | `executive-summary` |
+| 22 | [example-stakeholder-communication.md](example-stakeholder-communication.md) | CISO Briefing — security findings tailored for CISO role, owner split, Before/After transformation pair | Communicate | `stakeholder-communication` |
 
 ---
 

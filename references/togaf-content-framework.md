@@ -165,3 +165,10 @@ See `references/examples/` for instantiated versions of the artefacts catalogued
 | `examples/example-change-management.md` | Phase H Change Management — CR-2025-008, Major classification, Requirements Impact Assessment, Repository Update Log (Phase H) |
 | `examples/example-gap-analysis.md` | Phase E Gap Analysis — 7 domains, 15 gaps, dependency DAG, TOGAF Gap Analysis Matrix, swimlane convergence diagram (Phase E) |
 | `examples/example-migration-plan.md` | Phase F Migration Plan — strangler-fig, 6Rs, 3 Transition Architectures, go/no-go gates, rollback playbooks (Phase F) |
+| `examples/example-architecture-review.md` | Chief Architect Critique — Phase D Technology Architecture, unstated assumptions, disruptive alternative, 12-item fix list (Validate) |
+| `examples/example-risk-radar.md` | Programme RAID Log — 10 risks, heat map, bow-tie, risk interconnection map, systemic risk (Validate) |
+| `examples/example-principles-check.md` | Architecture Principles Check — 6 principles validated against Phase D Technology Architecture (Validate) |
+| `examples/example-artifact-completeness.md` | Artifact Completeness Check — Phase C Application Architecture vs TOGAF Catalogs, Matrices, Diagrams (Validate) |
+| `examples/example-data-pipeline-review.md` | Data Pipeline Review — document processing pipeline, idempotency, lineage, GDPR finding (Phase C) |
+| `examples/example-executive-summary.md` | Executive Summary — gap analysis rewritten for CCO, Pyramid Principle, Before/After (Communicate) |
+| `examples/example-stakeholder-communication.md` | CISO Briefing — security findings tailored for CISO role, owner split, Before/After (Communicate) |

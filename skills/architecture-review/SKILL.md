@@ -80,6 +80,9 @@ Generate the artifacts appropriate to the findings. Diagrams illuminate — they
 | `> [!info]` | TOGAF compliance status, superseded ADR references, related decisions |
 | `> [!tip]` | Positive observation — something done notably well that others should replicate |
 
+> [!tip]
+> **Worked example:** see `references/examples/example-architecture-review.md` for a fully instantiated chief architect critique of the ACME Corp Phase D Technology Architecture — quality attribute assessment, unstated assumptions surfaced, disruptive alternative, and second-order effects, anchored to the ACME Corp onboarding engagement.
+
 ## Review Process
 
 ### Step 1 — Read and Frame
