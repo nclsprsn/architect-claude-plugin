@@ -115,6 +115,14 @@ A high-level maturity score per capability domain (Business, Data, Application, 
 | `> [!info]` | TOGAF phase alignment notes, ADM tailoring applied |
 | `> [!tip]` | Reference architecture or analogous programme that informed the Vision |
 
+## Boundary
+
+Use `architecture-vision` to start a specific architecture cycle (Phase A): defining scope, stakeholders, the Statement of Architecture Work, and the Architecture Vision for this engagement.
+
+- **vs `preliminary`** — `preliminary` establishes the enduring EA capability — Architecture Principles, Tailored Architecture Framework, Organisational Model for EA. `architecture-vision` consumes those outputs and applies them to a specific engagement.
+
+Sequence: `preliminary` (establish once, reuse across all cycles) → `architecture-vision` (start each new cycle).
+
 ## Standards Bar
 
 Does this meet the bar for a client deliverable? A completed Phase A output must leave no ambiguity about: (1) what the architecture is expected to deliver and for whom, (2) what is in and out of scope, (3) who has approved the mandate, and (4) how progress will be measured. If the Architecture Sponsor cannot sign the Statement of Architecture Work as written, the output is incomplete.

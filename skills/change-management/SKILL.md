@@ -116,6 +116,13 @@ A log of all Architecture Repository artefacts that must be updated as a result 
 | `> [!info]` | Change accepted with conditions — conditions and review trigger documented |
 | `> [!tip]` | Change request rejected — simpler or more reversible alternative exists |
 
+## Boundary
+
+Use `change-management` when the question is: *should this change to a deployed or in-flight architecture trigger a new ADM cycle?* This is Phase H — post-build architecture evolution, not implementation monitoring.
+
+- **vs `implementation-governance`** — `implementation-governance` (Phase G) monitors build-time conformance. When recurrent Phase G dispensations accumulate or a material business change arrives, escalate here: `change-management` classifies the change (Maintenance / Incremental / Major) and routes it appropriately.
+- **vs `compliance-review`** — material conformance shifts that a change introduces must be routed through `compliance-review` for Architecture Board re-assessment before the change is actioned.
+
 ## Standards Bar
 
 Does this meet the bar for a client deliverable? A completed Phase H output must leave no ambiguity about: (1) how the change request has been classified and why; (2) which Architecture Repository artefacts must be updated; (3) whether a new ADM cycle is triggered; and (4) who owns the change through to completion. An Architecture Board that cannot act on this output — approve, approve-with-conditions, or reject — is receiving an incomplete delivery.
@@ -126,5 +133,6 @@ After completing a Phase H change assessment:
 
 - **If classification is Simplification or Incremental Enhancement**: update the Architecture Repository (ADD, ADRs, roadmap) without a new ADM cycle. Invoke `requirements-management` to update the Architecture Requirements Repository. Invoke `implementation-governance` to ensure the change is reflected in the active Architecture Contract.
 - **If classification is Re-architecting**: trigger a new ADM cycle. Invoke `preliminary` only if the Architecture Principles or governance model must change; otherwise start directly with `architecture-vision` to produce a new Statement of Architecture Work.
+- **If the change introduces material conformance shifts**: invoke `compliance-review` for Architecture Board re-assessment before actioning — do not absorb board-level conformance changes into a Phase H update without explicit board approval.
 - **If a significant decision was made during the change assessment**: invoke `adr-generator` to capture it.
 - **Communicate**: invoke `stakeholder-communication` or `executive-summary` to brief the Architecture Sponsor and Architecture Board on the change assessment outcome.

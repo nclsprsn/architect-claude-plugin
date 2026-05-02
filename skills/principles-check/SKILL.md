@@ -107,6 +107,16 @@ For each Architecture Principle:
 | `> [!info]` | Principle has aged — candidate for revision at next Architecture Board review |
 | `> [!tip]` | Design exceeds principle requirements — positive evidence for the Architecture Repository |
 
+## Boundary
+
+Use `principles-check` when the question is: *does this design comply with the organisation's named Architecture Principles?* Output is a per-principle conformance verdict.
+
+- **vs `architecture-review`** — `architecture-review` is a qualitative chief-architect critique covering design quality, trade-offs, and a disruptive alternative. It is not pinned to named principles. Run `principles-check` first, then `architecture-review` for depth.
+- **vs `artifact-completeness`** — `artifact-completeness` checks whether the right TOGAF deliverables are present; it does not assess whether the content respects principles.
+- **vs `compliance-review`** — `compliance-review` is the formal Architecture Board verdict across 8 TOGAF compliance categories. `principles-check` is a pre-board principles conformance check that feeds into `compliance-review`.
+
+Staged validation pipeline: `principles-check` → `architecture-review` → `artifact-completeness` → `compliance-review`.
+
 ## Standards Bar
 
 Does this meet the bar for a client deliverable? A principles check must state clearly for every principle whether it is met, partially met, or violated — with cited evidence. A quality audit must score each principle against all five TOGAF criteria with specific findings, not vague impressions. If the Architecture Principles were not provided, this is a governance gap that must be flagged before any compliance finding can be `[proven]`.

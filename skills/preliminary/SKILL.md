@@ -117,6 +117,14 @@ A structured mandate document:
 | `> [!info]` | TOGAF standard alignment notes |
 | `> [!tip]` | Principle adopted from a recognised reference architecture |
 
+## Boundary
+
+Use `preliminary` *before* the engagement begins: establishing the Tailored Architecture Framework, agreeing Architecture Principles, defining the Organisational Model for EA, and issuing the Request for Architecture Work. `preliminary` owns the enduring EA capability — all subsequent architecture cycles draw from its outputs.
+
+- **vs `architecture-vision`** — `architecture-vision` is the *first phase of* a specific engagement (Phase A): it defines scope, stakeholders, and the Statement of Architecture Work for one architecture cycle. `preliminary` establishes the foundations that make every architecture cycle possible.
+
+Sequence: `preliminary` (establish the EA capability once) → `architecture-vision` (start each new architecture cycle).
+
 ## Standards Bar
 
 Does this meet the bar for a client deliverable? A completed Preliminary Phase output must leave no ambiguity about: (1) what principles will govern downstream decisions, (2) who has the authority to approve, waive, or override architecture decisions, and (3) what work has been mandated and by whom. If any of these three are unclear, the output is incomplete. "Does this meet the bar" — check before presenting.

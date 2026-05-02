@@ -146,6 +146,16 @@ See `references/togaf-content-framework.md` for the canonical artefact inventory
 | `> [!info]` | Optional section that would materially improve the artifact for its audience |
 | `> [!tip]` | Section that exceeds the minimum template requirement — good practice to replicate |
 
+## Boundary
+
+Use `artifact-completeness` when the question is: *are all the required TOGAF deliverables for this phase present?* Output is a phase-coverage scorecard (Present / Partial / Absent / N/A per artefact).
+
+- **vs `principles-check`** — `principles-check` scores content against Architecture Principles; `artifact-completeness` checks whether the right artefact types exist at all.
+- **vs `architecture-review`** — `architecture-review` critiques the quality of content; `artifact-completeness` checks presence and structure.
+- **vs `compliance-review`** — `artifact-completeness` is a completeness gate before board submission; `compliance-review` is the formal Architecture Board verdict once the artefacts are complete.
+
+Staged validation pipeline: `principles-check` → `architecture-review` → `artifact-completeness` → `compliance-review`.
+
 ## Standards Bar
 
 Does this meet the bar for a client deliverable? An Architecture Board should be able to use this completeness scorecard to decide: (1) whether the artifact is ready for submission as-is; (2) what specific sections must be completed before submission; and (3) who is responsible for each gap and by when (event-triggered, not a date). A scorecard that says "the document is mostly complete" is not actionable.

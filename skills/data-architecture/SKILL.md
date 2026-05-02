@@ -344,6 +344,14 @@ flowchart LR
 
 ---
 
+## Boundary
+
+Use `data-architecture` when the question is strategic: *what is the right data model, governance model, and topology for this data domain?* Output is a Data ADD section — schema, contracts, master data topology, governance framework.
+
+- **vs `data-pipeline-review`** — `data-pipeline-review` is operational: *does this pipeline implementation meet its SLAs, latency targets, lineage requirements, and runbook standards?* Use `data-architecture` first to define the target state; use `data-pipeline-review` to assess whether a specific implementation reaches it.
+
+Typical sequence: `data-architecture` (Phase C strategic) → `data-pipeline-review` (Phase G operational review).
+
 ## Standards Bar
 
 *Before presenting: does this assessment surface governance ownership, compliance posture, and topology fit with enough specificity that a data governance board or architecture review can act on it? If no — add the missing classification matrix, contract register, or RACI.*

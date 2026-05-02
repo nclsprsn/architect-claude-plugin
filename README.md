@@ -111,14 +111,20 @@ claude --plugin-dir ./architect-claude-plugin
 |-------|-------------|
 | `/architect-router [context]` | Detect TOGAF ADM phase and intent (specify vs validate), recommend the right skill to invoke next |
 
+### Frame — establish the engagement
+
+| Skill | What it does |
+|-------|-------------|
+| `/preliminary [context]` | Establish Architecture Principles, tailor the framework, define the Organizational Model for EA, produce Request for Architecture Work (Preliminary Phase) |
+| `/architecture-vision [context]` | Statement of Architecture Work, Architecture Vision, stakeholder map, communications plan, initial capability assessment (Phase A) |
+| `/requirements-management [context]` | Requirements Impact Assessments, Architecture Requirements Repository, traceability matrix — continuous across all ADM phases |
+
 ### Discover — understand the landscape
 
 | Skill | What it does |
 |-------|-------------|
-| `/architecture-review [path]` | Chief architect critique: quality attributes, assumption stress-test, disruptive alternative, second-order effects |
 | `/capability-assessment [path]` | Score a Phase B capability map: completeness, maturity evidence quality, ownership model, Phase B → Phase C traceability |
 | `/gap-analysis [path]` | Baseline → target gap table, scored by domain and effort, sequenced into H1/H2/H3 roadmap |
-| `/risk-radar [path]` | Risk heat map × RAID log × top mitigations × one systemic risk worth naming |
 | `/data-architecture [path]` | Data quality attributes, topology assessment, GDPR/AI Act check, governance blind spot, second-order effects |
 | `/integration-architecture [path]` | Integration quality attributes, topology fitness, contract governance, reliability patterns, anti-pattern detection |
 | `/data-pipeline-review [path]` | Pipeline pattern vs SLA fitness, idempotency, lineage, data quality checks, observability assessment |
@@ -150,18 +156,24 @@ claude --plugin-dir ./architect-claude-plugin
 |-------|-------------|
 | `/new-arch-doc [phase]` | Scaffold a TOGAF phase document (A–D) or framework-agnostic proposal with guiding questions |
 
-### Govern — validate, govern, and manage change
+### Validate — review before the board
+
+The four Validate skills form a **staged pipeline**: `principles-check` → `architecture-review` → `artifact-completeness` → `compliance-review`. They are sequential gates, not parallel options. Run them in order before an Architecture Board submission.
+
+| Skill | Gate | What it does |
+|-------|------|-------------|
+| `/architecture-review [path]` | Gate 1 | Chief architect critique: quality attributes, assumption stress-test, disruptive alternative, second-order effects |
+| `/risk-radar [path]` | Gate 1 (parallel) | Risk heat map × RAID log × top mitigations × one systemic risk worth naming |
+| `/principles-check [path]` | Gate 2 | Validate a document against Architecture Principles (Mode 1), or audit the principles themselves against TOGAF Architecture Principle quality criteria (Mode 2) |
+| `/artifact-completeness [path]` | Gate 3 | Score an artifact against its canonical TOGAF template — required Catalogs, Matrices, and Diagrams per the Architecture Content Framework |
+| `/compliance-review [path]` | Gate 4 | 8-category TOGAF Compliance Assessment with Architecture Board verdict: Approve / Approve with Conditions / Reject |
+
+### Govern — implement and evolve
 
 | Skill | What it does |
 |-------|-------------|
-| `/preliminary [context]` | Establish Architecture Principles, tailor the framework, define the Organizational Model for EA, produce Request for Architecture Work (Preliminary Phase) |
-| `/architecture-vision [context]` | Statement of Architecture Work, Architecture Vision, stakeholder map, communications plan, initial capability assessment (Phase A) |
-| `/requirements-management [context]` | Requirements Impact Assessments, Architecture Requirements Repository, traceability matrix — continuous across all ADM phases |
-| `/compliance-review [path]` | 8-category TOGAF Compliance Assessment with Architecture Board verdict: Approve / Approve with Conditions / Reject |
-| `/principles-check [path]` | Validate a document against Architecture Principles (Mode 1), or audit the principles themselves against TOGAF Architecture Principle quality criteria (Mode 2) |
-| `/artifact-completeness [path]` | Score an artifact against its canonical TOGAF template — required Catalogs, Matrices, and Diagrams per the Architecture Content Framework |
 | `/implementation-governance [context]` | Architecture Contracts, 8-category Compliance Assessments, dispensation and exception log (Phase G) |
-| `/change-management [context]` | Classify change requests (simplification / incremental / re-architecting), assess impact, determine whether a new ADM cycle is required (Phase H) |
+| `/change-management [context]` | Classify change requests (Maintenance / Incremental / Major), assess impact, determine whether a new ADM cycle is required (Phase H) |
 
 ---
 

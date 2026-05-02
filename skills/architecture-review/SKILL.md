@@ -262,6 +262,16 @@ Prioritise findings: Critical (blocks approval) → Important (must be addressed
 Does this meet the bar for a client deliverable? [Yes / No — reason]
 ```
 
+## Boundary
+
+Use `architecture-review` when the question is: *is this a good architecture?* Output is an opinionated, severity-coded critique with a disruptive alternative — the chief-architect view, not a checkbox.
+
+- **vs `principles-check`** — `principles-check` is a structured pass/fail against named Architecture Principles. `architecture-review` is qualitative; it surfaces design weaknesses not captured by any named principle. Run `principles-check` first to handle formal conformance, then `architecture-review` for depth.
+- **vs `artifact-completeness`** — `artifact-completeness` checks whether deliverables are present; `architecture-review` critiques the quality of what is present.
+- **vs `compliance-review`** — `compliance-review` produces the formal Architecture Board verdict (pass/conditions/reject). `architecture-review` is the pre-board quality check — run it before submitting to the board.
+
+Staged validation pipeline: `principles-check` → `architecture-review` → `artifact-completeness` → `compliance-review`.
+
 ## Next Step
 
 After completing an architecture review:

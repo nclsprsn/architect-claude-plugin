@@ -115,6 +115,13 @@ Verdict: **Compliant** (no Critical findings, all Significant findings have a re
 | `> [!info]` | Dispensation approved — time-limited, with review trigger |
 | `> [!tip]` | Best practice observed — implementation exceeds architecture requirements |
 
+## Boundary
+
+Use `implementation-governance` when the question is: *is the delivery project conforming to the approved architecture during build?* This is Phase G — the architecture team monitors the implementation and manages Architecture Contracts.
+
+- **vs `compliance-review`** — `compliance-review` is the formal Architecture Board assessment that *approves* the architecture before build begins. `implementation-governance` monitors whether the delivery project is *building* what the board approved.
+- **vs `change-management`** — when recurrent Phase G dispensations or a material business change arrives, escalate to `change-management` (Phase H) which classifies and routes the change formally; do not absorb material scope changes into Phase G dispensations indefinitely.
+
 ## Standards Bar
 
 Does this meet the bar for a client deliverable? A completed Phase G output must leave no ambiguity about: (1) whether the implementation is compliant with the approved architecture and, if not, what specifically deviates; (2) what dispensations have been granted, on what conditions, and when they must be reviewed; and (3) who owns each finding and what action is required before go-live or next Architecture Board review. An Architecture Board cannot make a decision from a vague compliance narrative.

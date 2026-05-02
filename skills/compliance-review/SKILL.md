@@ -117,6 +117,17 @@ One line on the societal, environmental, regulatory, or customers-of-customers i
 | `> [!info]` | Significant finding with an approved dispensation and review trigger |
 | `> [!tip]` | Area where the architecture exceeds the minimum compliance standard |
 
+## Boundary
+
+Use `compliance-review` when the question is: *does this architecture satisfy the TOGAF Architecture Compliance Assessment requirements for Architecture Board sign-off?* Output is a formal pass/conditions/reject verdict with an Architecture Contract.
+
+- **vs `principles-check`** — `principles-check` validates against Architecture Principles; `compliance-review` validates across 8 formal TOGAF categories (Hardware/OS, Software services, Applications, Information management, Security, System management, System engineering, Methods & tools) and produces a board-ready verdict.
+- **vs `architecture-review`** — `architecture-review` is a qualitative chief-architect critique run before the board; `compliance-review` is the formal board assessment.
+- **vs `artifact-completeness`** — run `artifact-completeness` before `compliance-review` to confirm all required artefacts are present before the board assesses them.
+- **vs `implementation-governance`** — `implementation-governance` (Phase G) monitors build-time conformance against an approved architecture; `compliance-review` is the board assessment that approves the architecture before build begins.
+
+Staged validation pipeline: `principles-check` → `architecture-review` → `artifact-completeness` → `compliance-review`.
+
 ## Standards Bar
 
 Does this meet the bar for a client deliverable? An Architecture Board receiving this compliance assessment must be able to make one of three decisions: Approve, Approve with Conditions, or Reject. If the assessment does not support a clear decision — because findings are vague, uncited, or unprioritised — it is not complete. Cite every finding. Name every owner. Set every review trigger to an event, not a date.

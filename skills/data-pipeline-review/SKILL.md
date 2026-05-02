@@ -301,6 +301,14 @@ flowchart LR
 
 ---
 
+## Boundary
+
+Use `data-pipeline-review` when the question is operational: *does this pipeline implementation meet its SLAs, latency targets, lineage requirements, and runbook standards?* Output is a pipeline review report with an SLO scorecard.
+
+- **vs `data-architecture`** — `data-architecture` is strategic: schema ownership, governance, topology, data contracts. Use `data-architecture` first to define the target state; `data-pipeline-review` then assesses whether a specific implementation reaches it.
+
+Typical sequence: `data-architecture` (Phase C strategic) → `data-pipeline-review` (Phase G operational review).
+
 ## Standards Bar
 
 *Before presenting: does this pipeline review provide enough specificity on idempotency, test coverage, contract boundaries, and runbook completeness that a data engineering team can act on it immediately? If no — add the missing test inventory, the runbook register, or the contract boundaries.*

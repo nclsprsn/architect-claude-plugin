@@ -291,6 +291,7 @@ flowchart LR
 
 After completing a risk radar:
 
+- **For Critical risks that indicate architecture design weaknesses**: invoke `architecture-review` before Architecture Board submission — Critical risks often signal structural decisions that need a chief-architect critique, not just a risk treatment.
 - **For Critical or High risks that affect architecture decisions**: invoke `adr-generator` to capture the risk treatment decision as an ADR — especially when the treatment involves a one-way door (e.g., choosing a higher-cost but more resilient platform).
 - **If risks surfaced architecture gaps**: invoke the relevant phase skill (`data-architecture`, `integration-architecture`, `technology-architecture`) to address the root cause, not just the symptom.
 - **For risks that affect compliance posture**: invoke `compliance-review` to assess whether the risk creates a Phase G conformance gap.
