@@ -296,6 +296,79 @@ for skill in "${!OVERLAY_SKILLS[@]}"; do
 done
 
 echo ""
+echo "=== Validating example file references ==="
+echo ""
+
+EXAMPLES_DIR="$REPO_ROOT/references/examples"
+
+# No stale example-*.md references anywhere in the repo
+echo "--- Stale example-*.md path references ---"
+stale_hits=$(grep -r --include="*.md" -l "example-[a-z]" "$REPO_ROOT" 2>/dev/null \
+  | grep -v "^$REPO_ROOT/.git" || true)
+if [[ -n "$stale_hits" ]]; then
+  echo "$stale_hits"
+  fail "stale example-*.md references found — rename to Johnny Decimal paths"
+else
+  pass "no stale example-*.md references"
+fi
+
+echo ""
+echo "--- SKILL.md [!tip] citations resolve ---"
+while IFS= read -r path; do
+  full="$REPO_ROOT/$path"
+  if [[ -f "$full" ]]; then
+    pass "skill citation OK: $path"
+  else
+    fail "skill citation BROKEN: $path"
+  fi
+done < <(grep -rh --include="SKILL.md" "references/examples/" "$REPO_ROOT/skills/" \
+  | grep -oP 'references/examples/[^\s`\)]+\.md' | sort -u)
+
+echo ""
+echo "--- examples/README.md relative links resolve ---"
+while IFS= read -r target; do
+  full="$EXAMPLES_DIR/$target"
+  if [[ -f "$full" ]]; then
+    pass "examples/README link OK: $target"
+  else
+    fail "examples/README link BROKEN: $target"
+  fi
+done < <(grep -oP '\[.*?\]\(\K[^)]+\.md' "$EXAMPLES_DIR/README.md" | sort -u)
+
+echo ""
+echo "--- No orphan files in references/examples/ ---"
+for f in "$EXAMPLES_DIR"/*.md; do
+  base=$(basename "$f")
+  [[ "$base" == "README.md" ]] && continue
+  if grep -q "$base" "$EXAMPLES_DIR/README.md"; then
+    pass "indexed in examples/README: $base"
+  else
+    fail "orphan — not in examples/README: $base"
+  fi
+done
+
+echo ""
+echo "--- Root README.md example paths resolve ---"
+while IFS= read -r path; do
+  if [[ -f "$REPO_ROOT/$path" ]]; then
+    pass "README path OK: $path"
+  else
+    fail "README path BROKEN: $path"
+  fi
+done < <(grep -oP 'references/examples/[^\s`\|]+\.md' "$REPO_ROOT/README.md" | sort -u)
+
+echo ""
+echo "--- togaf-content-framework.md example paths resolve ---"
+while IFS= read -r path; do
+  full="$REPO_ROOT/references/$path"
+  if [[ -f "$full" ]]; then
+    pass "content-framework path OK: $path"
+  else
+    fail "content-framework path BROKEN: $path"
+  fi
+done < <(grep -oP 'examples/[^\s`\)]+\.md' "$REPO_ROOT/references/togaf-content-framework.md" | sort -u)
+
+echo ""
 
 if [[ $ERRORS -eq 0 ]]; then
   echo "All checks passed."
