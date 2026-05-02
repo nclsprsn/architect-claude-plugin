@@ -79,8 +79,49 @@ The compliance review produces one structured assessment document. Do not produc
 | System engineering | Compliant / Partial / Non-Compliant | [finding] | | | | | |
 | Methods and tools | Compliant / Partial / Non-Compliant | [finding] | | | | | |
 
-> [!info] Status taxonomy — practitioner shorthand
-> Compliant / Partial / Non-Compliant is a 3-level shorthand used in this skill. The TOGAF Architecture Capability series guide defines a 6-level conformance scale (Irrelevant / Consistent / Compliant / Conformant / Fully Conformant / Non-conformant). Map to the 6-level scale on request for formal Architecture Board submissions.
+> [!info] TOGAF 10 — 6-level conformance scale (use for formal Architecture Board submissions)
+> Map every category to one of these levels when the board requires formal scoring:
+>
+> | Level | Name | Meaning | Decision rule |
+> |-------|------|---------|--------------|
+> | 0 | **Irrelevant** | The standard does not apply to this architecture | Document rationale; no finding required |
+> | 1 | **Consistent** | No conflict with the standard, but no explicit alignment | Flag for attention; not a dispensation requirement |
+> | 2 | **Compliant** | Meets the letter of the standard | Approve — no conditions |
+> | 3 | **Conformant** | Meets the letter and the spirit; implements best practices | Approve — commend as reference |
+> | 4 | **Fully Conformant** | Exceeds the standard; could be used as a template for others | Approve — nominate as Architecture Repository exemplar |
+> | NC | **Non-conformant** | Fails to meet the standard | Block — dispensation or remediation required before proceed |
+>
+> The 3-level shorthand (Compliant / Partial / Non-Compliant) in the scorecard above maps as: Compliant = levels 2–4; Partial = level 1; Non-Compliant = NC. Use the 6-level scale on request or when the board mandates it.
+
+**Section 2b — Architecture Contract template (TOGAF §7.18)**
+
+Produce either variant depending on the engagement stage:
+
+**Design and Development Architecture Contract** (issued at Phase G start — between architecture team and delivery programme):
+
+| Clause | Content |
+|--------|---------|
+| **Parties** | Architecture Sponsor, Lead Architect, Programme Manager |
+| **Architecture reference** | Approved ADD version, ADRs, Architecture Requirements Specification |
+| **Conformance requirements** | Specific standards, principles, and decisions the implementation must comply with; 8-category checklist thresholds |
+| **Acceptance criteria** | Measurable conditions for architecture sign-off (test coverage, SLO achievement, compliance score) |
+| **Dispensation process** | How deviations are requested (form, evidence, approver role, time-box); escalation path: Programme Manager → Architecture Board → Executive Sponsor |
+| **Dispensation escalation tiers** | Tier 1 — Programme-level: Lead Architect approves if deviation is Minor and reversible · Tier 2 — Architecture Board: required for Significant deviations or one-way doors · Tier 3 — Executive Sponsor: required for Critical deviations or regulatory-sensitive scope |
+| **Reporting obligations** | Cadence and format of compliance reporting to the Architecture Board |
+| **Change management** | Trigger events that mandate contract revision (scope change > 20%, new regulatory mandate, change classification upgrade) |
+| **Exit clause** | Conditions under which the Architecture Contract is formally closed or superseded |
+| **Sign-off** | Architecture Sponsor + Programme Manager + Lead Architect — signatures with date |
+
+**Business-Users Architecture Contract** (issued when the architecture is operationalised — between architecture team and business service owner):
+
+| Clause | Content |
+|--------|---------|
+| **Parties** | Architecture Sponsor, Business Service Owner |
+| **Service commitments** | SLAs, availability targets, data quality commitments, security posture |
+| **Architecture constraints** | What the business must not do that would invalidate the approved architecture |
+| **Change notification obligations** | Events the business must report to the architecture team (new regulation, new use case, volume change) |
+| **Review cadence** | When the contract is revisited (triggered by business event, not calendar) |
+| **Sign-off** | Architecture Sponsor + Business Service Owner |
 
 **Section 3 — Prioritised Finding List**
 
